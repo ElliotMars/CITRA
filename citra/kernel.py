@@ -38,6 +38,44 @@ class RBFKernel:
         """Global spectral norm bound, valid along every Taylor segment."""
         return 1.0 / (self.sigma * self.sigma)
 
+    def distance_interval(self, query, center, radius):
+        """Includes the entire node ball and every Taylor segment."""
+        q, c = vector(query), vector(center)
+        if q.shape != c.shape or not math.isfinite(radius) or radius < 0:
+            raise ValueError("invalid ball dimensions/radius")
+        with np.errstate(over="raise", invalid="raise"):
+            distance = float(np.linalg.norm(q - c))
+        upper = distance + radius
+        if not math.isfinite(upper):
+            raise ValueError("nonfinite distance interval; rescale inputs")
+        return max(0., float(np.nextafter(distance - radius, -np.inf))), float(np.nextafter(upper, np.inf))
+
+    def local_hessian_bound(self, query, center, radius):
+        """Supremum of exp(-t/2), |t-1|exp(-t/2) on the ball's t interval.
+
+        The only interior radial maximum is t=3. Dimension one has no
+        tangential eigenvalues, so only the radial envelope is used there.
+        """
+        lower, upper = self.distance_interval(query, center, radius)
+        a, b = (lower / self.sigma)**2, (upper / self.sigma)**2
+        if not math.isfinite(b):
+            raise ValueError("distance/sigma is too large; rescale inputs")
+        logs = [-a / 2] if vector(query).size > 1 else []
+        for t in (a, b):
+            if t != 1:
+                logs.append(math.log(abs(t - 1)) - t / 2)
+        if a <= 3 <= b:
+            logs.append(math.log(2) - 1.5)
+        if not logs:
+            return 0.0
+        value = math.exp(max(logs) - 2 * math.log(self.sigma))
+        return min(self.hessian_bound, max(float(np.nextafter(0., 1.)), float(np.nextafter(value, np.inf))))
+
+    def maximum_on_ball(self, query, center, radius):
+        lower, _ = self.distance_interval(query, center, radius)
+        value = math.exp(-0.5 * (lower / self.sigma)**2)
+        return min(1., max(float(np.nextafter(0., 1.)), float(np.nextafter(value, np.inf))))
+
     def value(self, query, embedding):
         q = vector(query)
         z = vector(embedding, q.size)

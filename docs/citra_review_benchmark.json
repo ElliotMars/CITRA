@@ -1,0 +1,3810 @@
+{
+  "protocol_version": 2,
+  "device": "CPU",
+  "numpy": "2.2.5",
+  "seed": 0,
+  "certificate_scope": "analytic aggregation remainder, explicit float64 tolerance; no prediction/label accuracy claim",
+  "baseline_note": "All methods share legal sum semantics. temporal_filter_exact reuses a charged snapshot. uncertified_hierarchy ignores epsilon. Compare total write+rolling queries, not query scans alone. RSS includes interpreter/allocator and is not isolated index memory.",
+  "sizes": [
+    {
+      "documents": 256,
+      "initial_versions": 276,
+      "construction_seconds_with_tracemalloc": 0.5330057009123266,
+      "construction_seconds_untraced_replay": 0.19603917095810175,
+      "scan_construction_seconds_untraced_replay": 0.01557210786268115,
+      "construction_index_write_seconds_with_tracemalloc": 0.48143326258286834,
+      "construction_index_write_seconds_untraced_replay": 0.180630536749959,
+      "construction_note": "Memory is a separate traced pass. Timing replays seeded generation+writes without tracing, in the same warmed process; not independent fresh-process cold samples.",
+      "memory": {
+        "rss_before_bytes": 42151936,
+        "rss_after_bytes": 50561024,
+        "rss_delta_bytes": 8409088,
+        "tracemalloc_resident_bytes": 1404253,
+        "tracemalloc_construction_peak_bytes": 1415646,
+        "process_lifetime_peak_rss_bytes": 50561024,
+        "index_with_documents_resident_estimate_bytes": 472222,
+        "store_and_index_resident_estimate_bytes": 515742,
+        "numeric_summary_bytes": 20384,
+        "leaf_document_references": 276,
+        "internal_document_references": 0
+      },
+      "rolling_query_total_seconds": {
+        "exact_full_scan": 0.15925971558317542,
+        "temporal_filter_exact": 0.14118098001927137,
+        "uncertified_hierarchy": 0.15859478386119008,
+        "citra_global": 0.17416548542678356,
+        "citra_local": 0.17180549539625645
+      },
+      "filtered_exact_snapshot_prepare_total_seconds": 0.0008472041226923466,
+      "filtered_exact_queries_plus_snapshot_prepare_seconds": 0.14202818414196372,
+      "initial_write_plus_rolling_citra_seconds": 0.3678446663543582,
+      "updates": [
+        {
+          "nodes_created": 20,
+          "documents_read": 22,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.001438761129975319,
+          "metadata_records_checked": 3,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0014658020809292793,
+          "scan_store_update_seconds": 1.3190321624279022e-05,
+          "post_update_verification_seconds": 0.004122945945709944
+        },
+        {
+          "nodes_created": 21,
+          "documents_read": 24,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.001543471124023199,
+          "metadata_records_checked": 4,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0015739812515676022,
+          "scan_store_update_seconds": 1.3379845768213272e-05,
+          "post_update_verification_seconds": 0.004078825935721397
+        },
+        {
+          "nodes_created": 24,
+          "documents_read": 16,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.001655039843171835,
+          "metadata_records_checked": 5,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0016859997995197773,
+          "scan_store_update_seconds": 1.3620126992464066e-05,
+          "post_update_verification_seconds": 0.0040779560804367065
+        },
+        {
+          "nodes_created": 22,
+          "documents_read": 14,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0014540012925863266,
+          "metadata_records_checked": 6,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0014853612519800663,
+          "scan_store_update_seconds": 1.3289973139762878e-05,
+          "post_update_verification_seconds": 0.0045715318992733955
+        },
+        {
+          "nodes_created": 23,
+          "documents_read": 15,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0015516909770667553,
+          "metadata_records_checked": 7,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0015861112624406815,
+          "scan_store_update_seconds": 1.427019014954567e-05,
+          "post_update_verification_seconds": 0.004103345796465874
+        },
+        {
+          "nodes_created": 22,
+          "documents_read": 17,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0014870213344693184,
+          "metadata_records_checked": 8,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.001523821149021387,
+          "scan_store_update_seconds": 1.400010660290718e-05,
+          "post_update_verification_seconds": 0.0040670461021363735
+        },
+        {
+          "nodes_created": 23,
+          "documents_read": 18,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.001549681182950735,
+          "metadata_records_checked": 9,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0015873201191425323,
+          "scan_store_update_seconds": 1.4380086213350296e-05,
+          "post_update_verification_seconds": 0.004124585073441267
+        },
+        {
+          "nodes_created": 22,
+          "documents_read": 20,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0014880308881402016,
+          "metadata_records_checked": 10,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0015283613465726376,
+          "scan_store_update_seconds": 1.483038067817688e-05,
+          "post_update_verification_seconds": 0.004095475189387798
+        }
+      ],
+      "update_total_seconds": 0.012436758261173964,
+      "write_query_update_citra_total_seconds": 0.38028142461553216,
+      "write_query_update_fullscan_total_seconds": 0.17494278447702527,
+      "queries": [
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008268048986792564,
+              "p50_seconds": 0.0007910649292171001,
+              "p95_seconds": 0.0008232309017330408,
+              "total_seconds": 0.002404354978352785,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0006150961853563786,
+              "p50_seconds": 0.0006060968153178692,
+              "p95_seconds": 0.0006141962483525276,
+              "total_seconds": 0.0018129292875528336,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011367332190275192,
+              "p50_seconds": 0.0011098231188952923,
+              "p95_seconds": 0.0011340422090142966,
+              "total_seconds": 0.0033290302380919456,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011060237884521484,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0011949730105698109,
+              "p50_seconds": 0.001084843184798956,
+              "p95_seconds": 0.0011839600279927253,
+              "total_seconds": 0.003357080277055502,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010835831053555012,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0011230837553739548,
+              "p50_seconds": 0.001074903178960085,
+              "p95_seconds": 0.0011182656977325677,
+              "total_seconds": 0.003269011154770851,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010699136182665825,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008350452408194542,
+              "p50_seconds": 0.0008040061220526695,
+              "p95_seconds": 0.0008319413289427757,
+              "total_seconds": 0.00243285670876503,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0006216759793460369,
+              "p50_seconds": 0.0006015361286699772,
+              "p95_seconds": 0.0006196619942784309,
+              "total_seconds": 0.0018215393647551537,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011622728779911995,
+              "p50_seconds": 0.0010879631154239178,
+              "p95_seconds": 0.0011548419017344714,
+              "total_seconds": 0.003334410022944212,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010844632051885128,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.001134864054620266,
+              "p50_seconds": 0.0010948041453957558,
+              "p95_seconds": 0.001130858063697815,
+              "total_seconds": 0.003315540961921215,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010845828801393509,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0011986731551587582,
+              "p50_seconds": 0.001079023815691471,
+              "p95_seconds": 0.0011867082212120295,
+              "total_seconds": 0.0033558309078216553,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.001077862922102213,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008169449865818024,
+              "p50_seconds": 0.0008169449865818024,
+              "p95_seconds": 0.0008192043285816907,
+              "total_seconds": 0.0024305153638124466,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.00061026681214571,
+              "p50_seconds": 0.0005931458435952663,
+              "p95_seconds": 0.0006085547152906656,
+              "total_seconds": 0.0017949393950402737,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011101029813289642,
+              "p50_seconds": 0.0010736137628555298,
+              "p95_seconds": 0.0011064540594816208,
+              "total_seconds": 0.0032538999803364277,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010665939189493656,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0011114440858364105,
+              "p50_seconds": 0.001087903045117855,
+              "p95_seconds": 0.001109089981764555,
+              "total_seconds": 0.003271400462836027,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010707243345677853,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0011066929437220097,
+              "p50_seconds": 0.0011066929437220097,
+              "p95_seconds": 0.001138130109757185,
+              "total_seconds": 0.003341598901897669,
+              "actual_aggregate_error": 4.47545209131181e-16,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010919729247689247,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008306261152029037,
+              "p50_seconds": 0.0008085947483778,
+              "p95_seconds": 0.0008284229785203934,
+              "total_seconds": 0.002446297090500593,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0006153169088065624,
+              "p50_seconds": 0.0006009973585605621,
+              "p95_seconds": 0.0006138849537819624,
+              "total_seconds": 0.0018143602646887302,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011097141541540623,
+              "p50_seconds": 0.0011097141541540623,
+              "p95_seconds": 0.0011121968738734723,
+              "total_seconds": 0.0033124107867479324,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010864832438528538,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.001110623124986887,
+              "p50_seconds": 0.001110623124986887,
+              "p95_seconds": 0.001166485995054245,
+              "total_seconds": 0.0033938391134142876,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011091427877545357,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0010873428545892239,
+              "p50_seconds": 0.0010873428545892239,
+              "p95_seconds": 0.0010962800588458776,
+              "total_seconds": 0.0032601100392639637,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.001096033025532961,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008229152299463749,
+              "p50_seconds": 0.0008004256524145603,
+              "p95_seconds": 0.0008206662721931934,
+              "total_seconds": 0.0024188957177102566,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0006127068772912025,
+              "p50_seconds": 0.0006127068772912025,
+              "p95_seconds": 0.0006213100627064705,
+              "total_seconds": 0.001830108929425478,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011036139912903309,
+              "p50_seconds": 0.001096123829483986,
+              "p95_seconds": 0.0011028649751096964,
+              "total_seconds": 0.0032709105871617794,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010924539528787136,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0011085630394518375,
+              "p50_seconds": 0.0010696440003812313,
+              "p95_seconds": 0.001104671135544777,
+              "total_seconds": 0.0032425508834421635,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010630041360855103,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0011198925785720348,
+              "p50_seconds": 0.0010767937637865543,
+              "p95_seconds": 0.0011155826970934868,
+              "total_seconds": 0.0032657692208886147,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010756137780845165,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 33,
+          "snapshot_prepare_seconds": 0.00021509826183319092,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0008392850868403912,
+              "p50_seconds": 0.0008067656308412552,
+              "p95_seconds": 0.0008360331412404776,
+              "total_seconds": 0.002447525504976511,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0006199562922120094,
+              "p50_seconds": 0.0006199562922120094,
+              "p95_seconds": 0.0006272108294069767,
+              "total_seconds": 0.001851219218224287,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 33,
+              "exact_kernel_evaluations": 33,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0011046133004128933,
+              "p50_seconds": 0.0010704640299081802,
+              "p95_seconds": 0.001101198373362422,
+              "total_seconds": 0.0032443604432046413,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010656928643584251,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.001126463059335947,
+              "p50_seconds": 0.001126463059335947,
+              "p95_seconds": 0.001171661214902997,
+              "total_seconds": 0.003357690293341875,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010532736778259277,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0011185030452907085,
+              "p50_seconds": 0.0010666130110621452,
+              "p95_seconds": 0.0011133140418678523,
+              "total_seconds": 0.0032498198561370373,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 81,
+                "documents_scanned": 33,
+                "exact_kernel_evaluations": 33,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 153,
+                "temporal_nodes_pruned": 16,
+                "temporal_partial_nodes": 40,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010653631761670113,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0031645307317376137,
+              "p50_seconds": 0.003141472116112709,
+              "p95_seconds": 0.0031622248701751233,
+              "total_seconds": 0.009441143833100796,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0028566126711666584,
+              "p50_seconds": 0.0028503932990133762,
+              "p95_seconds": 0.0028559907339513304,
+              "total_seconds": 0.008544079028069973,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.00372141832485795,
+              "p50_seconds": 0.003669008146971464,
+              "p95_seconds": 0.0037161773070693016,
+              "total_seconds": 0.011042284779250622,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036480980925261974,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.003704139031469822,
+              "p50_seconds": 0.0036642388440668583,
+              "p95_seconds": 0.0037001490127295256,
+              "total_seconds": 0.011022275779396296,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036628590896725655,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0037298882380127907,
+              "p50_seconds": 0.0037298882380127907,
+              "p95_seconds": 0.003822740027680993,
+              "total_seconds": 0.01122838445007801,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0038317167200148106,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.003192510921508074,
+              "p50_seconds": 0.0031761410646140575,
+              "p95_seconds": 0.003190873935818672,
+              "total_seconds": 0.009515793062746525,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0028669238090515137,
+              "p50_seconds": 0.0028521427884697914,
+              "p95_seconds": 0.0028654457069933414,
+              "total_seconds": 0.008563089650124311,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.003723077941685915,
+              "p50_seconds": 0.003678028006106615,
+              "p95_seconds": 0.003718572948127985,
+              "total_seconds": 0.011073852889239788,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036741490475833416,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.003695887979120016,
+              "p50_seconds": 0.0036659380421042442,
+              "p95_seconds": 0.003692892985418439,
+              "total_seconds": 0.011021793819963932,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036586178466677666,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.003680028021335602,
+              "p50_seconds": 0.0036753378808498383,
+              "p95_seconds": 0.0036795590072870254,
+              "total_seconds": 0.010972514748573303,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.003615928813815117,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0031805108301341534,
+              "p50_seconds": 0.003148270770907402,
+              "p95_seconds": 0.0031772868242114782,
+              "total_seconds": 0.009458123706281185,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0028466330841183662,
+              "p50_seconds": 0.0028465730138123035,
+              "p95_seconds": 0.00284662707708776,
+              "total_seconds": 0.00852529937401414,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0037247580476105213,
+              "p50_seconds": 0.0037247580476105213,
+              "p95_seconds": 0.003769451193511486,
+              "total_seconds": 0.011159502901136875,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.003770196810364723,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0037329671904444695,
+              "p50_seconds": 0.0036822380498051643,
+              "p95_seconds": 0.003727894276380539,
+              "total_seconds": 0.011086374055594206,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.00368095887824893,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0037114382721483707,
+              "p50_seconds": 0.0036883382126688957,
+              "p95_seconds": 0.003709128266200423,
+              "total_seconds": 0.011082124430686235,
+              "actual_aggregate_error": 1.7763568394002505e-15,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.003687127958983183,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.003183560911566019,
+              "p50_seconds": 0.0031813806854188442,
+              "p95_seconds": 0.0031833428889513015,
+              "total_seconds": 0.00952414283528924,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.002783773932605982,
+              "p50_seconds": 0.0028445026837289333,
+              "p95_seconds": 0.002848687767982483,
+              "total_seconds": 0.008477429393678904,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.003684618044644594,
+              "p50_seconds": 0.0036943876184523106,
+              "p95_seconds": 0.0036994276568293573,
+              "total_seconds": 0.011078993324190378,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036903880536556244,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.003728847950696945,
+              "p50_seconds": 0.003728847950696945,
+              "p95_seconds": 0.003774225898087025,
+              "total_seconds": 0.011181314010173082,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0037776678800582886,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.003692077938467264,
+              "p50_seconds": 0.0036750780418515205,
+              "p95_seconds": 0.0036903779488056897,
+              "total_seconds": 0.011018474120646715,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036739278584718704,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0031692120246589184,
+              "p50_seconds": 0.0031469911336898804,
+              "p95_seconds": 0.0031669899355620144,
+              "total_seconds": 0.009463135153055191,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0028711329214274883,
+              "p50_seconds": 0.0028417129069566727,
+              "p95_seconds": 0.0028681909199804066,
+              "total_seconds": 0.008538128808140755,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.003748237621039152,
+              "p50_seconds": 0.003701948095113039,
+              "p95_seconds": 0.003743608668446541,
+              "total_seconds": 0.011139953508973122,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036858278326690197,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0037249475717544556,
+              "p50_seconds": 0.003694568295031786,
+              "p95_seconds": 0.0037219096440821884,
+              "total_seconds": 0.011109403800219297,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.003693128004670143,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.003744238056242466,
+              "p50_seconds": 0.003744238056242466,
+              "p95_seconds": 0.0038046091329306366,
+              "total_seconds": 0.011235133279114962,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036784480325877666,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 161,
+          "snapshot_prepare_seconds": 0.0002846578136086464,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0031783110462129116,
+              "p50_seconds": 0.003178149927407503,
+              "p95_seconds": 0.003178294934332371,
+              "total_seconds": 0.009534542914479971,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.00291775306686759,
+              "p50_seconds": 0.0028600231744349003,
+              "p95_seconds": 0.002911980077624321,
+              "total_seconds": 0.008635889273136854,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 161,
+              "exact_kernel_evaluations": 161,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0037444480694830418,
+              "p50_seconds": 0.0036975378170609474,
+              "p95_seconds": 0.003739757044240832,
+              "total_seconds": 0.011119063943624496,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036938581615686417,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.003760288003832102,
+              "p50_seconds": 0.00369627820327878,
+              "p95_seconds": 0.0037538870237767696,
+              "total_seconds": 0.011146724224090576,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036948979832232,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0037569082342088223,
+              "p50_seconds": 0.0037017669528722763,
+              "p95_seconds": 0.0037513941060751677,
+              "total_seconds": 0.011143063195049763,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 161,
+                "exact_kernel_evaluations": 161,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 248,
+                "temporal_nodes_pruned": 1,
+                "temporal_partial_nodes": 45,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036832191981375217,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.004975599702447653,
+              "p50_seconds": 0.004975599702447653,
+              "p95_seconds": 0.005064835119992494,
+              "total_seconds": 0.015001849737018347,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004595932085067034,
+              "p50_seconds": 0.004560692701488733,
+              "p95_seconds": 0.004592408146709204,
+              "total_seconds": 0.013668057974427938,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.004290114156901836,
+              "p50_seconds": 0.004290114156901836,
+              "p95_seconds": 0.004412891855463385,
+              "total_seconds": 0.012840022798627615,
+              "actual_aggregate_error": 0.06833489988099219,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.004119186196476221,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.005902533885091543,
+              "p50_seconds": 0.005877295043319464,
+              "p95_seconds": 0.005900010000914335,
+              "total_seconds": 0.017617774661630392,
+              "actual_aggregate_error": 8.881784197001252e-16,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 256,
+                "exact_kernel_evaluations": 256,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0058759041130542755,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.006477130576968193,
+              "p50_seconds": 0.006442192010581493,
+              "p95_seconds": 0.006473636720329523,
+              "total_seconds": 0.019360774662345648,
+              "actual_aggregate_error": 8.881784197001252e-16,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 256,
+                "exact_kernel_evaluations": 256,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.006441011093556881,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.004919449798762798,
+              "p50_seconds": 0.004891491029411554,
+              "p95_seconds": 0.004916653921827674,
+              "total_seconds": 0.014700851868838072,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004537372849881649,
+              "p50_seconds": 0.004511203151196241,
+              "p95_seconds": 0.004534755880013108,
+              "total_seconds": 0.013545448891818523,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.004199835006147623,
+              "p50_seconds": 0.0041506350971758366,
+              "p95_seconds": 0.004194915015250445,
+              "total_seconds": 0.012479635886847973,
+              "actual_aggregate_error": 0.06833489988099219,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.00414662528783083,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.005462537985295057,
+              "p50_seconds": 0.005462537985295057,
+              "p95_seconds": 0.005552420066669584,
+              "total_seconds": 0.016462272964417934,
+              "actual_aggregate_error": 0.0219990421572605,
+              "stats": {
+                "nodes_visited": 87,
+                "documents_scanned": 237,
+                "exact_kernel_evaluations": 237,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.005560677032917738,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.09609282249758844,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.006046823225915432,
+              "p50_seconds": 0.006021593697369099,
+              "p95_seconds": 0.006044300273060799,
+              "total_seconds": 0.018073361832648516,
+              "actual_aggregate_error": 0.0219990421572605,
+              "stats": {
+                "nodes_visited": 87,
+                "documents_scanned": 237,
+                "exact_kernel_evaluations": 237,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.006020253989845514,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.09609282249758844,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.00492636114358902,
+              "p50_seconds": 0.004898721352219582,
+              "p95_seconds": 0.004923597164452076,
+              "total_seconds": 0.014596563298255205,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004125725012272596,
+              "p50_seconds": 0.0042427037842571735,
+              "p95_seconds": 0.0044918688479810955,
+              "total_seconds": 0.012887982651591301,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.003923316951841116,
+              "p50_seconds": 0.003923316951841116,
+              "p95_seconds": 0.004122441215440631,
+              "total_seconds": 0.0119244703091681,
+              "actual_aggregate_error": 0.06833489988099219,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0041404361836612225,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0035918480716645718,
+              "p50_seconds": 0.003684667870402336,
+              "p95_seconds": 0.0037009849213063715,
+              "total_seconds": 0.010979313869029284,
+              "actual_aggregate_error": 0.06833489988099219,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036833281628787518,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.004143445752561092,
+              "p50_seconds": 0.004137895070016384,
+              "p95_seconds": 0.0041428906843066216,
+              "total_seconds": 0.012384457048028708,
+              "actual_aggregate_error": 0.06833489988099219,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.004101736005395651,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.004917890764772892,
+              "p50_seconds": 0.004892861004918814,
+              "p95_seconds": 0.004915387788787484,
+              "total_seconds": 0.014688442926853895,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004546142648905516,
+              "p50_seconds": 0.004518873989582062,
+              "p95_seconds": 0.00454341578297317,
+              "total_seconds": 0.013576869387179613,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0041875350289046764,
+              "p50_seconds": 0.0041875350289046764,
+              "p95_seconds": 0.004288443084806204,
+              "total_seconds": 0.012656545266509056,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0042951651848852634,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.005908303894102573,
+              "p50_seconds": 0.005899525247514248,
+              "p95_seconds": 0.005907426029443741,
+              "total_seconds": 0.017634544987231493,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 91,
+                "documents_scanned": 256,
+                "exact_kernel_evaluations": 256,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.005825316067785025,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.004184684716165066,
+              "p50_seconds": 0.004162374883890152,
+              "p95_seconds": 0.004182453732937574,
+              "total_seconds": 0.012495994567871094,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.004147844854742289,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.004893050994724035,
+              "p50_seconds": 0.004830401856452227,
+              "p95_seconds": 0.004886786080896854,
+              "total_seconds": 0.014430535025894642,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004272253718227148,
+              "p50_seconds": 0.004338384140282869,
+              "p95_seconds": 0.004514198331162333,
+              "total_seconds": 0.013144371099770069,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0038325870409607887,
+              "p50_seconds": 0.0038325870409607887,
+              "p95_seconds": 0.0038409291300922632,
+              "total_seconds": 0.011373032350093126,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.00383833609521389,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.004924360197037458,
+              "p50_seconds": 0.005077450070530176,
+              "p95_seconds": 0.005082958238199353,
+              "total_seconds": 0.015085380524396896,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 87,
+                "documents_scanned": 237,
+                "exact_kernel_evaluations": 237,
+                "summary_kernel_evaluations": 10,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.005076080095022917,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.09609282249758844,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0040320162661373615,
+              "p50_seconds": 0.0040320162661373615,
+              "p95_seconds": 0.004057998908683658,
+              "total_seconds": 0.01210393849760294,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.004059566184878349,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 256,
+          "snapshot_prepare_seconds": 0.00034744804725050926,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.00495021091774106,
+              "p50_seconds": 0.004918790888041258,
+              "p95_seconds": 0.00494706891477108,
+              "total_seconds": 0.01432414585724473,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 276
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.004196105059236288,
+              "p50_seconds": 0.003983275964856148,
+              "p95_seconds": 0.004174822149798274,
+              "total_seconds": 0.012149238027632236,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 256,
+              "exact_kernel_evaluations": 256,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0036885677836835384,
+              "p50_seconds": 0.0036408882588148117,
+              "p95_seconds": 0.003683799831196666,
+              "total_seconds": 0.01096240384504199,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0036294679157435894,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0033351099118590355,
+              "p50_seconds": 0.003281300887465477,
+              "p95_seconds": 0.0033297290094196795,
+              "total_seconds": 0.009880210738629103,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0032626502215862274,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.5609202213710757,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.0036932877264916897,
+              "p50_seconds": 0.003646648023277521,
+              "p95_seconds": 0.003688623756170273,
+              "total_seconds": 0.010965134482830763,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 71,
+                "documents_scanned": 162,
+                "exact_kernel_evaluations": 162,
+                "summary_kernel_evaluations": 7,
+                "metadata_records_checked": 103,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 35,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.003645538352429867,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 3.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "documents": 4096,
+      "initial_versions": 4412,
+      "construction_seconds_with_tracemalloc": 10.234478594269603,
+      "construction_seconds_untraced_replay": 3.733029955998063,
+      "scan_construction_seconds_untraced_replay": 0.23610997758805752,
+      "construction_index_write_seconds_with_tracemalloc": 9.536850144620985,
+      "construction_index_write_seconds_untraced_replay": 3.4918578704819083,
+      "construction_note": "Memory is a separate traced pass. Timing replays seeded generation+writes without tracing, in the same warmed process; not independent fresh-process cold samples.",
+      "memory": {
+        "rss_before_bytes": 55435264,
+        "rss_after_bytes": 74309632,
+        "rss_delta_bytes": 18874368,
+        "tracemalloc_resident_bytes": 8436302,
+        "tracemalloc_construction_peak_bytes": 8473999,
+        "process_lifetime_peak_rss_bytes": 79327232,
+        "index_with_documents_resident_estimate_bytes": 7704973,
+        "store_and_index_resident_estimate_bytes": 8398349,
+        "numeric_summary_bytes": 348320,
+        "leaf_document_references": 4412,
+        "internal_document_references": 0
+      },
+      "rolling_query_total_seconds": {
+        "exact_full_scan": 2.5352758625522256,
+        "temporal_filter_exact": 2.2504097600467503,
+        "uncertified_hierarchy": 2.4873103192076087,
+        "citra_global": 3.1991311754100025,
+        "citra_local": 2.961458253208548
+      },
+      "filtered_exact_snapshot_prepare_total_seconds": 0.017662327736616135,
+      "filtered_exact_queries_plus_snapshot_prepare_seconds": 2.2680720877833664,
+      "initial_write_plus_rolling_citra_seconds": 6.694488209206611,
+      "updates": [
+        {
+          "nodes_created": 31,
+          "documents_read": 22,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0023567071184515953,
+          "metadata_records_checked": 3,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002391085959970951,
+          "scan_store_update_seconds": 2.3229047656059265e-05,
+          "post_update_verification_seconds": 0.069250063970685
+        },
+        {
+          "nodes_created": 32,
+          "documents_read": 22,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0024393261410295963,
+          "metadata_records_checked": 4,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0024762661196291447,
+          "scan_store_update_seconds": 1.5730969607830048e-05,
+          "post_update_verification_seconds": 0.07504073204472661
+        },
+        {
+          "nodes_created": 32,
+          "documents_read": 15,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.00206203805282712,
+          "metadata_records_checked": 5,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002097907941788435,
+          "scan_store_update_seconds": 1.3499986380338669e-05,
+          "post_update_verification_seconds": 0.07156931096687913
+        },
+        {
+          "nodes_created": 31,
+          "documents_read": 20,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0021665780805051327,
+          "metadata_records_checked": 6,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.0021999580785632133,
+          "scan_store_update_seconds": 1.546042039990425e-05,
+          "post_update_verification_seconds": 0.07280989270657301
+        },
+        {
+          "nodes_created": 34,
+          "documents_read": 18,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.0021896478720009327,
+          "metadata_records_checked": 7,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002224117983132601,
+          "scan_store_update_seconds": 1.3609882444143295e-05,
+          "post_update_verification_seconds": 0.0726213650777936
+        },
+        {
+          "nodes_created": 33,
+          "documents_read": 15,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.002164537087082863,
+          "metadata_records_checked": 8,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002205388154834509,
+          "scan_store_update_seconds": 1.5700235962867737e-05,
+          "post_update_verification_seconds": 0.07281010318547487
+        },
+        {
+          "nodes_created": 33,
+          "documents_read": 17,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.002386676147580147,
+          "metadata_records_checked": 9,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002429446205496788,
+          "scan_store_update_seconds": 1.5820376574993134e-05,
+          "post_update_verification_seconds": 0.07517540082335472
+        },
+        {
+          "nodes_created": 33,
+          "documents_read": 18,
+          "intervals_removed": 1,
+          "intervals_inserted": 2,
+          "index_seconds": 0.002460925839841366,
+          "metadata_records_checked": 10,
+          "validation_document_reads": 1,
+          "elapsed_seconds": 0.002501655835658312,
+          "scan_store_update_seconds": 1.5169847756624222e-05,
+          "post_update_verification_seconds": 0.07196360919624567
+        }
+      ],
+      "update_total_seconds": 0.018525826279073954,
+      "write_query_update_citra_total_seconds": 6.713014035485685,
+      "write_query_update_fullscan_total_seconds": 2.771514060907066,
+      "queries": [
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.017193551175296307,
+              "p50_seconds": 0.011875980999320745,
+              "p95_seconds": 0.01666179415769875,
+              "total_seconds": 0.0408955542370677,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.009106867015361786,
+              "p50_seconds": 0.009084886871278286,
+              "p95_seconds": 0.009104669000953436,
+              "total_seconds": 0.027193082962185144,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.018923411145806313,
+              "p50_seconds": 0.0173959000967443,
+              "p95_seconds": 0.01877066004090011,
+              "total_seconds": 0.052836036309599876,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016511245165020227,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.016522265039384365,
+              "p50_seconds": 0.02436708938330412,
+              "p95_seconds": 0.02716831471771002,
+              "total_seconds": 0.06836891639977694,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.02747337194159627,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.02157396636903286,
+              "p50_seconds": 0.017002081032842398,
+              "p95_seconds": 0.021116777835413814,
+              "total_seconds": 0.05556488037109375,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.017000491730868816,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.014418276958167553,
+              "p50_seconds": 0.01306001516059041,
+              "p95_seconds": 0.014282450778409839,
+              "total_seconds": 0.040376927237957716,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.009235417004674673,
+              "p50_seconds": 0.008957347832620144,
+              "p95_seconds": 0.00920761008746922,
+              "total_seconds": 0.02701464481651783,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.016089547891169786,
+              "p50_seconds": 0.016089547891169786,
+              "p95_seconds": 0.016437719156965614,
+              "total_seconds": 0.04858081042766571,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016009888146072626,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.016785382758826017,
+              "p50_seconds": 0.01639763591811061,
+              "p95_seconds": 0.016746608074754477,
+              "total_seconds": 0.049256475642323494,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016071977093815804,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.016109978314489126,
+              "p50_seconds": 0.016472925432026386,
+              "p95_seconds": 0.016865970473736523,
+              "total_seconds": 0.049492545891553164,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016471085138618946,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.012612088117748499,
+              "p50_seconds": 0.012375347781926394,
+              "p95_seconds": 0.012588414084166288,
+              "total_seconds": 0.03702501719817519,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.008489611092954874,
+              "p50_seconds": 0.00888854917138815,
+              "p95_seconds": 0.009270173450931906,
+              "total_seconds": 0.026690736413002014,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.016353906132280827,
+              "p50_seconds": 0.016353906132280827,
+              "p95_seconds": 0.016426635067909957,
+              "total_seconds": 0.0489189587533474,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016125867143273354,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.016356246080249548,
+              "p50_seconds": 0.016356246080249548,
+              "p95_seconds": 0.016411757748574018,
+              "total_seconds": 0.04871071083471179,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0159348389133811,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.015954747330397367,
+              "p50_seconds": 0.015532951336354017,
+              "p95_seconds": 0.015912567730993032,
+              "total_seconds": 0.04671544162556529,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.015226422809064388,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.012422727886587381,
+              "p50_seconds": 0.012339829001575708,
+              "p95_seconds": 0.012414437998086215,
+              "total_seconds": 0.03676922805607319,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.009079517796635628,
+              "p50_seconds": 0.009079517796635628,
+              "p95_seconds": 0.009114518109709025,
+              "total_seconds": 0.027115603908896446,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.016577474307268858,
+              "p50_seconds": 0.015806738752871752,
+              "p95_seconds": 0.016500400751829146,
+              "total_seconds": 0.04818187328055501,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.01579352980479598,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.015550040174275637,
+              "p50_seconds": 0.016144797205924988,
+              "p95_seconds": 0.0165764891076833,
+              "total_seconds": 0.04831929225474596,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.01662241481244564,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.01589146815240383,
+              "p50_seconds": 0.01589146815240383,
+              "p95_seconds": 0.016008342895656825,
+              "total_seconds": 0.047030091285705566,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016020007897168398,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.0124089983291924,
+              "p50_seconds": 0.012405817862600088,
+              "p95_seconds": 0.012408680282533169,
+              "total_seconds": 0.03718315530568361,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.009045768994838,
+              "p50_seconds": 0.00918137701228261,
+              "p95_seconds": 0.00922869872301817,
+              "total_seconds": 0.027461102697998285,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.016587064135819674,
+              "p50_seconds": 0.0167158842086792,
+              "p95_seconds": 0.016963428212329747,
+              "total_seconds": 0.05029388144612312,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.01671111397445202,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.016773392912000418,
+              "p50_seconds": 0.016694005113095045,
+              "p95_seconds": 0.01676545413210988,
+              "total_seconds": 0.05001583322882652,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016692314762622118,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.016831522807478905,
+              "p50_seconds": 0.016831522807478905,
+              "p95_seconds": 0.01706272209994495,
+              "total_seconds": 0.05043928883969784,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.016517856158316135,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 0,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 526,
+          "snapshot_prepare_seconds": 0.007587595842778683,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.01203268114477396,
+              "p50_seconds": 0.01203268114477396,
+              "p95_seconds": 0.012228779960423708,
+              "total_seconds": 0.03612805297598243,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.008748969063162804,
+              "p50_seconds": 0.008748969063162804,
+              "p95_seconds": 0.00877022766508162,
+              "total_seconds": 0.02614284958690405,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 526,
+              "exact_kernel_evaluations": 526,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.015582230873405933,
+              "p50_seconds": 0.015582230873405933,
+              "p95_seconds": 0.01574907097965479,
+              "total_seconds": 0.046688811387866735,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.01533505180850625,
+                "fallback_exact": true,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.016920083202421665,
+              "p50_seconds": 0.01673734374344349,
+              "p95_seconds": 0.016901809256523848,
+              "total_seconds": 0.0502542220056057,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.01659504510462284,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.016782023943960667,
+              "p50_seconds": 0.016782023943960667,
+              "p95_seconds": 0.01706085130572319,
+              "total_seconds": 0.050655519124120474,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1323,
+                "documents_scanned": 526,
+                "exact_kernel_evaluations": 526,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 2265,
+                "temporal_nodes_pruned": 277,
+                "temporal_partial_nodes": 661,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.017090062145143747,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.05106166563928127,
+              "p50_seconds": 0.04784782510250807,
+              "p95_seconds": 0.05074028158560395,
+              "total_seconds": 0.14671379700303078,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.04329392081126571,
+              "p50_seconds": 0.043945308309048414,
+              "p95_seconds": 0.044748823530972,
+              "total_seconds": 0.13207733212038875,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06277849990874529,
+              "p50_seconds": 0.06277849990874529,
+              "p95_seconds": 0.06283331001177431,
+              "total_seconds": 0.18544266698881984,
+              "actual_aggregate_error": 0.03689395593082411,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05981918703764677,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.058977041859179735,
+              "p50_seconds": 0.05905734095722437,
+              "p95_seconds": 0.05974784423597157,
+              "total_seconds": 0.17785894963890314,
+              "actual_aggregate_error": 5.329070518200751e-15,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 2549,
+                "exact_kernel_evaluations": 2549,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.059055631048977375,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.061109769623726606,
+              "p50_seconds": 0.06040619406849146,
+              "p95_seconds": 0.06103941206820309,
+              "total_seconds": 0.1790940435603261,
+              "actual_aggregate_error": 5.329070518200751e-15,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 2549,
+                "exact_kernel_evaluations": 2549,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.057576441206038,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.04725548904389143,
+              "p50_seconds": 0.04725548904389143,
+              "p95_seconds": 0.04874881478026509,
+              "total_seconds": 0.14302426995709538,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.043222342152148485,
+              "p50_seconds": 0.04263192508369684,
+              "p95_seconds": 0.043163300445303324,
+              "total_seconds": 0.12847639294341207,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.0562350177206099,
+              "p50_seconds": 0.05676581524312496,
+              "p95_seconds": 0.058945530420169236,
+              "total_seconds": 0.17218855395913124,
+              "actual_aggregate_error": 0.03689395593082411,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05676113534718752,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.058098067063838243,
+              "p50_seconds": 0.05874406499788165,
+              "p95_seconds": 0.05922955656424165,
+              "total_seconds": 0.17612563213333488,
+              "actual_aggregate_error": 0.031172088459711485,
+              "stats": {
+                "nodes_visited": 1553,
+                "documents_scanned": 2540,
+                "exact_kernel_evaluations": 2540,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05928152985870838,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.04748711109405958,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.05845119617879391,
+              "p50_seconds": 0.05845119617879391,
+              "p95_seconds": 0.05936086527071893,
+              "total_seconds": 0.17626687278971076,
+              "actual_aggregate_error": 0.031172088459711485,
+              "stats": {
+                "nodes_visited": 1553,
+                "documents_scanned": 2540,
+                "exact_kernel_evaluations": 2540,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05835180729627609,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.04748711109405958,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.04753767792135477,
+              "p50_seconds": 0.04753767792135477,
+              "p95_seconds": 0.04847606676630676,
+              "total_seconds": 0.1433209702372551,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.04534137016162276,
+              "p50_seconds": 0.045329321175813675,
+              "p95_seconds": 0.045340165263041854,
+              "total_seconds": 0.13566791405901313,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06406116392463446,
+              "p50_seconds": 0.06406116392463446,
+              "p95_seconds": 0.06525405291467905,
+              "total_seconds": 0.19170027412474155,
+              "actual_aggregate_error": 0.03689395593082411,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0653793360106647,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.0617700070142746,
+              "p50_seconds": 0.0614776280708611,
+              "p95_seconds": 0.061740769119933245,
+              "total_seconds": 0.18330800207331777,
+              "actual_aggregate_error": 0.03689395593082411,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06005787709727883,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.06049836426973343,
+              "p50_seconds": 0.06049836426973343,
+              "p95_seconds": 0.06109711336903274,
+              "total_seconds": 0.1815006430260837,
+              "actual_aggregate_error": 0.03689395593082411,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06116155069321394,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.05168230598792434,
+              "p50_seconds": 0.05168230598792434,
+              "p95_seconds": 0.05185459139756858,
+              "total_seconds": 0.15499581629410386,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.04587350785732269,
+              "p50_seconds": 0.045223341789096594,
+              "p95_seconds": 0.045808491250500086,
+              "total_seconds": 0.13623527251183987,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06374955596402287,
+              "p50_seconds": 0.061287311371415854,
+              "p95_seconds": 0.06350333150476217,
+              "total_seconds": 0.1859318297356367,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.060888181906193495,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.06067738262936473,
+              "p50_seconds": 0.06028918595984578,
+              "p95_seconds": 0.06063856296241284,
+              "total_seconds": 0.1810131366364658,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 2549,
+                "exact_kernel_evaluations": 2549,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06028698571026325,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.059531259816139936,
+              "p50_seconds": 0.059531259816139936,
+              "p95_seconds": 0.05980169982649386,
+              "total_seconds": 0.1788811394944787,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05951648112386465,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.051125539001077414,
+              "p50_seconds": 0.050445232074707747,
+              "p95_seconds": 0.05105750830844045,
+              "total_seconds": 0.15171236591413617,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.04532791208475828,
+              "p50_seconds": 0.04532791208475828,
+              "p95_seconds": 0.04537522499449551,
+              "total_seconds": 0.13582180719822645,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.059763998724520206,
+              "p50_seconds": 0.0597760989330709,
+              "p95_seconds": 0.05998606896027923,
+              "total_seconds": 0.17954949662089348,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.059770479798316956,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.06258881418034434,
+              "p50_seconds": 0.060218957252800465,
+              "p95_seconds": 0.06235182848758995,
+              "total_seconds": 0.18258809158578515,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1553,
+                "documents_scanned": 2540,
+                "exact_kernel_evaluations": 2540,
+                "summary_kernel_evaluations": 4,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05977838998660445,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.04748711109405958,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.05759516218677163,
+              "p50_seconds": 0.05832082778215408,
+              "p95_seconds": 0.059125207178294656,
+              "total_seconds": 0.17513057263568044,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0583189781755209,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 10,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 2549,
+          "snapshot_prepare_seconds": 0.004503003787249327,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.049036670941859484,
+              "p50_seconds": 0.05019497498869896,
+              "p95_seconds": 0.05026688417419791,
+              "total_seconds": 0.14950652001425624,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.04612248856574297,
+              "p50_seconds": 0.04612248856574297,
+              "p95_seconds": 0.046152367955073714,
+              "total_seconds": 0.13794971723109484,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 2549,
+              "exact_kernel_evaluations": 2549,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.061267991084605455,
+              "p50_seconds": 0.05840627895668149,
+              "p95_seconds": 0.06098181987181306,
+              "total_seconds": 0.17645808681845665,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.056779146660119295,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.056889917235821486,
+              "p50_seconds": 0.058137519750744104,
+              "p95_seconds": 0.05871321903541684,
+              "total_seconds": 0.1738046226091683,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05877549620345235,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.22300027521043092,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.059600611217319965,
+              "p50_seconds": 0.059600611217319965,
+              "p95_seconds": 0.06017093854025006,
+              "total_seconds": 0.17833814630284905,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 2512,
+                "exact_kernel_evaluations": 2512,
+                "summary_kernel_evaluations": 3,
+                "metadata_records_checked": 4088,
+                "temporal_nodes_pruned": 12,
+                "temporal_partial_nodes": 773,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05850167665630579,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 1.5e-323,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.07565025985240936,
+              "p50_seconds": 0.07465112581849098,
+              "p95_seconds": 0.07555034644901752,
+              "total_seconds": 0.22360909869894385,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.07126079499721527,
+              "p50_seconds": 0.07126079499721527,
+              "p95_seconds": 0.07196140643209219,
+              "total_seconds": 0.214300615247339,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.05755523359403014,
+              "p50_seconds": 0.05797927128151059,
+              "p95_seconds": 0.05960101699456573,
+              "total_seconds": 0.1753157158382237,
+              "actual_aggregate_error": 0.4175835458377278,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.059776140842586756,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 11.164168692542566,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.10578361991792917,
+              "p50_seconds": 0.10578361991792917,
+              "p95_seconds": 0.10581889096647501,
+              "total_seconds": 0.31488874461501837,
+              "actual_aggregate_error": 3.552713678800501e-15,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 4096,
+                "exact_kernel_evaluations": 4096,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.10582041135057807,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.11886600684374571,
+              "p50_seconds": 0.1170934559777379,
+              "p95_seconds": 0.11868875175714493,
+              "total_seconds": 0.3476928789168596,
+              "actual_aggregate_error": 3.552713678800501e-15,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 4096,
+                "exact_kernel_evaluations": 4096,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.11173186730593443,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.07392845209687948,
+              "p50_seconds": 0.07392845209687948,
+              "p95_seconds": 0.07498381249606609,
+              "total_seconds": 0.22172257583588362,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.07237184001132846,
+              "p50_seconds": 0.07183150295168161,
+              "p95_seconds": 0.07231780630536377,
+              "total_seconds": 0.2158983782865107,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.07324539590626955,
+              "p50_seconds": 0.06956752575933933,
+              "p95_seconds": 0.07287760889157653,
+              "total_seconds": 0.2060974035412073,
+              "actual_aggregate_error": 0.4175835458377278,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06327519239857793,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 11.164168692542566,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.10629273019731045,
+              "p50_seconds": 0.10556038422510028,
+              "p95_seconds": 0.10621949560008943,
+              "total_seconds": 0.31684152921661735,
+              "actual_aggregate_error": 0.01202628809467047,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 4060,
+                "exact_kernel_evaluations": 4060,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.105557712726295,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.08025594908836661,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.118648880161345,
+              "p50_seconds": 0.11806971440091729,
+              "p95_seconds": 0.11859096358530223,
+              "total_seconds": 0.3547359583899379,
+              "actual_aggregate_error": 0.01202628809467047,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 4060,
+                "exact_kernel_evaluations": 4060,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.1180674540810287,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.08025594908836661,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 0.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.08208845695480704,
+              "p50_seconds": 0.07890462502837181,
+              "p95_seconds": 0.08177007376216353,
+              "total_seconds": 0.23955083917826414,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.0724997902289033,
+              "p50_seconds": 0.0724997902289033,
+              "p95_seconds": 0.07369027780368924,
+              "total_seconds": 0.2186710862442851,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06216569896787405,
+              "p50_seconds": 0.06082520727068186,
+              "p95_seconds": 0.06203164979815483,
+              "total_seconds": 0.1819567228667438,
+              "actual_aggregate_error": 0.4175835458377278,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06081933667883277,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 11.164168692542566,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.09802395710721612,
+              "p50_seconds": 0.09802395710721612,
+              "p95_seconds": 0.0982448797672987,
+              "total_seconds": 0.2925184410996735,
+              "actual_aggregate_error": 0.06946760694098278,
+              "stats": {
+                "nodes_visited": 1495,
+                "documents_scanned": 3808,
+                "exact_kernel_evaluations": 3808,
+                "summary_kernel_evaluations": 209,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.09826727723702788,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.9670400583823829,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.11201396910473704,
+              "p50_seconds": 0.11181920999661088,
+              "p95_seconds": 0.11199449319392443,
+              "total_seconds": 0.3344962256960571,
+              "actual_aggregate_error": 0.06946760694098278,
+              "stats": {
+                "nodes_visited": 1495,
+                "documents_scanned": 3808,
+                "exact_kernel_evaluations": 3808,
+                "summary_kernel_evaluations": 209,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.1106613869778812,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.9670400583823829,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.01,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.08027969812974334,
+              "p50_seconds": 0.08027969812974334,
+              "p95_seconds": 0.08058383339084685,
+              "total_seconds": 0.23990515945479274,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.06751736020669341,
+              "p50_seconds": 0.07107898918911815,
+              "p95_seconds": 0.07278838697820902,
+              "total_seconds": 0.21157466946169734,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06155951414257288,
+              "p50_seconds": 0.061384025029838085,
+              "p95_seconds": 0.0615419652312994,
+              "total_seconds": 0.184237914159894,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.061378815211355686,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.10370187694206834,
+              "p50_seconds": 0.10353503795340657,
+              "p95_seconds": 0.10368519304320216,
+              "total_seconds": 0.3099052980542183,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1555,
+                "documents_scanned": 4096,
+                "exact_kernel_evaluations": 4096,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.10353316832333803,
+                "fallback_exact": true,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.0,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.061105906032025814,
+              "p50_seconds": 0.0612237760797143,
+              "p95_seconds": 0.07270455309189856,
+              "total_seconds": 0.19630987709388137,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.07397800497710705,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 0.1,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.09412996098399162,
+              "p50_seconds": 0.09103547874838114,
+              "p95_seconds": 0.09382051276043057,
+              "total_seconds": 0.2645599036477506,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.07365618692710996,
+              "p50_seconds": 0.07365618692710996,
+              "p95_seconds": 0.0740904432721436,
+              "total_seconds": 0.2206010022200644,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.06318605598062277,
+              "p50_seconds": 0.062229870818555355,
+              "p95_seconds": 0.06309043746441603,
+              "total_seconds": 0.18566827895119786,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.060246292036026716,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.09733428386971354,
+              "p50_seconds": 0.1002298379316926,
+              "p95_seconds": 0.10242963321506977,
+              "total_seconds": 0.30023817671462893,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1547,
+                "documents_scanned": 4060,
+                "exact_kernel_evaluations": 4060,
+                "summary_kernel_evaluations": 210,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.1026717652566731,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.08025594908836661,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.05932173738256097,
+              "p50_seconds": 0.05932173738256097,
+              "p95_seconds": 0.06003726944327355,
+              "total_seconds": 0.1785022895783186,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.06011483259499073,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        },
+        {
+          "cutoff_days": 30,
+          "query_coordinate": 50.0,
+          "epsilon_aggregate": 1.0,
+          "visible_documents": 4096,
+          "snapshot_prepare_seconds": 0.005571728106588125,
+          "methods": {
+            "exact_full_scan": {
+              "first_seconds": 0.08019082993268967,
+              "p50_seconds": 0.07544897776097059,
+              "p95_seconds": 0.07971664471551776,
+              "total_seconds": 0.22827661130577326,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 4412
+            },
+            "temporal_filter_exact": {
+              "first_seconds": 0.06908728322014213,
+              "p50_seconds": 0.06639220798388124,
+              "p95_seconds": 0.06881777569651604,
+              "total_seconds": 0.20151755213737488,
+              "actual_aggregate_error": 0.0,
+              "documents_scanned": 4096,
+              "exact_kernel_evaluations": 4096,
+              "metadata_records_checked": 0
+            },
+            "uncertified_hierarchy": {
+              "first_seconds": 0.05667082313448191,
+              "p50_seconds": 0.05544361984357238,
+              "p95_seconds": 0.05654810280539095,
+              "total_seconds": 0.1672630039975047,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.05543901026248932,
+                "fallback_exact": false,
+                "cache_hit": false
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "uncertified_coarse"
+            },
+            "citra_global": {
+              "first_seconds": 0.09633286111056805,
+              "p50_seconds": 0.09008290572091937,
+              "p95_seconds": 0.09570786557160318,
+              "total_seconds": 0.2751151006668806,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1495,
+                "documents_scanned": 3808,
+                "exact_kernel_evaluations": 3808,
+                "summary_kernel_evaluations": 209,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.08869785303249955,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 0.9670400583823829,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            },
+            "citra_local": {
+              "first_seconds": 0.05926439817994833,
+              "p50_seconds": 0.059735615737736225,
+              "p95_seconds": 0.06142420377582312,
+              "total_seconds": 0.18061183858662844,
+              "actual_aggregate_error": 0.0,
+              "stats": {
+                "nodes_visited": 1135,
+                "documents_scanned": 2195,
+                "exact_kernel_evaluations": 2195,
+                "summary_kernel_evaluations": 133,
+                "metadata_records_checked": 1571,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 567,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.059734055772423744,
+                "fallback_exact": false,
+                "cache_hit": true
+              },
+              "aggregate_bound": 6.57e-322,
+              "certificate_scope": "analytic_aggregation_remainder_float64_tolerance"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+test_certified_bound (test_citra.AggregationTests) ... ok
+test_empty_database (test_citra.AggregationTests) ... ok
+test_epsilon_monotonicity (test_citra.AggregationTests) ... ok
+test_exact_aggregation (test_citra.AggregationTests) ... ok
+test_gradient_finite_difference_and_autodiff (test_citra.AggregationTests) ... ok
+test_hessian_bound (test_citra.AggregationTests) ... ok
+test_invalid_query (test_citra.AggregationTests) ... ok
+test_partition_has_no_omission_or_duplicate (test_citra.AggregationTests) ... ok
+test_prediction_shape (test_citra.AggregationTests) ... ok
+test_query_stats_include_cold_build (test_citra.AggregationTests) ... ok
+test_signed_cancellation_and_duplicate_content (test_citra.AggregationTests) ... ok
+test_taylor_approximation (test_citra.AggregationTests) ... ok
+test_expired_revision_does_not_resurrect_old_version (test_citra.TemporalTests) ... ok
+test_future_event_can_be_known (test_citra.TemporalTests) ... ok
+test_historical_revision (test_citra.TemporalTests) ... ok
+test_immutable_documents (test_citra.TemporalTests) ... ok
+test_incremental_update (test_citra.TemporalTests) ... ok
+test_invalid_metadata_and_dimensions (test_citra.TemporalTests) ... ok
+test_late_revision (test_citra.TemporalTests) ... ok
+test_no_future_document (test_citra.TemporalTests) ... ok
+test_out_of_order_revision (test_citra.TemporalTests) ... ok
+test_temporal_visibility (test_citra.TemporalTests) ... ok
+test_unknown_revision_does_not_replace_history (test_citra.TemporalTests) ... ok
+test_certificates_invalidated_on_parameters_or_impacts (test_citra_review.CertificateAPITests) ... ok
+test_prediction_derives_actual_weight_norm (test_citra_review.CertificateAPITests) ... ok
+test_wrong_lipschitz_is_rejected (test_citra_review.CertificateAPITests) ... ok
+test_ball_hessian_supremum (test_citra_review.LocalBoundTests) ... ok
+test_extreme_radius_offset_and_heterogeneous_influences (test_citra_review.LocalBoundTests) ... ok
+test_queries_change_work_and_bound (test_citra_review.LocalBoundTests) ... ok
+test_arbitrary_versions_match_independent_snapshot (test_citra_review.TemporalIndexTests) ... ok
+test_expired_activation_tombstone_and_same_timestamp (test_citra_review.TemporalIndexTests) ... ok
+test_insert_and_revision_update_locally_with_shared_subtrees (test_citra_review.TemporalIndexTests) ... ok
+test_kernel_and_visibility_policy_cannot_silently_change (test_citra_review.TemporalIndexTests) ... ok
+test_leaf_only_storage_and_linear_build_reads (test_citra_review.TemporalIndexTests) ... ok
+test_rolling_cutoffs_reuse_index (test_citra_review.TemporalIndexTests) ... ok
+test_scan_only_baseline_matches_indexed_store (test_citra_review.TemporalIndexTests) ... ok
+test_temporal_index_oracle_requires_cutoff (test_citra_review.TemporalIndexTests) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 12.053s
+
+OK

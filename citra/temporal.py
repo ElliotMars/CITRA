@@ -4,8 +4,10 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from time import perf_counter
 from typing import Optional
+from itertools import groupby
 
 from .kernel import RBFKernel, exact_aggregate, immutable, vector
+from .index import TemporalCITRAIndex, TemporalEntry
 
 
 def utc(value):
@@ -74,7 +76,7 @@ class TemporalDocumentStore:
     """
 
     def __init__(self, embedding_dim, impact_dim, sigma=1.0, leaf_size=8,
-                 allow_simulated=False):
+                 allow_simulated=False, indexed=True):
         if (not isinstance(embedding_dim, int) or embedding_dim <= 0
                 or not isinstance(impact_dim, int) or impact_dim <= 0):
             raise ValueError("dimensions must be positive integers")
@@ -82,13 +84,28 @@ class TemporalDocumentStore:
             raise ValueError("leaf_size must be a positive integer")
         self.embedding_dim = embedding_dim
         self.impact_dim = impact_dim
-        self.kernel = RBFKernel(sigma)
+        self._kernel = RBFKernel(sigma)
         self.leaf_size = leaf_size
-        self.allow_simulated = allow_simulated
+        self._allow_simulated = bool(allow_simulated)
         self._versions = {}
         self._generation = 0
-        self._cached_index = None
+        self._intervals = {}
+        self.index = TemporalCITRAIndex(embedding_dim, impact_dim, self.kernel, leaf_size) if indexed else None
         self.last_update_seconds = 0.0
+        self.last_update_stats = {}
+        self.total_update_seconds = 0.0
+
+    @property
+    def allow_simulated(self):
+        return self._allow_simulated
+
+    @property
+    def kernel(self):
+        return self._kernel
+
+    @property
+    def generation(self):
+        return self._generation
 
     @property
     def documents(self):
@@ -100,18 +117,59 @@ class TemporalDocumentStore:
         vector(document.embedding, self.embedding_dim)
         vector(document.impact_vector, self.impact_dim)
 
-    def _changed(self, start):
+    def _visibility_intervals(self, versions):
+        """Sweep activations; expired winners suppress old versions permanently.
+
+        Versions only enter the eligible set, never leave it. Therefore the
+        highest availability/append rank can win at most one interval.
+        """
+        activations = []
+        for i, d in enumerate(versions):
+            provenance_ok = d.availability_provenance == "verified" or (
+                self.allow_simulated and d.availability_provenance == "simulated")
+            if not provenance_ok or d.available_at is None:
+                continue
+            activation = max(d.available_at, d.valid_from, d.ingested_at or d.available_at)
+            activations.append((activation, (d.available_at, i), d))
+        activations.sort(key=lambda row: (row[0], row[1]))
+        entries, winner = [], None
+
+        def finish(previous, end):
+            if previous is None:
+                return
+            _, start, d = previous
+            if d.valid_to is not None:
+                end = d.valid_to if end is None else min(end, d.valid_to)
+            if end is None or start < end:
+                entries.append(TemporalEntry(d, start, end))
+
+        for activation, rows in groupby(activations, key=lambda row: row[0]):
+            _, rank, d = max(rows, key=lambda row: row[1])
+            if winner is None or rank > winner[0]:
+                finish(winner, activation)
+                winner = (rank, activation, d)
+        finish(winner, None)
+        return tuple(entries)
+
+    def _publish(self, doc_id, versions, start):
+        entries = self._visibility_intervals(versions) if self.index is not None else ()
+        stats = (self.index.replace_intervals(self._intervals.get(doc_id, ()), entries)
+                 if self.index is not None else {"nodes_created": 0, "documents_read": 0,
+                                                "intervals_removed": 0, "intervals_inserted": 0, "index_seconds": 0.})
+        self._versions[doc_id] = versions
+        self._intervals[doc_id] = entries
         self._generation += 1
-        self._cached_index = None
         self.last_update_seconds = perf_counter() - start
+        self.total_update_seconds += self.last_update_seconds
+        self.last_update_stats = dict(stats, metadata_records_checked=len(versions),
+                                      validation_document_reads=1, elapsed_seconds=self.last_update_seconds)
 
     def insert_document(self, document):
         start = perf_counter()
         self._validate(document)
         if document.doc_id in self._versions:
             raise ValueError("doc_id already exists; use append_revision")
-        self._versions[document.doc_id] = (document,)
-        self._changed(start)
+        self._publish(document.doc_id, (document,), start)
 
     def append_revision(self, document):
         start = perf_counter()
@@ -126,8 +184,7 @@ class TemporalDocumentStore:
             raise ValueError("revision must retain source and entity")
         # Accept out-of-order ingestion; snapshot orders by known availability,
         # with append order breaking ties. Historical intervals stay immutable.
-        self._versions[document.doc_id] = versions + (document,)
-        self._changed(start)
+        self._publish(document.doc_id, versions + (document,), start)
 
     def snapshot(self, cutoff):
         cutoff = utc(cutoff)
@@ -149,27 +206,17 @@ class TemporalDocumentStore:
         vector(query, self.embedding_dim)
         return exact_aggregate(self.snapshot(cutoff), query, self.kernel, self.impact_dim)
 
-    def query_certified(self, query, cutoff, epsilon, lipschitz=1.0):
-        """Includes cold snapshot/index construction in time and read counters.
+    def query_certified(self, query, cutoff, epsilon, *, bound_mode="local"):
+        """Aggregation-only certificate; all cutoffs reuse the same temporal tree.
 
-        The one-entry cache deliberately avoids claiming a dynamic temporal
-        index: new cutoffs/updates rebuild a legal-snapshot spatial tree.
+        Index construction/update is performed and measured on insert/revision,
+        not hidden inside an uncounted query-time snapshot build.
         """
-        from .index import CITRAIndex
         start = perf_counter()
+        if self.index is None:
+            raise RuntimeError("scan-only store has no certified index")
         cutoff = utc(cutoff)
-        key = (cutoff, self._generation)
-        cache_hit = self._cached_index is not None and self._cached_index[0] == key
-        if cache_hit:
-            index = self._cached_index[1]
-        else:
-            index = CITRAIndex(self.snapshot(cutoff), self.embedding_dim,
-                               self.impact_dim, self.kernel, self.leaf_size)
-            self._cached_index = (key, index)
-        result = index.query(query, epsilon, lipschitz)
-        result.stats.cache_hit = cache_hit
-        result.stats.metadata_records_checked = 0 if cache_hit else len(self.documents)
-        result.stats.index_document_reads = 0 if cache_hit else index.build_document_reads
-        result.stats.build_seconds = 0.0 if cache_hit else index.build_seconds
+        result = self.index.query(query, epsilon, cutoff=cutoff, bound_mode=bound_mode)
+        result.stats.cache_hit = True  # maintained on every write, reused across cutoffs
         result.stats.elapsed_seconds = perf_counter() - start
         return result

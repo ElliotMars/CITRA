@@ -10,12 +10,12 @@ EPOCH = datetime(2020, 1, 1, tzinfo=timezone.utc)
 
 
 def synthetic_store(n=128, embedding_dim=4, impact_dim=3, seed=0,
-                    radius=0.05, leaf_size=8):
+                    radius=0.05, leaf_size=8, indexed=True):
     if n < 0 or radius < 0 or not np.isfinite(radius):
         raise ValueError("invalid synthetic size or radius")
     rng = np.random.default_rng(seed)
     store = TemporalDocumentStore(embedding_dim, impact_dim, leaf_size=leaf_size,
-                                  allow_simulated=True)
+                                  allow_simulated=True, indexed=indexed)
     for i in range(n):
         event = EPOCH + timedelta(days=i % 20)
         issued = event - timedelta(days=2)

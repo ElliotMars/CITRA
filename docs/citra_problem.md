@@ -1,23 +1,29 @@
-# CITRA 查询问题（Milestone 1）
+# CITRA 查询定义与证书 API
 
 目标论文暂名 *Certified Temporal Evidence Aggregation for Text-Augmented Time Series Forecasting*。
-CITRA 是待验证的研究原型，当前没有真实预测收益、系统加速或会议录用级创新性的证据。
+本项目仍是研究原型，尚未证明真实预测收益、总体系统加速或 Research Track 创新增量。
 
-逻辑查询为 `q=(X_history,target,horizon,cutoff,epsilon)`。第一里程碑的执行接口接收已经由历史信息产生的
-`q_z[p]`、UTC cutoff 和有限非负 epsilon。target/horizon 的条件化编码由后续预测模型实现，当前不训练编码器。
-embedding 与 impact vector 都必须是固定的有限实数向量；不能从在线查询的未来真值计算影响向量。
+逻辑查询为 q=(X_history,target,horizon,cutoff,epsilon)。当前索引接收历史信息生成的 q_z[p]、
+UTC cutoff 和聚合误差预算；target/horizon 的可训练条件编码仍未实现。
+固定有限向量 z_d、v_d 定义完整参考值：
+A_full = sum_visible exp(-||q_z-z_d||²/(2 sigma²))*v_d。
+必须完整合法求和，Semantic Top-K 不是 oracle。
 
-合法文档必须有可靠的 available_at 及其来源证明，在 cutoff 前可访问，并采用当时可访问的版本。
-event_start/event_end 描述被讨论事件的区间；预测未来事件的文本可以提前发布，它的事件时间不决定可见性。
-未知 available_at 即使带有事件日期也排除。模拟数据显式标为 simulated，并必须启用 allow_simulated。
+文档必须在 cutoff 可访问，并采用当时的版本。available_at 未知或未核实的记录排除；
+event_start/event_end 描述事件，不决定发布时间或可见性。未来事件可能已经提前预报。
+known ingested_at 增加系统可访问性约束；未知摄入时间保留 None，不伪造。
+有效区间是 [valid_from,valid_to)，修订采用 append-only。
 
-完整参考值为 `A_full = sum_visible exp(-||q_z-z_d||²/(2 sigma²))*v_d`，是带符号向量的完整求和。
-语义 Top-K 不等价于这一参考值。近似执行返回 `A_approx`、聚合 L2 误差界、预测 L2 误差界和执行统计。
+**索引证书**：query_certified(query,cutoff,epsilon) 的 epsilon 是聚合 L2 误差预算。
+QueryResult 只有 aggregate_bound，不包含预测 certified_bound，不接受任意 Lipschitz 数值。
+解析余项满足 ||A_approx-A_full||₂ <= aggregate_bound <= epsilon。
 
-预测形式为 `Y=F_TS(X_history)+G(X_history,A)`。固定同一历史输入和同一组参数，如果 G 对 A 的
-Lipschitz 上界为 L，则输出认证预算是 `L*aggregate_bound <= epsilon`。
-调用者传入的 L 必须有效；默认 L=1 只认证聚合本身，不能自动认证任意预测网络。
-当前 FixedLinearForecaster 用固定数值线性骨干和范数受控的线性文本头验证多变量多步输出；不是训练完成的预测模型。
+**预测证书**：model.predict_certified(history,store,query,cutoff,epsilon) 的 epsilon 是单样本
+预测输出 L2 预算。模型从实际固定权重快照计算可信 L，内部转换为聚合预算，
+返回同一参数快照下的 prediction、certified_bound 和模型/文档库版本号。
+参数或影响文档变化后必须重新查询；assert_current() 检测旧证书失效。
+当前只支持单查询 history=[1,C,L]，输出 [1,C,H]；一般 predict 可用批量 [B,C,L]。
+批量总 L2 预算不能直接复用单样本证书。
 
-epsilon=0 使用完整 oracle 精确遍历，空库返回零向量与零界。该证书只比较同一模型的近似输出和
-完整合法文本输出，不是相对于未来真实标签的 MSE/MAE 保证。浮点认证的范围见 citra_theory.md。
+epsilon=0 精确遍历合法文档，空库返回零影响和零界。输出认证比较的是同一个模型、同一历史输入的
+Full As-of 与近似预测，不保证未知未来标签的 MSE/MAE。float64 数值适用范围见理论文档。

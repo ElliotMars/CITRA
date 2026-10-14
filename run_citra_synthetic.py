@@ -58,25 +58,27 @@ def main():
                     "filtered_exact_documents_scanned": len(snapshot),
                     "index_prepare_seconds": prepare_seconds,
                     "index_document_reads": index.build_document_reads,
-                    "index_summary_bytes": index.summary_bytes}
+                    "index_summary_bytes": index.summary_bytes,
+                    "index_resident_estimate_bytes": index.resident_bytes}
         if index.root:
             coarse, _ = index.approximate_node(index.root, q)
         else:
             coarse = np.zeros(store.impact_dim)
         baseline["uncertified_root_aggregate_error"] = float(np.linalg.norm(coarse - oracle))
         for epsilon in args.epsilons:
-            # First query is cold; repeated same cutoff queries use the snapshot cache.
-            store._cached_index = None
-            cold = store.query_certified(q, cutoff, epsilon, model.lipschitz_bound)
+            # Index is maintained on writes, reused even for a new cutoff.
+            cold_prediction = model.predict_certified(history, store, q, cutoff, epsilon)
+            cold = cold_prediction.aggregation
             timings = []
             for _ in range(args.repeats):
-                result = store.query_certified(q, cutoff, epsilon, model.lipschitz_bound)
+                prediction = model.predict_certified(history, store, q, cutoff, epsilon)
+                result = prediction.aggregation
                 timings.append(result.stats.elapsed_seconds)
             full = model.predict(history, oracle[None])
-            fast = model.predict(history, result.aggregate[None])
+            fast = prediction.prediction
             deviation = float(np.linalg.norm(fast - full))
             tolerance = 1e-10 + 1e-10 * float(np.linalg.norm(full))
-            if deviation > result.certified_bound + tolerance or result.certified_bound > epsilon:
+            if deviation > prediction.certified_bound + tolerance or prediction.certified_bound > epsilon:
                 raise AssertionError("certificate violation")
             rows.append({"cutoff_days": day, "epsilon": epsilon,
                          "visible_documents": len(snapshot),
@@ -84,16 +86,20 @@ def main():
                          "cold_stats": asdict(cold.stats), "warm_stats": asdict(result.stats),
                          "p50_seconds": float(np.percentile(timings, 50)),
                          "p95_seconds": float(np.percentile(timings, 95)),
-                         "certified_bound": result.certified_bound,
+                         "certified_bound": prediction.certified_bound,
                          "actual_prediction_deviation": deviation,
-                         "bound_tightness": deviation / result.certified_bound
-                         if result.certified_bound else None,
+                         "bound_tightness": deviation / prediction.certified_bound
+                         if prediction.certified_bound else None,
                          "warm_scan_fraction": result.stats.documents_scanned / len(snapshot)
                          if snapshot else 0.0, "baselines": baseline})
     report = {"seed": args.seed, "numpy": np.__version__, "device": "CPU",
               "timestamp_provenance": "simulated", "store_insert_seconds": insert_seconds,
+              "protocol_version": 2,
+              "index_write_seconds": store.total_update_seconds,
+              "index_write_document_reads": store.index.total_update_document_reads,
               "note": "Fixed untrained forecaster; no MSE/MAE or real-data claims. "
-              "Oracle checks are offline and outside query timing; cold builds are counted.",
+              "Oracle checks are offline. cold_stats means first query on maintained index; "
+              "construction cost is in store_insert_seconds/index_write_seconds.",
               "queries": rows}
     payload = json.dumps(report, indent=2, allow_nan=False)
     if args.output:

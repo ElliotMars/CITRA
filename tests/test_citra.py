@@ -143,11 +143,14 @@ class TemporalTests(unittest.TestCase):
         self.store.insert_document(document())
         old_snapshot = self.store.snapshot(day(1))
         result = self.store.query_certified([0, 0], day(1), 1)
-        self.assertFalse(result.stats.cache_hit)
+        root = self.store.index.root
+        self.assertTrue(result.stats.cache_hit)
         self.assertTrue(self.store.query_certified([0, 0], day(1), 1).stats.cache_hit)
+        self.assertIs(root, self.store.index.root)
         self.store.insert_document(document("second", impact_vector=[2, 3]))
         new = self.store.query_certified([0, 0], day(1), 0)
-        self.assertFalse(new.stats.cache_hit)
+        self.assertTrue(new.stats.cache_hit)
+        self.assertIsNot(root, self.store.index.root)
         np.testing.assert_array_equal(new.aggregate, [3, 2])
         self.store.append_revision(document(version_id="v2", available=4, impact_vector=[9, 9]))
         np.testing.assert_array_equal(self.store.aggregate_exact([0, 0], day(1)), [3, 2])
@@ -222,14 +225,14 @@ class AggregationTests(unittest.TestCase):
                             for epsilon in (0.0, 1e-5, 0.05, 100.0):
                                 with self.subTest(seed=seed, p=p, leaf=leaf_size, radius=radius,
                                                   cutoff=cutoff, epsilon=epsilon):
-                                    result = store.query_certified(q, cutoff, epsilon, model.lipschitz_bound)
+                                    prediction = model.predict_certified(history, store, q, cutoff, epsilon)
+                                    result = prediction.aggregation
                                     tolerance = 1e-10 + 1e-10 * np.linalg.norm(full)
                                     error = np.linalg.norm(result.aggregate - full)
-                                    deviation = np.linalg.norm(model.predict(history, result.aggregate[None])
-                                                               - model.predict(history, full[None]))
+                                    deviation = np.linalg.norm(prediction.prediction - model.predict(history, full[None]))
                                     self.assertLessEqual(error, result.aggregate_bound + tolerance)
-                                    self.assertLessEqual(deviation, result.certified_bound + tolerance)
-                                    self.assertLessEqual(result.certified_bound, epsilon)
+                                    self.assertLessEqual(deviation, prediction.certified_bound + tolerance)
+                                    self.assertLessEqual(prediction.certified_bound, epsilon)
                                     if epsilon == 0:
                                         np.testing.assert_array_equal(result.aggregate, full)
                                 cases += 1
@@ -249,7 +252,7 @@ class AggregationTests(unittest.TestCase):
         for epsilon in (0, 1):
             result = store.query_certified([0, 0, 0], day(0), epsilon)
             np.testing.assert_array_equal(result.aggregate, [0, 0])
-            self.assertEqual(result.certified_bound, 0)
+            self.assertEqual(result.aggregate_bound, 0)
             self.assertEqual(result.stats.documents_scanned, 0)
             self.assertFalse(result.stats.fallback_exact)
         np.testing.assert_array_equal(store.aggregate_exact([0, 0, 0], day(0)), [0, 0])
@@ -262,23 +265,24 @@ class AggregationTests(unittest.TestCase):
         np.testing.assert_array_equal(result.aggregate, [0, 0])
         self.assertEqual(result.aggregate_bound, 0)
         self.assertEqual(result.stats.documents_scanned, 0)
-        self.assertEqual(store._cached_index[1].root.count, 10)
+        self.assertEqual(store.index.root.count, 10)
 
     def test_partition_has_no_omission_or_duplicate(self):
         store = synthetic_store(51, seed=3, leaf_size=3)
         index = CITRAIndex(store.snapshot(day(30)), 4, 3, store.kernel, 3)
-        leaf_refs = [i for n in index.nodes if not n.children for i in n.document_refs]
-        self.assertEqual(sorted(leaf_refs), list(range(len(index.documents))))
+        leaf_refs = [e.document.doc_id for n in index.nodes for e in n.document_refs]
+        self.assertEqual(sorted(leaf_refs), sorted(d.doc_id for d in index.documents))
         for node in index.nodes:
             if node.children:
-                self.assertEqual(sorted(i for child in node.children for i in child.document_refs),
-                                 sorted(node.document_refs))
+                self.assertEqual(node.document_refs, ())
+                self.assertEqual(sum(c.count for c in node.children), node.count)
 
     def test_query_stats_include_cold_build(self):
         store = synthetic_store(31, leaf_size=2)
         cold = store.query_certified([0, 0, 0, 0], day(30), 100)
-        self.assertGreaterEqual(cold.stats.index_document_reads, 31)
-        self.assertEqual(cold.stats.metadata_records_checked, len(store.documents))
+        self.assertEqual(cold.stats.index_document_reads, 0)
+        self.assertEqual(cold.stats.build_seconds, 0)
+        self.assertGreater(store.index.total_update_document_reads, 0)
         warm = store.query_certified([0, 0, 0, 0], day(30), 100)
         self.assertTrue(warm.stats.cache_hit)
         self.assertEqual(warm.stats.index_document_reads, 0)
@@ -291,9 +295,9 @@ class AggregationTests(unittest.TestCase):
         for epsilon in (-1, float("inf"), float("nan")):
             with self.assertRaises(ValueError):
                 store.query_certified([0, 0], day(0), epsilon)
-        for lipschitz in (-1, float("inf"), float("nan")):
-            with self.assertRaises(ValueError):
-                store.query_certified([0, 0], day(0), 1, lipschitz)
+        for lipschitz in (0, -1, float("inf"), float("nan")):
+            with self.assertRaises(TypeError):
+                store.query_certified([0, 0], day(0), 1, lipschitz=lipschitz)
         with self.assertRaises(ValueError):
             store.query_certified([float("nan"), 0], day(0), 1)
         for sigma in (0, -1, float("inf"), 1e-300):
