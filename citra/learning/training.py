@@ -16,17 +16,18 @@ def seed_everything(seed):
         torch.cuda.manual_seed_all(seed)
 
 
-def batch_tensors(dataset, indices, device):
+def batch_tensors(dataset, indices, device, include_text=True):
     batch = [dataset[int(i)] for i in indices]
     x = torch.tensor(np.stack([r[0] for r in batch]), dtype=torch.float64, device=device)
     y = torch.tensor(np.stack([r[1] for r in batch]), dtype=torch.float64, device=device)
     cutoffs = [r[2] for r in batch]
-    mask = torch.tensor(dataset.data.corpus.visibility(cutoffs), dtype=torch.bool, device=device)
+    mask = (torch.tensor(dataset.data.corpus.visibility(cutoffs), dtype=torch.bool, device=device)
+            if include_text else None)
     return x, y, mask
 
 
 def fit(model, data, config, mode, output):
-    if mode not in ("ts_only", "semantic_topk", "full_asof_text"):
+    if mode not in ("ts_only", "semantic_topk", "full_asof_text", "shuffled_text"):
         raise ValueError("CITRA inference shares the Full As-of checkpoint; it is not trained separately")
     device = next(model.parameters()).device
     targets = model.config["target_ids"]
@@ -34,7 +35,10 @@ def fit(model, data, config, mode, output):
     validation = data.windows("validation", model.config["seq_len"], model.config["horizon"], targets, config["stride"])
     if mode != "ts_only" and not data.corpus.visibility([train[i][2] for i in range(len(train))]).any():
         raise ValueError("no text is historically accessible in training; verify source times instead of inventing availability")
-    base, metadata = data.corpus.tensors(device, torch.float64)
+    if mode == "shuffled_text" and not getattr(data, "control_kind", None):
+        raise ValueError("shuffled_text requires explicitly constructed causal control data")
+    base, metadata = data.corpus.tensors(device, torch.float64) if mode != "ts_only" else (None, None)
+    forward_mode = "full_asof_text" if mode == "shuffled_text" else mode
     optimizer = torch.optim.AdamW(model.parameters(), lr=config["learning_rate"], weight_decay=config["weight_decay"])
     generator = np.random.default_rng(config["seed"])
     logs, best = [], float("inf")
@@ -45,9 +49,9 @@ def fit(model, data, config, mode, output):
         order = generator.permutation(len(train))
         for begin in range(0, len(order), config["batch_size"]):
             idx = order[begin:begin + config["batch_size"]]
-            x, y, mask = batch_tensors(train, idx, device)
+            x, y, mask = batch_tensors(train, idx, device, include_text=mode != "ts_only")
             optimizer.zero_grad(set_to_none=True)
-            prediction = model(x, base, metadata, mask, mode=mode, topk=config["topk"])
+            prediction = model(x, base, metadata, mask, mode=forward_mode, topk=config["topk"])
             loss = (prediction - y).square().mean()
             if not torch.isfinite(loss):
                 raise FloatingPointError("nonfinite training loss")
@@ -61,8 +65,8 @@ def fit(model, data, config, mode, output):
         with torch.no_grad():
             for begin in range(0, len(validation), config["batch_size"]):
                 idx = range(begin, min(len(validation), begin + config["batch_size"]))
-                x, y, mask = batch_tensors(validation, idx, device)
-                prediction = model(x, base, metadata, mask, mode=mode, topk=config["topk"])
+                x, y, mask = batch_tensors(validation, idx, device, include_text=mode != "ts_only")
+                prediction = model(x, base, metadata, mask, mode=forward_mode, topk=config["topk"])
                 validation_losses.append((float((prediction - y).square().mean()), len(idx)))
         training_loss = sum(loss * count for loss, count in losses) / len(train)
         validation_loss = sum(loss * count for loss, count in validation_losses) / len(validation)
@@ -73,7 +77,8 @@ def fit(model, data, config, mode, output):
         if validation_loss < best:
             best = validation_loss
             torch.save(dict(state_dict=model.state_dict(), model_config=model.config, training_mode=mode,
-                            config=config, data_fingerprint=data.fingerprint,
+                            config=config, data_fingerprint=data.numeric_fingerprint if mode == "ts_only" else data.fingerprint,
+                            fingerprint_scope="numeric_only" if mode == "ts_only" else "numeric_and_text",
                             scaler=dict(mean=data.mean.tolist(), scale=data.scale.tolist()),
                             train_end=data.manifest["train_end"], validation_end=data.manifest["validation_end"],
                             best_epoch=epoch + 1), checkpoint)
@@ -87,7 +92,8 @@ def fit(model, data, config, mode, output):
 
 def load_checkpoint(path, data, device):
     state = torch.load(path, map_location=device, weights_only=True)
-    if (state["data_fingerprint"] != data.fingerprint
+    expected_fingerprint = data.numeric_fingerprint if state.get("fingerprint_scope") == "numeric_only" else data.fingerprint
+    if (state["data_fingerprint"] != expected_fingerprint
             or state["scaler"] != dict(mean=data.mean.tolist(), scale=data.scale.tolist())
             or state["train_end"] != data.manifest["train_end"]
             or state["validation_end"] != data.manifest["validation_end"]):

@@ -8,6 +8,7 @@ import numpy as np
 from citra import Document, TemporalDocumentStore
 from citra.kernel import immutable
 from citra.temporal import utc
+from citra.availability import VERIFIED, ASSUMED, issuance_records
 
 
 UNKNOWN_TIME = np.iinfo(np.int64).max
@@ -100,17 +101,62 @@ class TextCorpus:
         self.embeddings = immutable(np.asarray(embeddings).reshape(len(records), base_dim))
         self.metadata = immutable(np.asarray(metadata).reshape(len(records), metadata_dim))
         self._position = {(d.doc_id, d.version_id): i for i, d in enumerate(documents)}
+        self._compile_visibility()
         payload = json.dumps(dict(records=records, base_encoder_version=base_encoder_version,
                                   allow_simulated=allow_simulated), sort_keys=True, allow_nan=False)
         self.fingerprint = hashlib.sha256(payload.encode()).hexdigest()
 
+    def _compile_visibility(self):
+        self._starts = np.full(len(self.documents), np.iinfo(np.int64).max, dtype=np.int64)
+        self._ends = np.full(len(self.documents), np.iinfo(np.int64).min, dtype=np.int64)
+        for versions in self.store._versions.values():
+            for entry in self.store._visibility_intervals(versions):
+                j = self._position[entry.document.doc_id, entry.document.version_id]
+                self._starts[j] = epoch_seconds(entry.start) * 1000000 + entry.start.microsecond
+                self._ends[j] = (epoch_seconds(entry.end) * 1000000 + entry.end.microsecond
+                                 if entry.end is not None else np.iinfo(np.int64).max)
+        self._visibility_generation = self.store.generation
+
     def visibility(self, cutoffs):
-        mask = np.zeros((len(cutoffs), len(self.documents)), dtype=bool)
-        for i, cutoff in enumerate(cutoffs):
-            cutoff = datetime_utc(cutoff) if isinstance(cutoff, (int, np.integer)) else utc(cutoff)
-            for d in self.store.snapshot(cutoff):
-                mask[i, self._position[d.doc_id, d.version_id]] = True
-        return mask
+        if self.store.generation != self._visibility_generation:
+            raise RuntimeError("text metadata changed; explicitly reconstruct the corpus/feature table")
+        micros = []
+        for cutoff in cutoffs:
+            if isinstance(cutoff, (int, np.integer)):
+                micros.append(int(cutoff) * 1000000)
+            else:
+                cutoff = utc(cutoff)
+                micros.append(epoch_seconds(cutoff) * 1000000 + cutoff.microsecond)
+        t = np.asarray(micros, dtype=np.int64)[:, None]
+        return (t >= self._starts[None]) & (t < self._ends[None])
+
+    def causal_shuffle(self, seed):
+        """Prefix resampling control; a global permutation could leak future text.
+
+        Permuting paired (z,v) inside a full sum would leave the answer identical.
+        Here content is reassigned to original evidence slots from strictly
+        earlier legal donor slots, with replacement, without reading labels.
+        """
+        rng, rows = np.random.default_rng(seed), []
+        donors_available = np.array([epoch_seconds(d.available_at)*1000000+d.available_at.microsecond
+                                    if d.available_at else np.iinfo(np.int64).max for d in self.documents])
+        for i, (d, original) in enumerate(zip(self.documents, self.records)):
+            row = dict(original)
+            activation = max([t for t in (d.available_at, d.valid_from, d.ingested_at) if t is not None])
+            visible = self.visibility([activation])[0]
+            visible &= donors_available < (epoch_seconds(activation)*1000000 + activation.microsecond)
+            visible[i] = False
+            candidates = np.flatnonzero(visible)
+            donor = int(rng.choice(candidates)) if len(candidates) else i
+            row.update(embedding=self.records[donor]["embedding"], text=self.records[donor].get("text", ""),
+                       control_kind="causal_prefix_resampling_with_replacement",
+                       control_donor_doc_id=self.documents[donor].doc_id,
+                       control_donor_version_id=self.documents[donor].version_id,
+                       control_donor_available_at=self.documents[donor].available_at.isoformat()
+                       if self.documents[donor].available_at else None)
+            rows.append(row)
+        return TextCorpus(rows, self.base_dim, self.metadata_dim, self.allow_simulated,
+                          self.base_encoder_version + f":causal-shuffle-seed-{seed}")
 
     def tensors(self, device, dtype):
         import torch
@@ -119,9 +165,24 @@ class TextCorpus:
 
 
 class WeatherData:
-    def __init__(self, directory, *, allow_simulated=False):
+    def __init__(self, directory, *, allow_simulated=False, availability_protocol=None,
+                 text_delay_hours=None, load_text=True):
         self.directory = Path(directory)
         self.manifest = json.loads((self.directory / "manifest.json").read_text())
+        requested = availability_protocol or self.manifest.get("availability_protocol")
+        if requested not in (None, VERIFIED, ASSUMED, "legacy_simulated"):
+            raise ValueError("unknown availability protocol")
+        if requested == ASSUMED and availability_protocol is None and not allow_simulated:
+            raise ValueError("explicitly opt into issuance_asof_assumption; it is not verified availability")
+        if availability_protocol == VERIFIED and self.manifest["numeric_availability_provenance"] != "verified":
+            raise ValueError("verified_availability requires verified numeric availability")
+        if requested == VERIFIED:
+            allow_simulated = False
+        if requested == ASSUMED:
+            allow_simulated = True
+        self.availability_protocol = requested or ("legacy_simulated" if allow_simulated else VERIFIED)
+        if text_delay_hours is not None and requested != ASSUMED:
+            raise ValueError("text-delay sensitivity is only defined for issuance_asof_assumption")
         with np.load(self.directory / "numeric.npz", allow_pickle=False) as data:
             self.times = data["times"].astype(np.int64)
             self.values = data["values"].astype(np.float64)
@@ -141,7 +202,12 @@ class WeatherData:
         if not self.times[0] < self.train_end < self.validation_end < self.test_end:
             raise ValueError("splits must be ordered, nonempty chronological intervals")
         self.fit_scaler()
-        self.corpus = TextCorpus(load_jsonl(self.directory / "documents.jsonl"),
+        records = load_jsonl(self.directory / "documents.jsonl") if load_text else []
+        if requested == ASSUMED:
+            delay = self.manifest.get("text_delay_hours", 0.) if text_delay_hours is None else text_delay_hours
+            records, audit = issuance_records(records, delay, parse_time)
+            self.manifest = dict(self.manifest, text_delay_hours=delay, text_assumption_audit=audit)
+        self.corpus = TextCorpus(records,
                                  self.manifest["base_dim"], self.manifest["metadata_dim"],
                                  allow_simulated=allow_simulated,
                                  base_encoder_version=self.manifest["base_encoder_version"])
@@ -150,6 +216,21 @@ class WeatherData:
             digest.update(array.tobytes())
         digest.update(self.corpus.fingerprint.encode())
         self.fingerprint = digest.hexdigest()
+        numeric = hashlib.sha256(json.dumps(dict(train_end=self.manifest["train_end"],
+            validation_end=self.manifest["validation_end"], test_end=self.manifest["test_end"],
+            channels=self.manifest["channels"], numeric_availability_protocol=self.manifest.get("numeric_availability_protocol"),
+            numeric_delay_hours=self.manifest.get("numeric_delay_hours")), sort_keys=True).encode())
+        for array in (self.times, self.values, self.available):
+            numeric.update(array.tobytes())
+        self.numeric_fingerprint = numeric.hexdigest()
+
+    def with_causal_shuffle(self, seed):
+        import copy
+        result = copy.copy(self)
+        result.corpus = self.corpus.causal_shuffle(seed)
+        result.control_kind = "causal_prefix_resampling_with_replacement"
+        result.fingerprint = hashlib.sha256((self.fingerprint + result.corpus.fingerprint).encode()).hexdigest()
+        return result
 
     def fit_scaler(self):
         # Future validation/test values and observations unavailable at train_end
@@ -204,9 +285,10 @@ class WeatherWindows:
         x[data.available[begin:pos] > cutoff] = np.nan
         # Forward fill ONLY earlier rows already accessible at the forecast
         # cutoff. Leading unknowns stay unknown and cause this window to drop.
-        for i in range(1, len(x)):
-            missing = ~np.isfinite(x[i])
-            x[i, missing] = x[i - 1, missing]
+        source = np.where(np.isfinite(x), np.arange(len(x))[:, None], -1)
+        source = np.maximum.accumulate(source, axis=0)
+        x = x[np.maximum(source, 0), np.arange(x.shape[1])[None, :]]
+        x[source < 0] = np.nan
         return (x - data.mean) / data.scale
 
     def __len__(self):

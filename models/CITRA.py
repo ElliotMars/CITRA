@@ -6,11 +6,13 @@ from citra.learning.temporal_encoder import ForecastQueryEncoder
 from citra.learning.text_encoder import TextKeyEncoder
 from citra.learning.influence_encoder import TextImpactEncoder
 from citra.learning.fusion import LinearCorrection
+from citra.learning.numeric_backbones import DecompositionLinear
 
 
 class Model(nn.Module):
     def __init__(self, seq_len=48, channels=2, horizon=6, target_ids=None, base_dim=32,
-                 embedding_dim=8, impact_dim=8, metadata_dim=2, hidden_dim=32, sigma=0.7):
+                 embedding_dim=8, impact_dim=8, metadata_dim=2, hidden_dim=32, sigma=0.7,
+                 backbone_kind="linear"):
         super().__init__()
         target_ids = tuple(range(channels)) if target_ids is None else tuple(target_ids)
         if (any(not isinstance(x, int) or x <= 0 for x in
@@ -21,9 +23,14 @@ class Model(nn.Module):
             raise ValueError("invalid model dimensions/targets/kernel")
         self.config = dict(seq_len=seq_len, channels=channels, horizon=horizon, target_ids=list(target_ids),
                            base_dim=base_dim, embedding_dim=embedding_dim, impact_dim=impact_dim,
-                           metadata_dim=metadata_dim, hidden_dim=hidden_dim, sigma=sigma)
+                           metadata_dim=metadata_dim, hidden_dim=hidden_dim, sigma=sigma, backbone_kind=backbone_kind)
         self.register_buffer("target_ids", torch.tensor(target_ids, dtype=torch.long))
-        self.backbone = nn.Linear(seq_len * channels, horizon * len(target_ids))
+        if backbone_kind == "linear":
+            self.backbone = nn.Linear(seq_len * channels, horizon * len(target_ids))
+        elif backbone_kind == "dlinear":
+            self.backbone = DecompositionLinear(seq_len, horizon, target_ids)
+        else:
+            raise ValueError("numeric backbone must be linear or dlinear")
         self.query_encoder = ForecastQueryEncoder(seq_len, channels, embedding_dim, hidden_dim, horizon)
         self.key_encoder = TextKeyEncoder(base_dim, embedding_dim)
         self.impact_encoder = TextImpactEncoder(base_dim, metadata_dim, impact_dim, hidden_dim)
@@ -33,6 +40,8 @@ class Model(nn.Module):
         c = self.config
         if history.ndim != 3 or history.shape[1:] != (c["seq_len"], c["channels"]):
             raise ValueError("history must have shape [B,L,C]")
+        if c["backbone_kind"] == "dlinear":
+            return self.backbone(history)
         return self.backbone(history.flatten(1)).reshape(-1, c["horizon"], len(c["target_ids"]))
 
     def encode_query(self, history):

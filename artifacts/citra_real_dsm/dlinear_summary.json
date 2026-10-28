@@ -1,0 +1,425 @@
+{
+  "availability_protocol": "issuance_asof_assumption",
+  "backbone": "dlinear",
+  "historical_first_publication_verified": false,
+  "rows": [
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 7,
+      "mode": "ts_only",
+      "evaluated_windows": 363,
+      "mse": 19.398078270656985,
+      "mae": 3.226945754835814,
+      "normalized_mse": 0.40159883317891903,
+      "normalized_mae": 0.39704092879711533,
+      "training_seconds": 4.389459077268839,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_7/ts_only/results.json",
+      "ts_only_reused_from_delay": 0.0,
+      "temperature_F_mse": 21.390149202700066,
+      "temperature_F_mae": 3.422157305587301,
+      "wind_speed_knots_mse": 17.406007338613907,
+      "wind_speed_knots_mae": 3.0317342040843265
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 7,
+      "mode": "semantic_topk",
+      "evaluated_windows": 363,
+      "mse": 20.64250072245682,
+      "mae": 3.3138707912307273,
+      "normalized_mse": 0.41508821244583793,
+      "normalized_mae": 0.4044032120312548,
+      "training_seconds": 5.354668500833213,
+      "best_epoch": 16,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_7/semantic_topk/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 23.359575475187125,
+      "temperature_F_mae": 3.555823323862537,
+      "wind_speed_knots_mse": 17.92542596972652,
+      "wind_speed_knots_mae": 3.071918258598918
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 7,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 29.069134235454058,
+      "mae": 4.11029684445968,
+      "normalized_mse": 0.4534852096458518,
+      "normalized_mae": 0.4529677644138722,
+      "training_seconds": 4.825350100174546,
+      "best_epoch": 12,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_7/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 39.27179647729019,
+      "temperature_F_mae": 5.015615490001786,
+      "wind_speed_knots_mse": 18.866471993617928,
+      "wind_speed_knots_mae": 3.204978198917573
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 7,
+      "mode": "shuffled_text",
+      "evaluated_windows": 363,
+      "mse": 27.612307214522385,
+      "mae": 3.9925127620721623,
+      "normalized_mse": 0.4292672334487533,
+      "normalized_mae": 0.43871326216986906,
+      "training_seconds": 4.578725045546889,
+      "best_epoch": 12,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_7/shuffled_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 37.37620730587566,
+      "temperature_F_mae": 4.887749386629339,
+      "wind_speed_knots_mse": 17.84840712316911,
+      "wind_speed_knots_mae": 3.097276137514987
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 17,
+      "mode": "ts_only",
+      "evaluated_windows": 363,
+      "mse": 19.40105981058325,
+      "mae": 3.204199189704117,
+      "normalized_mse": 0.38861064114378197,
+      "normalized_mae": 0.39183166522420715,
+      "training_seconds": 3.4857625104486942,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_17/ts_only/results.json",
+      "ts_only_reused_from_delay": 0.0,
+      "temperature_F_mse": 22.028403009444883,
+      "temperature_F_mae": 3.4280371741311964,
+      "wind_speed_knots_mse": 16.773716611721607,
+      "wind_speed_knots_mae": 2.980361205277038
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 17,
+      "mode": "semantic_topk",
+      "evaluated_windows": 363,
+      "mse": 19.492662228392522,
+      "mae": 3.2164146566947966,
+      "normalized_mse": 0.388356831619165,
+      "normalized_mae": 0.3927180414578925,
+      "training_seconds": 5.073354407213628,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_17/semantic_topk/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 22.23403686140121,
+      "temperature_F_mae": 3.4486660932365503,
+      "wind_speed_knots_mse": 16.751287595383836,
+      "wind_speed_knots_mae": 2.984163220153043
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 17,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 45.15361481403648,
+      "mae": 5.2970994396474955,
+      "normalized_mse": 0.7076284471382231,
+      "normalized_mae": 0.5904210327379651,
+      "training_seconds": 4.840238676406443,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_17/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 60.84484195930202,
+      "temperature_F_mae": 6.380878143340153,
+      "wind_speed_knots_mse": 29.46238766877094,
+      "wind_speed_knots_mae": 4.213320735954839
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 17,
+      "mode": "shuffled_text",
+      "evaluated_windows": 363,
+      "mse": 36.36214519740692,
+      "mae": 4.698911771152007,
+      "normalized_mse": 0.5520804323049981,
+      "normalized_mae": 0.5134850705629554,
+      "training_seconds": 4.860041136853397,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_17/shuffled_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 49.86298670148892,
+      "temperature_F_mae": 5.788017267829246,
+      "wind_speed_knots_mse": 22.861303693324917,
+      "wind_speed_knots_mae": 3.6098062744747685
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 29,
+      "mode": "ts_only",
+      "evaluated_windows": 363,
+      "mse": 18.473782012975327,
+      "mae": 3.133775847560134,
+      "normalized_mse": 0.39260209222949105,
+      "normalized_mae": 0.38949488481538486,
+      "training_seconds": 3.4707850189879537,
+      "best_epoch": 20,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_29/ts_only/results.json",
+      "ts_only_reused_from_delay": 0.0,
+      "temperature_F_mse": 19.877603448676187,
+      "temperature_F_mae": 3.274592459876339,
+      "wind_speed_knots_mse": 17.06996057727447,
+      "wind_speed_knots_mae": 2.9929592352439296
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 29,
+      "mode": "semantic_topk",
+      "evaluated_windows": 363,
+      "mse": 20.081621451918142,
+      "mae": 3.3215360639109996,
+      "normalized_mse": 0.39976479578975715,
+      "normalized_mae": 0.4020606439734926,
+      "training_seconds": 5.136859751306474,
+      "best_epoch": 13,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_29/semantic_topk/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 22.92168752338136,
+      "temperature_F_mae": 3.6048472390280604,
+      "wind_speed_knots_mse": 17.241555380454926,
+      "wind_speed_knots_mae": 3.038224888793937
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 29,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 28.40083792963733,
+      "mae": 4.151202925581157,
+      "normalized_mse": 0.5956590763659274,
+      "normalized_mae": 0.506165376174953,
+      "training_seconds": 4.89254258107394,
+      "best_epoch": 17,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_29/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 30.94395565834301,
+      "temperature_F_mae": 4.4595232099103725,
+      "wind_speed_knots_mse": 25.85772020093165,
+      "wind_speed_knots_mae": 3.842882641251942
+    },
+    {
+      "backbone": "dlinear",
+      "delay_hours": 0.0,
+      "seed": 29,
+      "mode": "shuffled_text",
+      "evaluated_windows": 363,
+      "mse": 27.177430343266966,
+      "mae": 4.050471449062414,
+      "normalized_mse": 0.5397200016444976,
+      "normalized_mae": 0.4810751466326922,
+      "training_seconds": 4.962529743090272,
+      "best_epoch": 17,
+      "result_path": "artifacts/citra_real_dsm/dlinear/delay_0h/seed_29/shuffled_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 31.084333878652192,
+      "temperature_F_mae": 4.51072072569937,
+      "wind_speed_knots_mse": 23.270526807881748,
+      "wind_speed_knots_mae": 3.590222172425456
+    }
+  ],
+  "groups": [
+    {
+      "delay_hours": 0.0,
+      "mode": "ts_only",
+      "seeds": [
+        7,
+        17,
+        29
+      ],
+      "count": 3,
+      "metrics": {
+        "mse": {
+          "mean": 19.09097336473852,
+          "std": 0.5345054685534479
+        },
+        "mae": {
+          "mean": 3.1883069307000214,
+          "std": 0.048575516751030404
+        },
+        "normalized_mse": {
+          "mean": 0.39427052218406405,
+          "std": 0.006652896134044689
+        },
+        "normalized_mae": {
+          "mean": 0.39278915961223576,
+          "std": 0.0038630676373683165
+        },
+        "temperature_F_mse": {
+          "mean": 21.098718553607043,
+          "std": 1.1046191900713065
+        },
+        "temperature_F_mae": {
+          "mean": 3.3749289798649458,
+          "std": 0.08694369526360954
+        },
+        "wind_speed_knots_mse": {
+          "mean": 17.083228175869994,
+          "std": 0.3163540938693024
+        },
+        "wind_speed_knots_mae": {
+          "mean": 3.0016848815350983,
+          "std": 0.02677496832887679
+        }
+      }
+    },
+    {
+      "delay_hours": 0.0,
+      "mode": "semantic_topk",
+      "seeds": [
+        7,
+        17,
+        29
+      ],
+      "count": 3,
+      "metrics": {
+        "mse": {
+          "mean": 20.07226146758916,
+          "std": 0.5749763887221736
+        },
+        "mae": {
+          "mean": 3.2839405039455074,
+          "std": 0.058604557301548815
+        },
+        "normalized_mse": {
+          "mean": 0.4010699466182534,
+          "std": 0.013413397937845482
+        },
+        "normalized_mae": {
+          "mean": 0.39972729915421334,
+          "std": 0.006182165993111642
+        },
+        "temperature_F_mse": {
+          "mean": 22.838433286656567,
+          "std": 0.567369142384612
+        },
+        "temperature_F_mae": {
+          "mean": 3.5364455520423825,
+          "std": 0.07987340674919727
+        },
+        "wind_speed_knots_mse": {
+          "mean": 17.30608964852176,
+          "std": 0.5897234388611416
+        },
+        "wind_speed_knots_mae": {
+          "mean": 3.031435455848633,
+          "std": 0.044269729985039856
+        }
+      }
+    },
+    {
+      "delay_hours": 0.0,
+      "mode": "full_asof_text",
+      "seeds": [
+        7,
+        17,
+        29
+      ],
+      "count": 3,
+      "metrics": {
+        "mse": {
+          "mean": 34.20786232637596,
+          "std": 9.485187300677671
+        },
+        "mae": {
+          "mean": 4.51953306989611,
+          "std": 0.6737027693237126
+        },
+        "normalized_mse": {
+          "mean": 0.5855909110500007,
+          "std": 0.12737041357943996
+        },
+        "normalized_mae": {
+          "mean": 0.5165180577755968,
+          "std": 0.06930897312388201
+        },
+        "temperature_F_mse": {
+          "mean": 43.686864698311744,
+          "std": 15.431635394310137
+        },
+        "temperature_F_mae": {
+          "mean": 5.285338947750771,
+          "std": 0.9886679183622731
+        },
+        "wind_speed_knots_mse": {
+          "mean": 24.72885995444017,
+          "std": 5.387402095706234
+        },
+        "wind_speed_knots_mae": {
+          "mean": 3.753727192041451,
+          "std": 0.5100492021291971
+        }
+      }
+    },
+    {
+      "delay_hours": 0.0,
+      "mode": "shuffled_text",
+      "seeds": [
+        7,
+        17,
+        29
+      ],
+      "count": 3,
+      "metrics": {
+        "mse": {
+          "mean": 30.383960918398756,
+          "std": 5.1818235138437005
+        },
+        "mae": {
+          "mean": 4.247298660762194,
+          "std": 0.39218057506253323
+        },
+        "normalized_mse": {
+          "mean": 0.5070225557994164,
+          "std": 0.0676210963895137
+        },
+        "normalized_mae": {
+          "mean": 0.47775782645517223,
+          "std": 0.03749612369916711
+        },
+        "temperature_F_mse": {
+          "mean": 39.44117596200559,
+          "std": 9.558112895507028
+        },
+        "temperature_F_mae": {
+          "mean": 5.062162460052652,
+          "std": 0.6562671363628982
+        },
+        "wind_speed_knots_mse": {
+          "mean": 21.326745874791925,
+          "std": 3.0192708130693773
+        },
+        "wind_speed_knots_mae": {
+          "mean": 3.4324348614717373,
+          "std": 0.290421094183097
+        }
+      }
+    }
+  ],
+  "unique_trained_models": 12,
+  "unique_training_seconds": 55.87031654920429,
+  "modes": [
+    "ts_only",
+    "semantic_topk",
+    "full_asof_text",
+    "shuffled_text"
+  ],
+  "expected_rows": 12,
+  "complete": true,
+  "forecast_cohort_sha256": "03914df38b610891d2f70a8fd87052e86b085c42400c2c25ee4388b0e7ad0f31",
+  "note": "std across seeds measures training randomness, not climate/geographic uncertainty; physical aggregate mixes units"
+}

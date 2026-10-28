@@ -18,9 +18,10 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from data_provider.citra_weather import UNKNOWN_TIME, parse_time, epoch_seconds, availability_seconds, datetime_utc, load_jsonl
 from citra.text_features import hash_text
+from citra.availability import VERIFIED, ASSUMED, issuance_records
 
 
-def afd_records(path, office, entity, ledger=None, simulated_delay=None):
+def afd_records(path, office, entity, ledger=None, simulated_delay=None, quarantine=None):
     ledger = ledger or {}
     records = []
     source = json.loads(Path(str(path) + ".metadata.json").read_text())
@@ -41,6 +42,10 @@ def afd_records(path, office, entity, ledger=None, simulated_delay=None):
             elif simple and simple[1] == office:
                 stamp = simple[2]
             else:
+                if quarantine is not None:
+                    quarantine.append(dict(member=member.filename,sha256=hashlib.sha256(raw).hexdigest(),
+                                           reason="unrecognized product identity/timestamp"))
+                    continue
                 raise ValueError(f"unrecognized product identity/timestamp: {member.filename}")
             # Real IEM retrieve.py ZIPs currently use AFDxxx_YYYYmmddHHMM.txt.
             # Cross-check the WMO header and PIL, rather than treating the file
@@ -49,6 +54,11 @@ def afd_records(path, office, entity, ledger=None, simulated_delay=None):
             header = re.search(r"^[A-Z]{4}\d{2}[ \t]+K" + office + r"[ \t]+(\d{6})", normalized, re.MULTILINE)
             if (not header or header[1] != stamp[6:12]
                     or not re.search(r"^AFD" + office + r"[ \t]*$", normalized, re.MULTILINE)):
+                if quarantine is not None:
+                    quarantine.append(dict(member=member.filename,sha256=hashlib.sha256(raw).hexdigest(),
+                        archive_timestamp=stamp,wmo_day_time=header[1] if header else None,
+                        reason="filename/WMO header/PIL timestamp mismatch"))
+                    continue
                 raise ValueError(f"filename/WMO header/PIL timestamp mismatch: {member.filename}")
             issued = parse_time(f"{stamp[:4]}-{stamp[4:6]}-{stamp[6:8]}T{stamp[8:10]}:{stamp[10:12]}:00Z")
             sha = hashlib.sha256(raw).hexdigest()
@@ -137,6 +147,9 @@ def main():
     parser.add_argument("--test-end", required=True)
     parser.add_argument("--availability-ledger", type=Path, help="JSONL: sha256,available_at,evidence_url")
     parser.add_argument("--numeric-ledger", type=Path)
+    parser.add_argument("--availability-protocol", choices=[VERIFIED, ASSUMED])
+    parser.add_argument("--text-delay-hours", type=float)
+    parser.add_argument("--numeric-delay-hours", type=float)
     parser.add_argument("--simulate-text-delay-minutes", type=float)
     parser.add_argument("--simulate-numeric-delay-minutes", type=float)
     parser.add_argument("--embeddings", type=Path, help="frozen offline JSONL doc_id/version_id/embedding")
@@ -144,6 +157,16 @@ def main():
     parser.add_argument("--hash-features", action="store_true", help="explicit lexical baseline, not pretrained semantic embeddings")
     parser.add_argument("--hash-dimensions", type=int, default=32)
     args = parser.parse_args()
+    if args.availability_protocol == ASSUMED:
+        if args.availability_ledger or args.numeric_ledger:
+            parser.error("keep verified-ledger data separate from explicit assumption scenarios")
+        args.simulate_text_delay_minutes = 60 * (args.text_delay_hours if args.text_delay_hours is not None else 0.)
+        args.simulate_numeric_delay_minutes = 60 * (args.numeric_delay_hours if args.numeric_delay_hours is not None else 1.)
+    elif args.availability_protocol == VERIFIED and any(x is not None for x in (
+            args.text_delay_hours, args.numeric_delay_hours, args.simulate_text_delay_minutes, args.simulate_numeric_delay_minutes)):
+        parser.error("verified_availability cannot create simulated release times")
+    elif args.availability_protocol is None and (args.text_delay_hours is not None or args.numeric_delay_hours is not None):
+        parser.error("hour-based sensitivity requires explicit issuance_asof_assumption")
     if args.output.exists():
         raise FileExistsError("preserving existing prepared data")
     if {"DSM": "DMX", "ORD": "LOT", "IAH": "HGX"}[args.station] != args.office:
@@ -156,6 +179,9 @@ def main():
     ledger = {r["sha256"]: r for r in load_jsonl(args.availability_ledger)} if args.availability_ledger else {}
     numeric_ledger = {r["sha256"]: r for r in load_jsonl(args.numeric_ledger)} if args.numeric_ledger else {}
     records = afd_records(args.afd, args.office, args.station, ledger, args.simulate_text_delay_minutes)
+    assumption_audit = None
+    if args.availability_protocol == ASSUMED:
+        records, assumption_audit = issuance_records(records, args.simulate_text_delay_minutes / 60, parse_time)
     external = {(r["doc_id"], r["version_id"]): r["embedding"] for r in load_jsonl(args.embeddings)} if args.embeddings else {}
     dimensions = set()
     for row in records:
@@ -168,6 +194,12 @@ def main():
     if not datetime_utc(times[0]) < boundaries[0] < boundaries[1] < boundaries[2]:
         raise ValueError("invalid chronological split boundaries")
     manifest = dict(schema_version=1, is_fixture=False, station=args.station, office=args.office,
+                    availability_protocol=args.availability_protocol or ("legacy_simulated" if
+                        args.simulate_text_delay_minutes is not None or args.simulate_numeric_delay_minutes is not None else VERIFIED),
+                    text_delay_hours=args.simulate_text_delay_minutes/60 if args.simulate_text_delay_minutes is not None else None,
+                    numeric_delay_hours=args.simulate_numeric_delay_minutes/60 if args.simulate_numeric_delay_minutes is not None else None,
+                    numeric_availability_protocol="observation_asof_assumption" if args.availability_protocol == ASSUMED else
+                        (VERIFIED if numeric_ledger else "unknown"), collection_assumption_audit=assumption_audit,
                     channels=["temperature_F", "wind_speed_knots"], base_dim=dimensions.pop(), metadata_dim=2,
                     base_encoder_version=args.embedding_version or "lexical-sha256-hash-v1",
                     numeric_availability_provenance="simulated" if args.simulate_numeric_delay_minutes is not None else

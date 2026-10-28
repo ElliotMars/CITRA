@@ -1,0 +1,60 @@
+{
+  "config": {
+    "data_path": "dataset/citra_real_dsm/prepared",
+    "numeric_data_path": "dataset/citra_real_dsm/numeric_only",
+    "availability_protocol": "issuance_asof_assumption",
+    "allow_simulated": false,
+    "text_delay_hours": 0.0,
+    "seeds": [
+      7,
+      17,
+      29
+    ],
+    "delays": [
+      0.0,
+      1.0,
+      6.0,
+      24.0
+    ],
+    "seed": 7,
+    "threads": 1,
+    "epochs": 20,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "fusion_norm_limit": 1.0,
+    "stride": 24,
+    "topk": 8,
+    "epsilons": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "evaluation_limit": 0,
+    "profile_queries": 12,
+    "profile_repeats": 3,
+    "certified_profile": true,
+    "model": {
+      "seq_len": 48,
+      "horizon": 6,
+      "channels": 2,
+      "target_ids": null,
+      "base_dim": 384,
+      "metadata_dim": 2,
+      "embedding_dim": 8,
+      "impact_dim": 8,
+      "hidden_dim": 32,
+      "sigma": 0.7,
+      "backbone_kind": "linear"
+    }
+  },
+  "backbone": "linear",
+  "modes": [
+    "ts_only",
+    "semantic_topk",
+    "full_asof_text",
+    "shuffled_text"
+  ],
+  "note": "Fixed year split; all seeds reported; each text delay retrains with the same budget. No test-label tuning."
+}

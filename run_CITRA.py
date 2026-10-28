@@ -15,7 +15,9 @@ def main():
     parser.add_argument("--config", type=Path, default=Path("configs/citra.yaml"))
     parser.add_argument("--data", type=Path)
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--mode", choices=["all", "ts_only", "semantic_topk", "full_asof_text", "citra_certified"], default="all")
+    parser.add_argument("--mode", choices=["all", "ts_only", "semantic_topk", "full_asof_text", "shuffled_text", "citra_certified"], default="all")
+    parser.add_argument("--availability-protocol", choices=["verified_availability", "issuance_asof_assumption"])
+    parser.add_argument("--text-delay-hours", type=float)
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--epochs", type=int)
@@ -25,6 +27,10 @@ def main():
     if args.checkpoint and args.mode == "all":
         parser.error("checkpoint evaluation requires one explicit mode")
     config = yaml.safe_load(args.config.read_text())
+    if args.availability_protocol:
+        config["availability_protocol"] = args.availability_protocol
+    if args.text_delay_hours is not None:
+        config["text_delay_hours"] = args.text_delay_hours
     if args.epochs is not None:
         config["epochs"] = args.epochs
     if config["epochs"] <= 0 or config["batch_size"] <= 0 or config["stride"] <= 0:

@@ -206,6 +206,20 @@ class TemporalDocumentStore:
         vector(query, self.embedding_dim)
         return exact_aggregate(self.snapshot(cutoff), query, self.kernel, self.impact_dim)
 
+    def build_index(self):
+        """Explicit offline construction; exact-only consumers need no AVL."""
+        start = perf_counter()
+        if self.index is not None:
+            return 0.0
+        index = TemporalCITRAIndex(self.embedding_dim, self.impact_dim, self.kernel, self.leaf_size)
+        intervals = {}
+        for doc_id, versions in self._versions.items():
+            entries = self._visibility_intervals(versions)
+            index.replace_intervals((), entries)
+            intervals[doc_id] = entries
+        self.index, self._intervals = index, intervals
+        return perf_counter() - start
+
     def query_certified(self, query, cutoff, epsilon, *, bound_mode="local"):
         """Aggregation-only certificate; all cutoffs reuse the same temporal tree.
 

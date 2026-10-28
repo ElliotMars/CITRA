@@ -1,0 +1,11 @@
+{
+  "verified": true,
+  "source_files_checked": 12,
+  "offline_feature_records_checked": 6562,
+  "forecast_windows": 363,
+  "summary_rows_checked": 63,
+  "unique_prediction_runs_checked": 54,
+  "certificate_pairs_checked": 72,
+  "shared_cpu_gpu_full_model": "7327ff61e7b2cdd3284c3f62aa72034945b53e04ca0bd3c60da0779678336247",
+  "note": "Artifact consistency verification, not verification of historical public availability."
+}

@@ -16,6 +16,8 @@ class QueryStats:
     metadata_records_checked: int = 0
     temporal_nodes_pruned: int = 0
     temporal_partial_nodes: int = 0
+    temporal_visible_nodes: int = 0
+    refinements: int = 0
     index_document_reads: int = 0
     build_seconds: float = 0.
     elapsed_seconds: float = 0.
@@ -271,6 +273,10 @@ class CITRAIndex:
                 for child in node.children:
                     visit(child)
                 return
+            if legal:
+                stats.temporal_visible_nodes += 1
+            else:
+                stats.temporal_partial_nodes += 1
             if not node.children:
                 if not legal:
                     stats.metadata_records_checked += len(node.document_refs)
@@ -302,6 +308,7 @@ class CITRAIndex:
                 if not queue:
                     raise ArithmeticError("exact frontier must have zero analytical remainder")
                 _, _, node = heapq.heappop(queue)
+                stats.refinements += 1
                 del frontier[node.node_id]
                 for child in node.children:
                     visit(child)

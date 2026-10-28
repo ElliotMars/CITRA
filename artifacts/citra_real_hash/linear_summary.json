@@ -1,0 +1,119 @@
+{
+  "availability_protocol": "issuance_asof_assumption",
+  "backbone": "linear",
+  "historical_first_publication_verified": false,
+  "rows": [
+    {
+      "backbone": "linear",
+      "delay_hours": 0.0,
+      "seed": 7,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 44.24526620544046,
+      "mae": 5.0742606326378805,
+      "normalized_mse": 0.5627545535794625,
+      "normalized_mae": 0.5317126356825737,
+      "training_seconds": 4.87765793222934,
+      "best_epoch": 14,
+      "result_path": "artifacts/citra_real_hash/linear/delay_0h/seed_7/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 65.97728109187626,
+      "temperature_F_mae": 6.5340111491498964,
+      "wind_speed_knots_mse": 22.513251319004652,
+      "wind_speed_knots_mae": 3.6145101161258637
+    },
+    {
+      "backbone": "linear",
+      "delay_hours": 0.0,
+      "seed": 17,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 57.527247603954386,
+      "mae": 5.858534991683926,
+      "normalized_mse": 0.686173003471709,
+      "normalized_mae": 0.6016376898100385,
+      "training_seconds": 4.332415527664125,
+      "best_epoch": 11,
+      "result_path": "artifacts/citra_real_hash/linear/delay_0h/seed_17/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 87.99759262517134,
+      "temperature_F_mae": 7.6964472653744656,
+      "wind_speed_knots_mse": 27.05690258273745,
+      "wind_speed_knots_mae": 4.020622717993386
+    },
+    {
+      "backbone": "linear",
+      "delay_hours": 0.0,
+      "seed": 29,
+      "mode": "full_asof_text",
+      "evaluated_windows": 363,
+      "mse": 61.17342276855428,
+      "mae": 6.044801975413,
+      "normalized_mse": 0.7573854258979098,
+      "normalized_mae": 0.6321528848081939,
+      "training_seconds": 4.690160835161805,
+      "best_epoch": 13,
+      "result_path": "artifacts/citra_real_hash/linear/delay_0h/seed_29/full_asof_text/results.json",
+      "ts_only_reused_from_delay": null,
+      "temperature_F_mse": 92.22618821807886,
+      "temperature_F_mae": 7.799426804558266,
+      "wind_speed_knots_mse": 30.120657319029707,
+      "wind_speed_knots_mae": 4.290177146267733
+    }
+  ],
+  "groups": [
+    {
+      "delay_hours": 0.0,
+      "mode": "full_asof_text",
+      "seeds": [
+        7,
+        17,
+        29
+      ],
+      "count": 3,
+      "metrics": {
+        "mse": {
+          "mean": 54.315312192649706,
+          "std": 8.909434211616253
+        },
+        "mae": {
+          "mean": 5.659199199911602,
+          "std": 0.5150618340743733
+        },
+        "normalized_mse": {
+          "mean": 0.6687709943163606,
+          "std": 0.09847546169905508
+        },
+        "normalized_mae": {
+          "mean": 0.5885010701002686,
+          "std": 0.05149261106366134
+        },
+        "temperature_F_mse": {
+          "mean": 82.06702064504215,
+          "std": 14.093617148859352
+        },
+        "temperature_F_mae": {
+          "mean": 7.3432950730275435,
+          "std": 0.7027492785181119
+        },
+        "wind_speed_knots_mse": {
+          "mean": 26.563603740257268,
+          "std": 3.827618623021175
+        },
+        "wind_speed_knots_mae": {
+          "mean": 3.975103326795661,
+          "std": 0.3401257049039988
+        }
+      }
+    }
+  ],
+  "unique_trained_models": 3,
+  "unique_training_seconds": 13.90023429505527,
+  "modes": [
+    "full_asof_text"
+  ],
+  "expected_rows": 3,
+  "complete": true,
+  "forecast_cohort_sha256": "03914df38b610891d2f70a8fd87052e86b085c42400c2c25ee4388b0e7ad0f31",
+  "note": "std across seeds measures training randomness, not climate/geographic uncertainty; physical aggregate mixes units"
+}

@@ -1,0 +1,938 @@
+{
+  "config": {
+    "data_path": "dataset/citra_real_dsm/prepared",
+    "numeric_data_path": "dataset/citra_real_dsm/numeric_only",
+    "availability_protocol": "issuance_asof_assumption",
+    "allow_simulated": false,
+    "text_delay_hours": 24.0,
+    "seeds": [
+      7,
+      17,
+      29
+    ],
+    "delays": [
+      0.0,
+      1.0,
+      6.0,
+      24.0
+    ],
+    "seed": 7,
+    "threads": 1,
+    "epochs": 20,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "fusion_norm_limit": 1.0,
+    "stride": 24,
+    "topk": 8,
+    "epsilons": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "evaluation_limit": 0,
+    "profile_queries": 0,
+    "profile_repeats": 3,
+    "certified_profile": true,
+    "model": {
+      "seq_len": 48,
+      "horizon": 6,
+      "channels": 2,
+      "target_ids": [
+        0,
+        1
+      ],
+      "base_dim": 384,
+      "metadata_dim": 2,
+      "embedding_dim": 8,
+      "impact_dim": 8,
+      "hidden_dim": 32,
+      "sigma": 0.7,
+      "backbone_kind": "linear"
+    }
+  },
+  "manifest": {
+    "schema_version": 2,
+    "is_fixture": false,
+    "station": "DSM",
+    "office": "DMX",
+    "years": [
+      2020,
+      2021,
+      2022
+    ],
+    "availability_protocol": "issuance_asof_assumption",
+    "text_delay_hours": 24.0,
+    "numeric_delay_hours": 1.0,
+    "numeric_availability_protocol": "observation_asof_assumption",
+    "numeric_availability_provenance": "simulated",
+    "numeric_delay_origin": "each observation's event valid time; hourly aggregate waits for all its contributors",
+    "text_delay_origin": "WMO-checked product issuance, not archive retrieval time",
+    "historical_first_availability_verified": false,
+    "channels": [
+      "temperature_F",
+      "wind_speed_knots"
+    ],
+    "train_end": "2021-01-01T00:00:00+00:00",
+    "validation_end": "2022-01-01T00:00:00+00:00",
+    "test_end": "2023-01-01T00:00:00+00:00",
+    "metadata_dim": 2,
+    "collection_assumption_audit": {
+      "ambiguous_doc_ids_excluded": [],
+      "records_excluded": 0,
+      "delay_hours": 0.0,
+      "historical_first_availability_verified": false
+    },
+    "source_files": {
+      "dataset/citra_real_dsm/raw/AFDDMX_2020.zip": "ab5144fb66d29a6376d1a2602015638dfa1ecaa1ee392c6a9cd69ce4a9874609",
+      "dataset/citra_real_dsm/raw/DSM_2020.csv": "4f442cc2ac04508ed070f3789b9c5d5a658365550b9c473ecc2787e40c37957e",
+      "dataset/citra_real_dsm/raw/AFDDMX_2020.zip.metadata.json": "18b35e1e5cd8a3e62916cf23a5682dd5dfbe282ef7f0f853c3f2f289a537594d",
+      "dataset/citra_real_dsm/raw/DSM_2020.csv.metadata.json": "f23a119e93810e765b962a7c3404d57e1f50966cbe326e7ed099ca19783294bf",
+      "dataset/citra_real_dsm/raw/AFDDMX_2021.zip": "44fda4f1d1c57772d27106205f760cfa961e6614f7596a0a3ead7b9b42f8e98b",
+      "dataset/citra_real_dsm/raw/DSM_2021.csv": "6f804e18b573c5a58400a535ed681ad5d92eda89ff19d64100597d6ad2d8f909",
+      "dataset/citra_real_dsm/raw/AFDDMX_2021.zip.metadata.json": "55c4fee884dbe4f0aa245021f3cbf583837f5738aa246c577fe442e14ab5142a",
+      "dataset/citra_real_dsm/raw/DSM_2021.csv.metadata.json": "ae64ccd6e31b4f2e030536576bf06a96771e00d4ee4af47af7adb86d9267ae7b",
+      "dataset/citra_real_dsm/raw/AFDDMX_2022.zip": "12d550bcf0b2610d0bb08395a36161e0117fe2c48b85dde673c65002989edbba",
+      "dataset/citra_real_dsm/raw/DSM_2022.csv": "8a20e7e7845fae70238fea9413f2a3037e433fd7489182e653644927c2d7f395",
+      "dataset/citra_real_dsm/raw/AFDDMX_2022.zip.metadata.json": "7fa8a3d9f4f7daca4d85b06a33978a1b5d82942aae2f401ad3de606c6c2d975c",
+      "dataset/citra_real_dsm/raw/DSM_2022.csv.metadata.json": "034424b923ce4780c94c3b2955936e2b1bf30b008c82e4569e85950190a5cf53"
+    },
+    "yearly_audits": [
+      {
+        "year": 2020,
+        "raw_afd_members": 2240,
+        "unique_afd_versions": 2151,
+        "exact_duplicate_products": 0,
+        "timestamp_quarantine": [
+          {
+            "member": "AFDDMX_202001131718.txt",
+            "sha256": "48471ed0de603d66e92296ba20e96d7cc1730fad2f3de3de1174fde014ce454d",
+            "archive_timestamp": "202001131718",
+            "wmo_day_time": "131722",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202001141754.txt",
+            "sha256": "0b8f5a2430f8f95a39e959ec1f5e6b73fc6fa222f1a93acd871c1d59b2952115",
+            "archive_timestamp": "202001141754",
+            "wmo_day_time": "141758",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202001151718.txt",
+            "sha256": "2cfbfde717866f3aecf922c2dccd80763824dfb06a4238c072c79d3612aece30",
+            "archive_timestamp": "202001151718",
+            "wmo_day_time": "151720",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202001181739.txt",
+            "sha256": "15d1c57fe144c5ce62979c426e14dd92176293b90b226ea5f8297199536b70cc",
+            "archive_timestamp": "202001181739",
+            "wmo_day_time": "181741",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202001302344.txt",
+            "sha256": "1f79f1da2fe565f073e0cc53c1014c3a11d942d2ee580dce194b62a66a50eba3",
+            "archive_timestamp": "202001302344",
+            "wmo_day_time": "302352",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202001310513.txt",
+            "sha256": "995bee0366266ea3c75ec6741502318f251f0453e6fb357fab486f846c8b49f1",
+            "archive_timestamp": "202001310513",
+            "wmo_day_time": "310520",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002041129.txt",
+            "sha256": "d1e619019c64ff778277d98ae9243f3fc36a20702d6cde40912eeb565de1b6e3",
+            "archive_timestamp": "202002041129",
+            "wmo_day_time": "041130",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002051141.txt",
+            "sha256": "d5ac845ad062015baa52787a907bbaf16d745029e03668047fd110a2149559a2",
+            "archive_timestamp": "202002051141",
+            "wmo_day_time": "051140",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002111832.txt",
+            "sha256": "980efcd570e9dbe584493cac7ac1eeb6eeb9ffcbeefcf86633b535d31a9b6933",
+            "archive_timestamp": "202002111832",
+            "wmo_day_time": "111831",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002121735.txt",
+            "sha256": "868d4fafd1e18be6c810a06e7abe32a586e9b10baddc980d6a4631b95391fb11",
+            "archive_timestamp": "202002121735",
+            "wmo_day_time": "121737",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002142338.txt",
+            "sha256": "4748a72a586c8d03ed25da8d2a66a8d33be8541fd2b988c3b3901540b4a557aa",
+            "archive_timestamp": "202002142338",
+            "wmo_day_time": "142343",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002160522.txt",
+            "sha256": "1891664f01f24c28ab3b4bda0df331dd549d613ec4184f95b289ce1917b315c9",
+            "archive_timestamp": "202002160522",
+            "wmo_day_time": "160534",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002162335.txt",
+            "sha256": "1a98f90c0079153f795812c1ede0bad23db34597f0fba5fb468cc0700bd8a7d7",
+            "archive_timestamp": "202002162335",
+            "wmo_day_time": "162339",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002170534.txt",
+            "sha256": "5ca026daa07ab109d9d52c5dee13b719ece70c686b6be99ac132fcc8bdcb026c",
+            "archive_timestamp": "202002170534",
+            "wmo_day_time": "170537",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002211717.txt",
+            "sha256": "8cbb247ce4526baa611fcbc652d4881ce62fba7f6584992fb8d04d745a049013",
+            "archive_timestamp": "202002211717",
+            "wmo_day_time": "211719",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002212119.txt",
+            "sha256": "46a1f33a5231f4b31728eeae49ebd7d1be96fe7cb3a1102ca7a44b72043ceb4c",
+            "archive_timestamp": "202002212119",
+            "wmo_day_time": "212128",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002221719.txt",
+            "sha256": "a524230d04c09bb49fc87a421b9b1ab2c3cc7ad65df4a49f067537dabfe9a192",
+            "archive_timestamp": "202002221719",
+            "wmo_day_time": "221722",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202002231737.txt",
+            "sha256": "2cd3cd70ab114617d5f775a3b8931f240cc71bae652118f5edf1f427796657cf",
+            "archive_timestamp": "202002231737",
+            "wmo_day_time": "231739",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003081118.txt",
+            "sha256": "97986e32ceb0547f87058a993d500e368123d0845d517ba11594f14cdadfb3c5",
+            "archive_timestamp": "202003081118",
+            "wmo_day_time": "081129",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003091130.txt",
+            "sha256": "dff51add8c347b541348f6cb0f0795df4cc64724a843c9697a8cfa7a209d0571",
+            "archive_timestamp": "202003091130",
+            "wmo_day_time": "091134",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003190455.txt",
+            "sha256": "3804d1fd02402a24d2c9ba4c2a312d1c510352f4bf4c067ee2e7d9be6f4c9d49",
+            "archive_timestamp": "202003190455",
+            "wmo_day_time": "190454",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003251119.txt",
+            "sha256": "99484d423f7281f0bcd377cf06fe4bd620bd4b2267ec91c8485ea6c71509d8ed",
+            "archive_timestamp": "202003251119",
+            "wmo_day_time": "251123",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003261143.txt",
+            "sha256": "f2f9ebc14ca9ea4b24e34821089a853b0bdebdcd37e82b6246e1c5b2fa375a84",
+            "archive_timestamp": "202003261143",
+            "wmo_day_time": "261149",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003262312.txt",
+            "sha256": "0c27af14d56b1b2f09f232a3384bc2dc7f3182adca663563047befe1fe5f2791",
+            "archive_timestamp": "202003262312",
+            "wmo_day_time": "262320",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003270442.txt",
+            "sha256": "5b1c0e3a80f212e72382019270184d652bb851c0e53cd1c22224af66c5df0b17",
+            "archive_timestamp": "202003270442",
+            "wmo_day_time": "270448",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003271143.txt",
+            "sha256": "1ba76469d16be669db241ca0fe4bdec55f8229a2ed3f7be5222612e2577534ed",
+            "archive_timestamp": "202003271143",
+            "wmo_day_time": "271148",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003272337.txt",
+            "sha256": "ca4b29417871c75370e604d7cd871c35d5b6137e778547006a54084629d7a1ba",
+            "archive_timestamp": "202003272337",
+            "wmo_day_time": "272342",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202003280452.txt",
+            "sha256": "1e4855d7a8d87512a767e583a778f00cf9bf94bfc65edbe0ef3fb31db514d287",
+            "archive_timestamp": "202003280452",
+            "wmo_day_time": "280457",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202004182305.txt",
+            "sha256": "4de7162857f9f790552617903bf65ff2868d11272f6c2c165bba846f59eacaba",
+            "archive_timestamp": "202004182305",
+            "wmo_day_time": "182309",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005041653.txt",
+            "sha256": "eaa209eda39ab96f3448bd14e0d1ce194a5e6d36cd0ee0152bf5805cc317f434",
+            "archive_timestamp": "202005041653",
+            "wmo_day_time": "041654",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005051705.txt",
+            "sha256": "a9f6f69e9c98e4120930d390a0b4caff1ab062cc0d8427138cf7344297dce89b",
+            "archive_timestamp": "202005051705",
+            "wmo_day_time": "051713",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005082340.txt",
+            "sha256": "8ed09682684d497160b42e630190d19dedbb0f660841cbb8b8f0f1b36d2afb2d",
+            "archive_timestamp": "202005082340",
+            "wmo_day_time": "082342",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005090457.txt",
+            "sha256": "cf24182d3d190bb45a259ac4985a766d0818b09fe30e3945d5cf78fc3cdb50d5",
+            "archive_timestamp": "202005090457",
+            "wmo_day_time": "090459",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005092350.txt",
+            "sha256": "1f8f946998606f602398449f858ce2645380649858ed495497bdfc15945d7577",
+            "archive_timestamp": "202005092350",
+            "wmo_day_time": "092353",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005100435.txt",
+            "sha256": "f22f34e91e4ae7c50ef41aa2a0bab07a9d112acc2c51bc2e06cd6d2c35aaf555",
+            "archive_timestamp": "202005100435",
+            "wmo_day_time": "100440",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005291715.txt",
+            "sha256": "a069e334c26e1399876bf7da20f44657e284dce746c03b836eea3539a6afc7ba",
+            "archive_timestamp": "202005291715",
+            "wmo_day_time": "291719",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202005301711.txt",
+            "sha256": "af763fbbc9e632fab52dd16752745c884aa0ea18d41406cb725e51d47f01bac1",
+            "archive_timestamp": "202005301711",
+            "wmo_day_time": "301710",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006022349.txt",
+            "sha256": "0f8431b0446a89bd6ae0fc7ea4fd6e9db574919d71c991193ff2995ea80a54a6",
+            "archive_timestamp": "202006022349",
+            "wmo_day_time": "022350",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006030358.txt",
+            "sha256": "a69deaf852892d56dc8806d3d83b346a5e989808ab77cf9236be15b58aa54dc9",
+            "archive_timestamp": "202006030358",
+            "wmo_day_time": "030402",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006042347.txt",
+            "sha256": "de8c00d8fb0b245bfee1cfc9a5f83f44d14d3f8e064cf02e8d3e90e629329b23",
+            "archive_timestamp": "202006042347",
+            "wmo_day_time": "042352",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006050344.txt",
+            "sha256": "577c914b0cc14c7072484f678f4f2197cdc02b88699d71cca836526a7835fb9d",
+            "archive_timestamp": "202006050344",
+            "wmo_day_time": "050345",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006052339.txt",
+            "sha256": "76263a7d69f6f5491f82327036f9ac1a4e030f9d9592f08f9e906d15e0e4239a",
+            "archive_timestamp": "202006052339",
+            "wmo_day_time": "052340",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006060431.txt",
+            "sha256": "408b63acd5a31f116d3fe25058ff8f7197d8fa7c0bbcfb8f289960eb32ad35b7",
+            "archive_timestamp": "202006060431",
+            "wmo_day_time": "060435",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006091110.txt",
+            "sha256": "8c5dbb9b561c9564b6870f2685b9d746b07f81a5788a9fe7d851fee266ce84ad",
+            "archive_timestamp": "202006091110",
+            "wmo_day_time": "091115",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006101134.txt",
+            "sha256": "0db9061a968d973a82f656a97c51af8d1979c9b85a66ed331ee6486b1111281e",
+            "archive_timestamp": "202006101134",
+            "wmo_day_time": "101138",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006111137.txt",
+            "sha256": "09e3da55e99a61cfad27c7e3ce6dc8c45cdf08d717467938764453f77e356ba0",
+            "archive_timestamp": "202006111137",
+            "wmo_day_time": "111138",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202006121140.txt",
+            "sha256": "84778d17855bd16f49ede9b8ad2c70148db1b518bb19117126f78ebf8478d2f8",
+            "archive_timestamp": "202006121140",
+            "wmo_day_time": "121139",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007011747.txt",
+            "sha256": "4c795cfb1b1828cb058446d82ec4c248727aaf6b38a415dac3b4cc665d4a3665",
+            "archive_timestamp": "202007011747",
+            "wmo_day_time": "011750",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007011940.txt",
+            "sha256": "ce5edf5079ebaa325bf40f589286f916c02a575153567a228e1f2eaf2a89671c",
+            "archive_timestamp": "202007011940",
+            "wmo_day_time": "011953",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007021721.txt",
+            "sha256": "34f0d78cd2f560e0f073d840cda876645ac9a6d2d5e71b5f84276ca4bd0674cb",
+            "archive_timestamp": "202007021721",
+            "wmo_day_time": "021725",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007021915.txt",
+            "sha256": "e5b540aa23e9d118ed1e16e18e14aacf345e12765474b7b2f9cd96ac2717e177",
+            "archive_timestamp": "202007021915",
+            "wmo_day_time": "021925",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007111137.txt",
+            "sha256": "b019245c4de6cea0a5851aabd32c72be2d1015f8d4efc0a1922c2a5278e2db17",
+            "archive_timestamp": "202007111137",
+            "wmo_day_time": "111142",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007131130.txt",
+            "sha256": "36e71bee1c57907a222a267dcc42e3b7ed985bfd01419630ee6d2f5c5578fe9f",
+            "archive_timestamp": "202007131130",
+            "wmo_day_time": "131133",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007131717.txt",
+            "sha256": "45f24b2c0f2e9d3fb4baedf8b68c32a559690bf86b8304d15ebf0ca4b5c83880",
+            "archive_timestamp": "202007131717",
+            "wmo_day_time": "131720",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007131924.txt",
+            "sha256": "c72ae6e1293457f6d3a325d75c7808c69c47db9e5ffee308a82d2b1434b354c2",
+            "archive_timestamp": "202007131924",
+            "wmo_day_time": "131937",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007150540.txt",
+            "sha256": "3321c791dfca343cce769abb448f1a0886af6e3412e0734c7bffa8b0a3d6b841",
+            "archive_timestamp": "202007150540",
+            "wmo_day_time": "150541",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007151135.txt",
+            "sha256": "8d06458db17a01c82a32948ac8bb8b9fb1c9920f7a31ca0ce745b3d5d8b22128",
+            "archive_timestamp": "202007151135",
+            "wmo_day_time": "151139",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007191706.txt",
+            "sha256": "e53fe63e357fb7bba2bf851b47a45c9ee53d809fbe71e2d182296b14a3f8ddfe",
+            "archive_timestamp": "202007191706",
+            "wmo_day_time": "191722",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007202331.txt",
+            "sha256": "f4dae02b49e629568da183939c2638238cfec5859775cd7bf8fa292f941870ca",
+            "archive_timestamp": "202007202331",
+            "wmo_day_time": "202332",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007210425.txt",
+            "sha256": "3ced86852618e99b8e94416f795f136662e75e2db412fc6d132489a3945871f6",
+            "archive_timestamp": "202007210425",
+            "wmo_day_time": "210431",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007222300.txt",
+            "sha256": "5158416d8afd305ac739dc0f60f7293b49b5e031189cbaa0af4d7087484d4e7c",
+            "archive_timestamp": "202007222300",
+            "wmo_day_time": "222301",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007271701.txt",
+            "sha256": "997874015d1539df0cd1815501729d8a078bd9d9519e84ae02c5149ac3a766f6",
+            "archive_timestamp": "202007271701",
+            "wmo_day_time": "271700",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007281805.txt",
+            "sha256": "0dfd09522d73c9fea0100c8ef43c45938c292f3eec62cd475ac8a7e6cfb5397a",
+            "archive_timestamp": "202007281805",
+            "wmo_day_time": "281806",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007292345.txt",
+            "sha256": "f95032f94963d5b9eb60ea4b9a1107efa2c16d6a130de3b0751aea78dd9d9e69",
+            "archive_timestamp": "202007292345",
+            "wmo_day_time": "292346",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202007300419.txt",
+            "sha256": "ef36f1defadd1679b5c65dfab05e014d935fec4c5e2d4d3bb18af1c467da6839",
+            "archive_timestamp": "202007300419",
+            "wmo_day_time": "300421",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202008181140.txt",
+            "sha256": "6e6ee1bc661c3cb6e77e74f856c947f84bf69b2ae86a4acdb2fab671814855c6",
+            "archive_timestamp": "202008181140",
+            "wmo_day_time": "181142",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202008211126.txt",
+            "sha256": "4a442b93a3a63e19dfca8fe1e9937ead071953fca53921b37102706bdabce483",
+            "archive_timestamp": "202008211126",
+            "wmo_day_time": "211127",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202009050421.txt",
+            "sha256": "47dfbbf3ac52e120c69d5ee7ed1a8caa76b95609651da8372da5e4e16dda0e6c",
+            "archive_timestamp": "202009050421",
+            "wmo_day_time": "050422",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202009211733.txt",
+            "sha256": "7480c4f34ff445ae7ae7e2e04c0ab23f828b24bf5dc3cae13dfd4547f447a739",
+            "archive_timestamp": "202009211733",
+            "wmo_day_time": "211740",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202009251730.txt",
+            "sha256": "06c1a2df744a9000a35b36a08ec855be236967802412129f935985f80e5e1786",
+            "archive_timestamp": "202009251730",
+            "wmo_day_time": "251731",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202009261753.txt",
+            "sha256": "1185f0d55744732ec8b8b04ed37a5f48fb9170c6d091fffe3ba010651e4ef7f3",
+            "archive_timestamp": "202009261753",
+            "wmo_day_time": "261756",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202009271741.txt",
+            "sha256": "d2683af3c126155cf2c99154a1d92b0f19c3ebededd195786173e0db1edeb010",
+            "archive_timestamp": "202009271741",
+            "wmo_day_time": "271746",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010062358.txt",
+            "sha256": "f9a6a993baf48987d9b8295cad2b0c672fdd7daeda5ba325e26417ce4ec5d539",
+            "archive_timestamp": "202010062358",
+            "wmo_day_time": "062356",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010070459.txt",
+            "sha256": "524fe503fb68df5a44682c4b10c419e3721bfed93bde76f0bcf7f1bfb4a9f472",
+            "archive_timestamp": "202010070459",
+            "wmo_day_time": "070458",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010080407.txt",
+            "sha256": "1ef3bb0d94f306537d4b4055c462c4ccea871e1cdec5c593a6dbd1577094f5cf",
+            "archive_timestamp": "202010080407",
+            "wmo_day_time": "080410",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010082255.txt",
+            "sha256": "0f58cbf4612d7fcb3f42950d1fb625345d930cc2e8c7eccd593725771fc6b814",
+            "archive_timestamp": "202010082255",
+            "wmo_day_time": "082257",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010090433.txt",
+            "sha256": "f55768b3442cf2bf59ec90917e5db0cbe090022a3347e09a0ab4781b74eb845e",
+            "archive_timestamp": "202010090433",
+            "wmo_day_time": "090435",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010171134.txt",
+            "sha256": "d09740cc579649f1939816c05f5580397621c1eb684bfbd402c0f915456f393c",
+            "archive_timestamp": "202010171134",
+            "wmo_day_time": "171137",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010181146.txt",
+            "sha256": "b1e79e0feb517ab31339fac726b74b199ebd5043e90797348e1b74bf463722eb",
+            "archive_timestamp": "202010181146",
+            "wmo_day_time": "181149",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010211845.txt",
+            "sha256": "60b9e74bd5d6441d10ffa5f37090b9aba65280fc437add6a096ea4712fda7bc5",
+            "archive_timestamp": "202010211845",
+            "wmo_day_time": "211851",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010232317.txt",
+            "sha256": "fdc9873a8293e85aaf0deb5a2961ca2885ec11c32b59f628a27bb6da0c56441c",
+            "archive_timestamp": "202010232317",
+            "wmo_day_time": "232319",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010240455.txt",
+            "sha256": "d3eee803a405884ef92e07d2f62b6c1d3a25bea6cb7960a96e19cc1b7793aaa2",
+            "archive_timestamp": "202010240455",
+            "wmo_day_time": "240458",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010250005.txt",
+            "sha256": "444a09de519f21542f504071e2784344764c24955b29e4656d74d13186366f74",
+            "archive_timestamp": "202010250005",
+            "wmo_day_time": "250009",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010250451.txt",
+            "sha256": "1514246e38b1aed99885b64c8373ca1c311c80fefb41d609131baff7dfd5041a",
+            "archive_timestamp": "202010250451",
+            "wmo_day_time": "250454",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010271123.txt",
+            "sha256": "b25fed5f419d49db6f0b11d2356ceecf9706698196fee3eab40fc0c169d70ae5",
+            "archive_timestamp": "202010271123",
+            "wmo_day_time": "271125",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010280857.txt",
+            "sha256": "b352993fc1b37114363f0d4b1fb1a4a03fc0859f6dcf6450ad51ef7a58bcc356",
+            "archive_timestamp": "202010280857",
+            "wmo_day_time": "280858",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010281134.txt",
+            "sha256": "9b941a80327f8228da4104572e3ffa5397adc5d3bb7954f02a14378529ffaba2",
+            "archive_timestamp": "202010281134",
+            "wmo_day_time": "281141",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010291127.txt",
+            "sha256": "c3e46765b5a722305cc15f0a9924f0ce593659e039dbd73049b5fc0d392aabcf",
+            "archive_timestamp": "202010291127",
+            "wmo_day_time": "291128",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202010301140.txt",
+            "sha256": "44e1a4ca05a7a11e40d67333a83f938d45762bf1b85e9a95ac851f28b59c9951",
+            "archive_timestamp": "202010301140",
+            "wmo_day_time": "301144",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          }
+        ],
+        "days_with_afd": 366,
+        "days_without_afd": [],
+        "first_issued_at": "2020-01-01T05:47:00+00:00",
+        "last_issued_at": "2020-12-31T23:53:00+00:00",
+        "expected_hours": 8784,
+        "finite_hourly_cells": 17538,
+        "missing_fraction_by_channel": [
+          0.0009107468123861566,
+          0.0025045537340619307
+        ],
+        "assumption_first_publication_verified": false,
+        "raw_observation_rows": 8776,
+        "duplicate_observation_timestamp_groups": 0,
+        "exact_duplicate_observation_rows": 0
+      },
+      {
+        "year": 2021,
+        "raw_afd_members": 2217,
+        "unique_afd_versions": 2207,
+        "exact_duplicate_products": 0,
+        "timestamp_quarantine": [
+          {
+            "member": "AFDDMX_202104122321.txt",
+            "sha256": "e02bbbf22d2c5ab6d530495c5d2c6dd027422d7e90f7ff5ae4d1d235865b94de",
+            "archive_timestamp": "202104122321",
+            "wmo_day_time": "122325",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202104130444.txt",
+            "sha256": "80ce600a8a1fa23b26f6aeb3fca3df1c7c3ad77fa30095960f739ed3d68468c7",
+            "archive_timestamp": "202104130444",
+            "wmo_day_time": "130446",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202108052100.txt",
+            "sha256": "7a11c970b163f7a683be32ce79bf1685cb088f648346061be1bcd28ff764bad9",
+            "archive_timestamp": "202108052100",
+            "wmo_day_time": "052104",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111162345.txt",
+            "sha256": "45ed8b334eb673dcd045d369a293f58553bba1928c6f1728117ae605125fcadf",
+            "archive_timestamp": "202111162345",
+            "wmo_day_time": "162350",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111170456.txt",
+            "sha256": "aebaead08ee63c64c434049f82f54a7d21380321617785395e36cd8b831a499a",
+            "archive_timestamp": "202111170456",
+            "wmo_day_time": "170501",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111172341.txt",
+            "sha256": "8307513c0a46a3591ff6bd7dbc5083f8b7cfc1a8d55cf5837c464d2f84d88648",
+            "archive_timestamp": "202111172341",
+            "wmo_day_time": "172344",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111180524.txt",
+            "sha256": "6bf4b1b278aff6f0d48ad28fc2d742c0f68226f810c0dca60ead9e488e657803",
+            "archive_timestamp": "202111180524",
+            "wmo_day_time": "180526",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111182335.txt",
+            "sha256": "cf58d709dbc3ffd85dcb21b50b76224bd649b5ef3275053e79437df4ea83f1a1",
+            "archive_timestamp": "202111182335",
+            "wmo_day_time": "182338",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202111190522.txt",
+            "sha256": "d55e2f5fc8be8bd3d4dcd6d0f5e278b251ed55eb0f824692884df42a2e6ef930",
+            "archive_timestamp": "202111190522",
+            "wmo_day_time": "190540",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202112060858.txt",
+            "sha256": "c5e3deb2d769ee46e1bac2de8b6f80f6cce0450cd3bd04946e4a7d1478f53896",
+            "archive_timestamp": "202112060858",
+            "wmo_day_time": "060900",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          }
+        ],
+        "days_with_afd": 365,
+        "days_without_afd": [],
+        "first_issued_at": "2021-01-01T05:38:00+00:00",
+        "last_issued_at": "2021-12-31T23:56:00+00:00",
+        "expected_hours": 8760,
+        "finite_hourly_cells": 17503,
+        "missing_fraction_by_channel": [
+          0.00045662100456621003,
+          0.0014840182648401827
+        ],
+        "assumption_first_publication_verified": false,
+        "raw_observation_rows": 8756,
+        "duplicate_observation_timestamp_groups": 0,
+        "exact_duplicate_observation_rows": 0
+      },
+      {
+        "year": 2022,
+        "raw_afd_members": 2206,
+        "unique_afd_versions": 2204,
+        "exact_duplicate_products": 0,
+        "timestamp_quarantine": [
+          {
+            "member": "AFDDMX_202208231912.txt",
+            "sha256": "9372e608f6da4ffa32f24453da4f01784b8e170e6337e6ec6d8db5d9f7052b76",
+            "archive_timestamp": "202208231912",
+            "wmo_day_time": "232008",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          },
+          {
+            "member": "AFDDMX_202210142028.txt",
+            "sha256": "ccb405c0a974f5452dd96d21c4299bcdf580f7c63991eb301432e268291acf61",
+            "archive_timestamp": "202210142028",
+            "wmo_day_time": "142043",
+            "reason": "filename/WMO header/PIL timestamp mismatch"
+          }
+        ],
+        "days_with_afd": 365,
+        "days_without_afd": [],
+        "first_issued_at": "2022-01-01T05:42:00+00:00",
+        "last_issued_at": "2022-12-31T23:38:00+00:00",
+        "expected_hours": 8760,
+        "finite_hourly_cells": 17510,
+        "missing_fraction_by_channel": [
+          0.00011415525114155251,
+          0.0010273972602739725
+        ],
+        "assumption_first_publication_verified": false,
+        "raw_observation_rows": 8759,
+        "duplicate_observation_timestamp_groups": 0,
+        "exact_duplicate_observation_rows": 0
+      }
+    ],
+    "total_products_before_deduplication": 6562,
+    "products_after_protocol_filter": 6562,
+    "raw_product_files": 6663,
+    "timestamp_quarantined_products": 101,
+    "base_dim": 384,
+    "base_encoder_version": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "frozen_text_encoder": {
+      "encoder_name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "preprocessing": "remove-ascii-controls-except-whitespace;collapse-whitespace;retain-content-and-headers;tokenizer-truncation",
+      "backend": "sentence_transformer",
+      "max_wordpieces": 256,
+      "normalized": true,
+      "frozen": true,
+      "dimensions": 384,
+      "records": 6562,
+      "encoding_seconds": 11.00258128810674,
+      "device": "cuda:0",
+      "model_acquisition_seconds": 5.802139639854431e-07,
+      "model_loading_seconds": 4.233064600266516,
+      "preprocessing_seconds": 1.2234220718964934,
+      "model_files_sha256": {
+        "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+        "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+        "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+        "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+      },
+      "embeddings_sha256": "2ffa20c624916cadfe28b324fd9c976c35febf3bc229f90739de814a53e154dc",
+      "identities_sha256": "9928c2ad0d8b83a3a55d928bb547b08574284d39ed1cd8119d8bf9f463e57d8b",
+      "source_records_sha256": "bd6c3372c949330142707443850998f2a54b8f7a7991edb9ace7d2727daf32af",
+      "note": "No forecasting labels, PCA fitting or test-based model selection."
+    },
+    "text_assumption_audit": {
+      "ambiguous_doc_ids_excluded": [],
+      "records_excluded": 0,
+      "delay_hours": 24.0,
+      "historical_first_availability_verified": false
+    }
+  },
+  "corpus_fingerprint": "fb3e747bae83cb2f952f97165c8fe1fe12638e0cc1d3bbfb856199967baa9d61",
+  "data_fingerprint": "63dbae6af0b14e279ab4b39aacc4baa376fa79fbae5ce36c61ac9aa6d389143a",
+  "numeric_fingerprint": "1fea673bbc9e4073d421163260ec29b13ad7006417e9cfbd76b913233d7908b3",
+  "scaler": {
+    "mean": [
+      51.68843304843305,
+      8.382718867709166
+    ],
+    "scale": [
+      21.028376584063427,
+      4.802048221311442
+    ]
+  },
+  "device": "cuda:0",
+  "torch": "2.4.1",
+  "numpy": "2.2.5"
+}

@@ -1,0 +1,17 @@
+{
+  "seed": 7,
+  "mode": "full_asof_text",
+  "text_delay_hours": 0.0,
+  "same_20_epoch_training": true,
+  "max_prediction_difference": 0.0,
+  "old_normalized_mse": 0.6833669126048277,
+  "new_normalized_mse": 0.6833669126048277,
+  "original_checkpoint": "artifacts/citra_real_dsm/linear/delay_0h/seed_7/full_asof_text/full_asof_text.pt",
+  "rerun_directory": "/tmp/citra-real-repro-seed7-full",
+  "torch": "2.4.1",
+  "numpy": "2.2.5",
+  "cuda": "12.1",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "itt_implementation_commit": "54835bb96f1b85f8f21841ce821487f69d95ecce",
+  "note": "Single registered seed repeated as a reproducibility check, not an additional independent seed or best-score selection."
+}

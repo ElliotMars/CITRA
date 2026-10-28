@@ -1,0 +1,13 @@
+# Optional offline semantic features; tested separately from the NumPy core.
+sentence-transformers==3.3.1
+transformers==4.46.3
+huggingface-hub==0.26.5
+tokenizers==0.20.3
+safetensors==0.4.5
+scikit-learn==1.6.1
+scipy==1.15.3
+tqdm==4.67.1
+joblib==1.4.2
+threadpoolctl==3.5.0
+regex==2024.11.6
+fsspec==2024.10.0

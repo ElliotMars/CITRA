@@ -1,0 +1,22 @@
+{
+  "seed": 7,
+  "text_delay_hours": 0.0,
+  "device": "cuda:0",
+  "queries": 12,
+  "repeats": 3,
+  "order": [
+    "ts_only",
+    "semantic_topk",
+    "full_asof_text",
+    "citra_certified"
+  ],
+  "same_process_sequential": true,
+  "training_in_this_process": false,
+  "source_sha256": {
+    "citra/learning/inference.py": "0d1c00e48b24ec6c88ace796be56eca790b71f35ee55cb63621ac35b2cbb0e83",
+    "citra/learning/diagnostics.py": "21bad14d70aad318810250e7c4f269117684e36960c8b0fc6a92008cbe3ba55f",
+    "exp/exp_CITRA.py": "c7fd4ab0987e18f0518c24031b8c41edceba48dd722e82ab3f563c81b89167c5",
+    "/opt/data/private/ATM-ReTaMTSF/scripts/run_citra_real_experiments.py": "f5fbc66c704e576629e1cec748cf60dd066f550ae8cba73717fedb5c6949e0d9"
+  },
+  "note": "Fixed evenly spaced queries; cold calls retained; no best-run selection. Small diagnostic sample, not production throughput."
+}

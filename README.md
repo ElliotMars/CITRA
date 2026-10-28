@@ -14,7 +14,7 @@ python -m unittest discover -s tests -v
 python run_CITRA.py --fixture --mode all --device cpu --output /tmp/citra-training-smoke
 ```
 
-`--fixture` 只生成明确标记的合成集成数据，不是实际天气实验；结果不会报告真实 MSE/MAE。输出目录必须不存在，以免覆盖已有结果。`all` 分别训练 TS-only、Semantic Top-K、Full As-of，CITRA 与 Full As-of 共享同一冻结 checkpoint。
+`--fixture` 只生成明确标记的合成集成数据，不是实际天气实验；结果不会报告真实 MSE/MAE。输出目录必须不存在，以免覆盖已有结果。`all` 分别训练 TS-only、Semantic Top-K、Full As-of 和因果文本打乱对照，CITRA 与 Full As-of 共享同一冻结 checkpoint。
 
 当前机器现有 CUDA PyTorch 有 `iJIT_NotifyEvent` 环境问题；已验证的隔离运行方式、实际日志及依赖说明见 [阶段记录](docs/citra_progress.md)。一般正常安装的 PyTorch 环境不需要该兼容步骤。
 
@@ -30,7 +30,19 @@ python run_CITRA.py --data dataset/citra_weather --mode citra_certified \
 
 配置见 `configs/citra.yaml`，可修改 lookback、horizon、目标列、embedding/impact 维度和误差预算。配置、Scaler、数据指纹、训练日志、checkpoint、在线/离线成本均保存到输出目录。
 
-本轮实际训练产物位于 `artifacts/citra_stage_a/`；[结果摘要](docs/citra_stage_a_results.json) 和 [测试日志](docs/citra_stage_a_tests.txt) 可核查。三个地区仅完成真实档案覆盖/格式探测，没有获证的历史可用时间，因此没有真实天气 MSE/MAE。
+当前已完成 DSM/DMX 2020–2022 年真实档案实验：2020 训练、2021 验证、2022 测试，三种种子、四种文本延迟、冻结 MiniLM、四种预测方法，以及 DLinear/词袋哈希对照。真实数据采用明确的 `issuance_asof_assumption`，数值观测另设 +1 小时假设；这些假设不等于获证的历史首次公开时间。`verified_availability` 仍拒绝本批档案。
+
+线性骨干零延迟的标准化测试 MSE（均值±种子标准差）：TS-only 0.3859±0.0063、Full Text 0.7017±0.0810。当前没有文本收益或系统加速证据，未实现 Hybrid Index。完整结果、失败项、下载/编码/复现实验命令见 [真实数据就绪性报告](docs/citra_realdata_readiness.md)；机器可读结果位于 `artifacts/citra_real_dsm/` 与 `artifacts/citra_real_hash/`。
+
+```bash
+python -m pip install -r requirements-citra-text.txt
+python scripts/run_citra_real_experiments.py train --config configs/citra_real.yaml \
+  --output /tmp/citra-real-rerun --device cuda:0
+python scripts/run_citra_real_experiments.py profile_all --config configs/citra_real.yaml \
+  --output /tmp/citra-real-rerun --profile-output /tmp/citra-real-profile --device cuda:0
+```
+
+以上命令需要先按报告准备本地真实数据；输出目录不会强制覆盖已有实验。旧阶段的 fixture 和真实小样本产物仍在 `artifacts/citra_stage_a/`，其历史结果不作为本轮真实预测指标。
 
 ---
 
