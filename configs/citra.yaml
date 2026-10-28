@@ -1,0 +1,26 @@
+# All timestamps and windows use UTC. Supply prepared real data or --fixture.
+data_path: dataset/citra_weather
+allow_simulated: false
+seed: 7
+threads: 1
+epochs: 3
+batch_size: 16
+learning_rate: 0.001
+weight_decay: 0.0001
+gradient_clip: 1.0
+fusion_norm_limit: 1.0
+stride: 3
+topk: 8
+epsilons: [0.0, 0.01, 0.1]
+evaluation_limit: 0
+model:
+  seq_len: 48
+  horizon: 6
+  channels: 2
+  target_ids: null
+  base_dim: 32
+  metadata_dim: 2
+  embedding_dim: 8
+  impact_dim: 8
+  hidden_dim: 32
+  sigma: 0.7

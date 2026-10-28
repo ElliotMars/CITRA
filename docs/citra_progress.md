@@ -1,4 +1,76 @@
-# 审查修复交付记录
+# 阶段 A：可训练预测闭环与最小真实适配（2026-10-28）
+
+本轮从 prompt.md 452 行开始，按最后要求先落实第一阶段。新增真实可训练的 PyTorch 模型和
+Point-in-Time 天气接口；CPU/A100 的集成训练已实际执行。真实天气预测实验因历史可用性缺证而未运行。
+Hybrid、100K 系统实验和真实 Accuracy–Latency 曲线尚未完成，不把第一阶段结果当作这些里程碑通过。
+
+## 新增/修改文件与实际功能
+
+- models/CITRA.py、citra/learning/{temporal_encoder,text_encoder,influence_encoder,fusion,training,inference}.py：
+  历史/目标/horizon 条件查询，冻结基础特征上的可训练 key 与带符号影响，Torch 完整合法求和，线性认证头，
+  版本化冻结缓存与显式失效检测。
+- data_provider/citra_weather.py：UTC 数值可用性、仅训练拟合 Scaler、按时间窗口/模型拟合边界划分、
+  文档版本 mask、可复现 fixture；MOS 发行时间/有效时间 join 扩展函数。
+- scripts/download_nws_afd.py、download_asos.py、citra_download.py、prepare_citra_weather.py、
+  validate_citra_timestamps.py：实际下载、原始 hash/来源保留、WMO/文件名交叉核对、按小时聚合与严格审计。
+- exp/exp_CITRA.py、run_CITRA.py、configs/citra.yaml、requirements-citra.txt：统一模式、checkpoint、
+  配置/训练日志、MSE/MAE 的真实数据分支、在线/离线成本。合成 fixture 不输出真实 MSE/MAE。
+- tests/test_citra_learning.py、test_citra_weather.py：可训练梯度、冻结一致性、错误非线性头、未来信息隔离、
+  数据校验与模型拟合边界；保留原 37 项测试。
+- README、研究文档、docs/citra_weather.md；artifacts/citra_stage_a 保存模型、配置、fixture、
+  全部训练/推理记录和三个地区的真实下载样本，不覆盖任何旧数据/权重。
+
+## 实际测试与训练
+
+`PYTHONPATH=/tmp/citra-torch-cpu /root/miniconda3/envs/text4ts/bin/python -m unittest discover -s tests -v`：
+56 项通过，13.315 秒；原 test_certified_bound 的 1296 组参数仍保留。日志 citra_stage_a_tests.txt。
+CPU 和 A100 分别完成 ts_only/semantic_topk/full_asof_text，各 3 epoch，保存最佳验证 checkpoint。
+每模型评估 18 个 test 窗口；Full/CITRA 每设备做 54 次共享参数证书对照，预算检查全部通过。
+在文件路径重定位后也实际验证 checkpoint 可重新加载。数值范围为明示 float64 容差，非形式化机器数保证。
+
+结果：CPU Full/CITRA(epsilon=.1) P50=1.558/1.829 ms；GPU=3.075/3.157 ms。
+所有预算累计扫描 819 条合法文档，返回零截断界，CPU/GPU 最大舍入偏差约 1.12e-16/2.80e-17。
+这证明了完整预测执行链可运行，没有证明近似节省、文本预测增益或总体系统优势。
+
+## 环境和复现
+
+原 text4ts PyTorch 2.4.1 因 iJIT_NotifyEvent 导入失败。CPU 使用 /tmp/citra-torch-cpu 的官方 2.5.1+cpu
+隔离安装，未改全局环境。GPU 使用现有 2.4.1/CUDA 12.1，过程级加载 Intel 官方 ITT 实现后运行 A100。
+来源：[PyTorch 问题记录](https://github.com/pytorch/pytorch/issues/123097)、[Intel ITT API](https://github.com/intel/ittapi)。
+没有编造缺失符号、替换数学运算或伪装 GPU 执行。已验证的兼容构建命令如下：
+
+```bash
+git clone https://github.com/intel/ittapi.git /tmp/citra-ittapi
+git -C /tmp/citra-ittapi checkout 54835bb96f1b85f8f21841ce821487f69d95ecce
+gcc -shared -fPIC -I/tmp/citra-ittapi/include /tmp/citra-ittapi/src/ittnotify/jitprofiling.c \
+  -ldl -o /tmp/citra-ittapi/libjitprofiling.so
+LD_PRELOAD=/tmp/citra-ittapi/libjitprofiling.so /root/miniconda3/envs/text4ts/bin/python run_CITRA.py \
+  --fixture --mode all --epochs 3 --device cuda:0 --output /tmp/new-citra-gpu-run
+```
+
+正常可导入的 PyTorch 环境不需要此本机兼容步骤。CPU 命令见 citra_experiments.md。
+下载 MKL 的另一路修复尝试较慢，已停止本轮自己的后台下载，未覆盖环境或其他进程。
+
+## 真实数据、未通过的校验与研究边界
+
+已实际获取 DSM/DMX、ORD/LOT、IAH/HGX 2020-01-01 至 01-03 的 12/16/12 份 AFD、各 48 小时 ASOS；
+源站元数据确认办公室对应。网络曾重置/截断，已添加有限重试，ORD 经官方镜像下载。
+实际 ZIP 格式也已核实并交叉检查 WMO/PIL；没有仅凭文件名猜测历史可用性。
+
+归档只提供发行/观测时间，逐条首次可用/历史摄入证据仍未知。严格校验真实样本实际退出 2，
+strict_backtest_ready=false，这是预期的失败关闭；不能报告真实 MSE/MAE 或年份训练已经完成。
+原始数据、来源、SHA 和拒绝原因见 artifacts/citra_stage_a/weather_probe。
+可用性 ledger 导入和显式模拟延迟路径已实现，但没有伪造 ledger 以让真实实验通过。
+
+认证前提仍是合法完整求和、固定且一致的 z/v/模型、内置线性头与真实时间来源。
+不保证真实未来 MSE；没有 IEEE 总舍入证明。对不受支持的头/过期缓存拒绝认证。
+目前只有闭环工程增量，尚不能声称 ICDE 研究贡献成立。
+
+下一步优先补齐历史可用性证明（或前瞻采集真实接收时间）并开展按年份划分的真实预测；
+随后按任务第二阶段保留 AVL、实现独立 Hybrid/成本感知查询，以实际 encoder 的近距查询测量混合节点瓶颈。
+本轮没有用远距离核趋零、未测的大规模结果或真实预测收益来替代这些待完成工作。
+
+## 上阶段审查修复交付记录（保留）
 
 本轮按 prompt.md 第 357 行后的代码审查，落实四个 P0 机制修复。用户编辑的 prompt.md 保留；
 仍在 feature/citra-prototype，未提交或推送。本轮没有改写原 ReTaMTSF 模型/加载器/训练入口。

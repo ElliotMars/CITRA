@@ -1,0 +1,54 @@
+{
+  "source_url": "https://mesonet3.agron.iastate.edu/cgi-bin/request/asos.py?station=ORD&network=IL_ASOS&sts=2020-01-01T00%3A00Z&ets=2020-01-03T00%3A00Z&data=tmpf%2Csknt&tz=UTC&format=onlycomma&missing=M&trace=empty&latlon=no&elev=no&report_type=3",
+  "retrieved_at": "2026-10-28T05:32:28.567239+00:00",
+  "sha256": "fb60ce623ea4d659a8a6df571006d3f3efad540f354adbd5e1f53e5b5bd256c6",
+  "bytes": 1592,
+  "historical_ingested_at": null,
+  "availability_provenance": "unknown",
+  "timestamp_timezone": "UTC",
+  "station_id": "ORD",
+  "office_id": "LOT",
+  "station_metadata_url": "https://mesonet3.agron.iastate.edu/geojson/network/IL_ASOS.geojson",
+  "station_metadata": {
+    "type": "Feature",
+    "id": "ORD",
+    "properties": {
+      "elevation": 205.0,
+      "sname": "Chicago OHare",
+      "time_domain": "(1946-Now)",
+      "archive_begin": "1946-10-01",
+      "archive_end": null,
+      "state": "IL",
+      "country": "US",
+      "climate_site": "IL1549",
+      "wfo": "LOT",
+      "tzname": "America/Chicago",
+      "ncdc81": "USW00094846",
+      "ncei91": "USW00094846",
+      "ugc_county": "ILC043",
+      "ugc_zone": "ILZ013",
+      "county": "DuPage",
+      "sid": "ORD",
+      "network": "IL_ASOS",
+      "online": true,
+      "synop": null,
+      "attributes": {
+        "HASTAF": "1",
+        "SHEF_6HR_SRC": "ORD",
+        "HAS_PHOUR": "1",
+        "GHCNH_ID": "USW00094846",
+        "HAS1MIN": "1",
+        "METAR_RESET_MINUTE": "51"
+      }
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -87.9316,
+        41.9602
+      ]
+    }
+  },
+  "office_mapping_verified": true,
+  "observation_time_is_availability": false
+}

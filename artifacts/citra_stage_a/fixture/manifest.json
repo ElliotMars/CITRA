@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "is_fixture": true,
+  "numeric_availability_provenance": "simulated",
+  "base_dim": 32,
+  "metadata_dim": 2,
+  "base_encoder_version": "synthetic-fixed-features-v1",
+  "channels": [
+    "synthetic_temperature",
+    "synthetic_wind"
+  ],
+  "train_end": "2020-01-08T13:00:00+00:00",
+  "validation_end": "2020-01-11T01:00:00+00:00",
+  "test_end": "2020-01-13T13:00:00+00:00",
+  "source": "generated smoke fixture; no real forecast metrics"
+}

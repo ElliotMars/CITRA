@@ -1,0 +1,68 @@
+{
+  "config": {
+    "data_path": "/tmp/citra-learning-fixture-j3k1lhia/data",
+    "allow_simulated": true,
+    "seed": 7,
+    "threads": 1,
+    "epochs": 3,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "fusion_norm_limit": 1.0,
+    "stride": 3,
+    "topk": 8,
+    "epsilons": [
+      0.0,
+      0.01,
+      0.1
+    ],
+    "evaluation_limit": 0,
+    "model": {
+      "seq_len": 48,
+      "horizon": 6,
+      "channels": 2,
+      "target_ids": [
+        0,
+        1
+      ],
+      "base_dim": 32,
+      "metadata_dim": 2,
+      "embedding_dim": 8,
+      "impact_dim": 8,
+      "hidden_dim": 32,
+      "sigma": 0.7
+    }
+  },
+  "manifest": {
+    "schema_version": 1,
+    "is_fixture": true,
+    "numeric_availability_provenance": "simulated",
+    "base_dim": 32,
+    "metadata_dim": 2,
+    "base_encoder_version": "synthetic-fixed-features-v1",
+    "channels": [
+      "synthetic_temperature",
+      "synthetic_wind"
+    ],
+    "train_end": "2020-01-08T13:00:00+00:00",
+    "validation_end": "2020-01-11T01:00:00+00:00",
+    "test_end": "2020-01-13T13:00:00+00:00",
+    "source": "generated smoke fixture; no real forecast metrics"
+  },
+  "corpus_fingerprint": "d9759a8b6be70f9e47b3e68b7d4fcc6c08a286e64ec5ee94b90062ca5c64db9f",
+  "data_fingerprint": "07b00054b58dbe3f6321c677627b8d516fe9beb79afa37496c1040aac6c0c13c",
+  "scaler": {
+    "mean": [
+      -0.16673324064297704,
+      -0.14138114202190594
+    ],
+    "scale": [
+      0.45982290454844676,
+      0.42661688177381596
+    ]
+  },
+  "device": "cpu",
+  "torch": "2.5.1+cpu",
+  "numpy": "2.2.5"
+}

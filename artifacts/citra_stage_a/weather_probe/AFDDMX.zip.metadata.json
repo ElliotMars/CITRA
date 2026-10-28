@@ -1,0 +1,11 @@
+{
+  "source_url": "https://mesonet.agron.iastate.edu/cgi-bin/afos/retrieve.py?pil=AFDDMX&center=KDMX&sdate=2020-01-01T00%3A00Z&edate=2020-01-03T00%3A00Z&fmt=zip&limit=9999&order=asc",
+  "retrieved_at": "2026-10-28T03:22:46.964927+00:00",
+  "sha256": "d581055a545c7bbe86278b0a491dba1610e5597fd137c95add39ecdf9351baed",
+  "bytes": 50586,
+  "historical_ingested_at": null,
+  "availability_provenance": "unknown",
+  "office_id": "DMX",
+  "start_inclusive": "2020-01-01T00:00Z",
+  "end_exclusive": "2020-01-03T00:00Z"
+}

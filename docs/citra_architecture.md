@@ -1,4 +1,41 @@
-# 模块与数据流（审查修复版）
+# 可训练预测闭环（2026-10-28）
+
+新入口是 `models/CITRA.py`、`exp/exp_CITRA.py` 和 `run_CITRA.py`；旧 NumPy 验证头及 AVL 系统基线继续保留。
+
+```
+UTC observations + per-cell available_at -> train-only Scaler -> [B,L,C] history
+    -> linear numeric backbone -----------------------------------------+
+    -> ForecastQueryEncoder(history,target IDs,horizon) -> normalized q  |
+                                                                       +-> [B,H,C_target]
+offline frozen base text + publication/availability/version metadata     |
+    -> trainable normalized TextKeyEncoder -> z                         |
+    -> trainable signed TextImpactEncoder(base,metadata) -> v            |
+    -> per-window legal version mask -> exact torch sum -> linear G -----+
+```
+
+训练时每 batch 都重新计算可训练的 z/v，完整 RBF 求和在 PyTorch 图中；只将时间版本 mask 当作离散数据，
+不读取 NumPy 索引缓存参与反向传播。基础 embedding 是固定输入，可导入已有 MiniLM 或其他离线编码。
+当前 fixture 基础特征为显式合成值；`--hash-features` 只是词袋哈希基线，没有执行真实语义模型实验。
+
+冻结部署：eval + requires_grad_(False) -> 文本投影/影响编码 -> 重建 AVL。FrozenForecastSession 绑定
+实际参数字节、encoder_version、impact_version、corpus fingerprint 和 index_generation。
+参数、buffer、语料/索引代次变化时拒绝旧缓存；编码器更新后必须显式重新冻结/编码/构建。
+只支持内置线性修正头，无认证的非线性替换或改变计算结果的 hooks 会被拒绝。
+
+ForecastResult 的形状是 `[1,H,C_target]`；模型训练支持批量。Semantic Top-K/TS-only 不返回相对于
+Full Text 的数值证书（bound=None），不能将它们的输入策略错误标为完整求和。
+
+训练/验证/测试窗口按时间标签区间划分，窗口不跨边界；数值历史仅用 cutoff 前可访问的值，缺失仅前向填补。
+训练/选模标签必须在对应拟合截止时间前可用；验证/测试预测起点分别不早于 train_end/validation_end。
+天气字段与来源协议详见 `citra_weather.md`。
+
+在线分别记录模型版本校验、query encoding、certificate setup、index query、aggregate transfer、
+forecast inference、total latency，CUDA 计时边界显式同步。
+离线分别记录基础特征传输、key projection、impact encoding、encoded transfer、index construction；
+外部基础文本编码时间未测时为 None，不以零时间掩盖。模型训练时间、日志和 checkpoint 单独保存。
+当前未实现持续新文档流的模型重编码摊销评估；不能从在线单查询推导总成本优势。
+
+## 既有 AVL 和 NumPy 原型（以下保留）
 
 原 ReTaMTSF 模型、数据路径、权重和训练入口未改变；新增 CITRA 保持独立。
 
@@ -44,4 +81,4 @@ backing buffers、文档和元数据。benchmark 另报进程 RSS、tracemalloc 
 
 依赖仍只有现有 NumPy 与标准库，未安装新包。Python 3.10.0 / NumPy 2.2.5 环境可运行。
 PyTorch 仍因 iJIT_NotifyEvent 导入失败；没有改写全局环境或用虚假符号替代修复。
-P1 的可训练多模态模型、真实数据、预测 MSE/MAE、并发事务与大规模持久化仍未完成。
+可训练模型闭环已新增；真实获证天气训练、MSE/MAE、Hybrid、并发事务及大规模持久化仍未完成。

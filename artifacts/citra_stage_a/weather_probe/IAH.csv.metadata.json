@@ -1,0 +1,53 @@
+{
+  "source_url": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=IAH&network=TX_ASOS&sts=2020-01-01T00%3A00Z&ets=2020-01-03T00%3A00Z&data=tmpf%2Csknt&tz=UTC&format=onlycomma&missing=M&trace=empty&latlon=no&elev=no&report_type=3",
+  "retrieved_at": "2026-10-28T03:51:44.609791+00:00",
+  "sha256": "2c37b42804bdcbb37104a9f8b8e06d139277f797b81a713d3ddc470d531ca83b",
+  "bytes": 1565,
+  "historical_ingested_at": null,
+  "availability_provenance": "unknown",
+  "timestamp_timezone": "UTC",
+  "station_id": "IAH",
+  "office_id": "HGX",
+  "station_metadata_url": "https://mesonet.agron.iastate.edu/geojson/network/TX_ASOS.geojson",
+  "station_metadata": {
+    "type": "Feature",
+    "id": "IAH",
+    "properties": {
+      "elevation": 28.0,
+      "sname": "Houston Intercontinental",
+      "time_domain": "(1966-Now)",
+      "archive_begin": "1966-08-13",
+      "archive_end": null,
+      "state": "TX",
+      "country": "US",
+      "climate_site": "TX4300",
+      "wfo": "HGX",
+      "tzname": "America/Chicago",
+      "ncdc81": "USW00012960",
+      "ncei91": "USW00012960",
+      "ugc_county": "TXC201",
+      "ugc_zone": "TXZ213",
+      "county": "Harris",
+      "sid": "IAH",
+      "network": "TX_ASOS",
+      "online": true,
+      "synop": null,
+      "attributes": {
+        "HASTAF": "1",
+        "HAS_PHOUR": "1",
+        "GHCNH_ID": "USW00012960",
+        "HAS1MIN": "1",
+        "METAR_RESET_MINUTE": "53"
+      }
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -95.3607,
+        29.9844
+      ]
+    }
+  },
+  "office_mapping_verified": true,
+  "observation_time_is_availability": false
+}

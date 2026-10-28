@@ -1,4 +1,46 @@
-# 实验协议与实际运行
+# 可训练预测闭环实验（2026-10-28）
+
+本轮按 prompt.md 452 行后的“先完成第一阶段”顺序执行，完成可训练模型/最小真实数据接口的可复核代码。
+第一阶段的模型实验使用明确的合成 fixture；真实档案由于历史可用性缺证，没有运行获证真实天气训练。
+未提前堆叠未经验证的 Hybrid 或大规模 Accuracy–Latency 结果。
+
+## 实际训练与复用命令
+
+```bash
+PYTHONPATH=/tmp/citra-torch-cpu /root/miniconda3/envs/text4ts/bin/python run_CITRA.py \
+  --fixture --mode all --epochs 3 --device cpu --output /tmp/citra-stage-a-cpu-final
+LD_PRELOAD=/tmp/citra-ittapi/libjitprofiling.so /root/miniconda3/envs/text4ts/bin/python run_CITRA.py \
+  --fixture --mode all --epochs 3 --device cuda:0 --output /tmp/citra-stage-a-gpu-final
+PYTHONPATH=/tmp/citra-torch-cpu /root/miniconda3/envs/text4ts/bin/python -m unittest discover -s tests -v
+```
+
+以上 /tmp 目录是实际运行路径，已保存产物到 `artifacts/citra_stage_a/`。新运行应选择不存在的输出目录。
+标准可导入 PyTorch 环境直接使用 python，不需要本机故障兼容前缀。
+
+TS-only、Top-K、Full As-of 采用相同种子、数值骨干、时间划分、训练 3 epoch、batch size=16、
+AdamW 配置和训练顺序。TS-only 不使用文本组件；Top-K 有自己的同容量文本模型，按合法候选训练。
+Full As-of/CITRA 对每个 checkpoint 使用同一冻结参数、表示和影响，不分别训练两个模型后比较误差界。
+验证标签只用于选模，且必须在 validation_end 前可用，测试 cutoff 不早于该时间。
+
+CPU/GPU 每个模式分别评估 18 个测试窗口；Full 与 CITRA 对照 epsilon=0/0.01/0.1，
+每设备 54 次证书检查。全部在声明数值容差内通过；fixture 不报告真实 MSE/MAE 或文本贡献。
+完整训练日志、最佳 checkpoint、版本指纹、各阶段成本见产物及 `citra_stage_a_results.json`。
+
+|设备|Full As-of P50/P95 ms|AVL epsilon=0.1 P50/P95 ms|Hybrid|
+|---|---|---|---|
+|CPU|1.558 / 1.701|1.829 / 1.920|未实现/未测|
+|A100 CUDA|3.075 / 11.580|3.157 / 11.580|未实现/未测|
+
+这些是 18 个不同窗口的一次推理诊断，不是统计显著的速度结论。所有 epsilon 下累计扫描 819 个
+合法文档（即全部合法文本），所以本轮没有展示近似查询节省；CUDA 的哈希/CPU 索引/传输和同步成本也不可省略。
+表中 Full As-of 是冻结模型下的完整历史过滤求和，含 query encoding 与预测；它不是上轮仅 kernel 的计时。
+Hybrid 列明确缺失，未用零延迟或外推数字代替实际执行。
+
+真实源样本覆盖与历史可用性审计详见 `citra_weather.md`：三个站各 48 小时，所有历史可用性未知，
+严格校验按预期拒绝，不能写作真实训练成功。下一阶段首先获得可用性 ledger/前瞻接收记录，
+再做按年份划分的真实训练；同时以训练 encoder 的近距查询推进 Hybrid 和成本感知细化。
+
+## 上阶段 NumPy 系统对照（保留，未因本轮训练而重算）
 
 ## 命令
 

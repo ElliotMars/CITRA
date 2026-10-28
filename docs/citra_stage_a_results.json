@@ -1,0 +1,303 @@
+{
+  "scope": "synthetic integration smoke; real archive coverage probes only",
+  "real_forecast_metrics_reported": false,
+  "devices": {
+    "cpu": {
+      "device": "cpu",
+      "torch": "2.5.1+cpu",
+      "numpy": "2.2.5",
+      "models": {
+        "ts_only": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.049779217690229416,
+          "test_windows": 18,
+          "latency": {
+            "ts_only": {
+              "p50_seconds": 0.0006219930946826935,
+              "p95_seconds": 0.0006930604111403222,
+              "total_seconds": 0.011587708257138729,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 4.5299530029296875e-05,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 0.00012462027370929718,
+            "impact_encoding_seconds": 0.0001918897032737732,
+            "encoded_document_transfer_seconds": 7.230788469314575e-06,
+            "index_construction_seconds": 0.029317288659512997
+          },
+          "model_version": "26389944adee0b0456eddcaad2c963e13a0bf182f1fa360ad13f7482bcb3c365",
+          "encoder_version": "fbb2c7d3905cb176bdf966a7709b99610b8399a70ab45b8349a39de2f9f7c85e",
+          "impact_version": "db46e89e7b348404ce4b6fe0f68752b9b7ecdcb2e42bcb05f53d94237d3d0a9a",
+          "index_generation": 63,
+          "certified": {}
+        },
+        "semantic_topk": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.06618442665785551,
+          "test_windows": 18,
+          "latency": {
+            "semantic_topk": {
+              "p50_seconds": 0.0012361109256744385,
+              "p95_seconds": 0.0012841728515923022,
+              "total_seconds": 0.022418135777115822,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 5.0411559641361237e-05,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 9.158067405223846e-05,
+            "impact_encoding_seconds": 0.00010193139314651489,
+            "encoded_document_transfer_seconds": 8.040107786655426e-06,
+            "index_construction_seconds": 0.0326568353921175
+          },
+          "model_version": "c4b0ddb960272a57573e52c47d70d95fde1d8770fd541402c361d7cf1ae74cfe",
+          "encoder_version": "bcb097bbdaea6e929e46f8c1926d5149816393b638c7bbac458857efaae8192f",
+          "impact_version": "8d439b15a724867dc1a3d376a49898ea475295d45811f6d952ce45e7eb399041",
+          "index_generation": 63,
+          "certified": {}
+        },
+        "full_asof_text": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.06679303012788296,
+          "test_windows": 18,
+          "latency": {
+            "full_asof_text": {
+              "p50_seconds": 0.0015583471395075321,
+              "p95_seconds": 0.0017010588664561508,
+              "total_seconds": 0.02817764040082693,
+              "queries": 18
+            },
+            "citra_epsilon_0.0": {
+              "p50_seconds": 0.0015017571859061718,
+              "p95_seconds": 0.001552036590874195,
+              "total_seconds": 0.02714687678962946,
+              "queries": 18
+            },
+            "citra_epsilon_0.01": {
+              "p50_seconds": 0.001836284063756466,
+              "p95_seconds": 0.00190006741322577,
+              "total_seconds": 0.032928695902228355,
+              "queries": 18
+            },
+            "citra_epsilon_0.1": {
+              "p50_seconds": 0.0018291985616087914,
+              "p95_seconds": 0.0019202918745577335,
+              "total_seconds": 0.03276662901043892,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 4.719104617834091e-05,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 9.120069444179535e-05,
+            "impact_encoding_seconds": 0.00010135117918252945,
+            "encoded_document_transfer_seconds": 8.150003850460052e-06,
+            "index_construction_seconds": 0.03176580090075731
+          },
+          "model_version": "8741ab1f7ebaad5f27000edf58fe6ba5db6eaa863c6f25e2e4cd2333278c7e12",
+          "encoder_version": "7e424f6c33afacd26cfcbbdf84e3b05bd20ca34db0d453fe5a7e8e23ca437231",
+          "impact_version": "213cf27f455992dfbe2b4b5757e5d51114571bc4703c4b5d9b1cd9c1b1c93555",
+          "index_generation": 63,
+          "certified": {
+            "0.0": {
+              "queries": 18,
+              "max_output_deviation": 0.0,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            },
+            "0.01": {
+              "queries": 18,
+              "max_output_deviation": 1.1123893155135927e-16,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            },
+            "0.1": {
+              "queries": 18,
+              "max_output_deviation": 1.1123893155135927e-16,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            }
+          }
+        }
+      }
+    },
+    "gpu": {
+      "device": "cuda:0",
+      "torch": "2.4.1",
+      "numpy": "2.2.5",
+      "models": {
+        "ts_only": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.42392935883253813,
+          "test_windows": 18,
+          "latency": {
+            "ts_only": {
+              "p50_seconds": 0.0014412668533623219,
+              "p95_seconds": 0.009416971122845934,
+              "total_seconds": 0.07744544465094805,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 0.0005235932767391205,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 0.0003043515607714653,
+            "impact_encoding_seconds": 0.00136649701744318,
+            "encoded_document_transfer_seconds": 6.50901347398758e-05,
+            "index_construction_seconds": 0.02896241843700409
+          },
+          "model_version": "5e2ac8f56bd76ad94659748a4590cf833d491bba83f2e46b0cc71ecfce5156f0",
+          "encoder_version": "fbb2c7d3905cb176bdf966a7709b99610b8399a70ab45b8349a39de2f9f7c85e",
+          "impact_version": "db46e89e7b348404ce4b6fe0f68752b9b7ecdcb2e42bcb05f53d94237d3d0a9a",
+          "index_generation": 63,
+          "certified": {}
+        },
+        "semantic_topk": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.17737569380551577,
+          "test_windows": 18,
+          "latency": {
+            "semantic_topk": {
+              "p50_seconds": 0.003110589925199747,
+              "p95_seconds": 0.01232742560096085,
+              "total_seconds": 0.10538932587951422,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 9.404029697179794e-05,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 0.00014114100486040115,
+            "impact_encoding_seconds": 0.00013650022447109222,
+            "encoded_document_transfer_seconds": 5.2850693464279175e-05,
+            "index_construction_seconds": 0.028432264924049377
+          },
+          "model_version": "18506bb56105f4ea901472bdd51e92cfa36ecfc6d3327cf7b10bde7547db678e",
+          "encoder_version": "f6eb76cc17c581640a4398565202a09dd54e29b2f2e28b1a652d1ba828fa5eb8",
+          "impact_version": "0abcbd2a236735e559b78e1e9910bde926dff077c36076ac5842ed44844217e3",
+          "index_generation": 63,
+          "certified": {}
+        },
+        "full_asof_text": {
+          "epochs": 3,
+          "best_epoch": 3,
+          "training_seconds": 0.25035836454480886,
+          "test_windows": 18,
+          "latency": {
+            "full_asof_text": {
+              "p50_seconds": 0.0030754748731851578,
+              "p95_seconds": 0.011580401705577968,
+              "total_seconds": 0.10265342425554991,
+              "queries": 18
+            },
+            "citra_epsilon_0.0": {
+              "p50_seconds": 0.0027232933789491653,
+              "p95_seconds": 0.012393613206222653,
+              "total_seconds": 0.10679968539625406,
+              "queries": 18
+            },
+            "citra_epsilon_0.01": {
+              "p50_seconds": 0.003040459007024765,
+              "p95_seconds": 0.01225788565352559,
+              "total_seconds": 0.10711395088583231,
+              "queries": 18
+            },
+            "citra_epsilon_0.1": {
+              "p50_seconds": 0.003157314844429493,
+              "p95_seconds": 0.011580151645466686,
+              "total_seconds": 0.1049270499497652,
+              "queries": 18
+            }
+          },
+          "offline_timings": {
+            "base_feature_transfer_seconds": 0.0035325167700648308,
+            "foundation_text_encoding_seconds": null,
+            "text_key_projection_seconds": 0.0024600205942988396,
+            "impact_encoding_seconds": 0.0024905605241656303,
+            "encoded_document_transfer_seconds": 5.9169717133045197e-05,
+            "index_construction_seconds": 0.039181506261229515
+          },
+          "model_version": "06ea36289ff60768e6d205d8c63c19d38584569f38490c1d472a3f9f7e2fafc5",
+          "encoder_version": "26f83de82fa3f0d87708e0e7d6ef7741f122dfdfae1bd58d302280589ab611e7",
+          "impact_version": "7814cba9e3a938887a83c4e8f5a016b539a35efd6b07e7cee2006ed0b2c95ff3",
+          "index_generation": 63,
+          "certified": {
+            "0.0": {
+              "queries": 18,
+              "max_output_deviation": 0.0,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            },
+            "0.01": {
+              "queries": 18,
+              "max_output_deviation": 2.797157557069881e-17,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            },
+            "0.1": {
+              "queries": 18,
+              "max_output_deviation": 2.797157557069881e-17,
+              "max_bound": 0.0,
+              "documents_scanned_total": 819,
+              "violations": 0,
+              "summary_comparison": "absolute tolerance 1e-10, stricter than runtime absolute+relative tolerance"
+            }
+          }
+        }
+      }
+    }
+  },
+  "weather_probes": [
+    {
+      "station": "DSM",
+      "office": "DMX",
+      "afd_products": 12,
+      "hourly_observations": 48,
+      "finite_numeric_cells": 96,
+      "text_unknown_availability": 12,
+      "office_mapping_verified": true,
+      "strict_backtest_ready": false,
+      "reason": "archive issuance/observation timestamps do not prove historical availability"
+    },
+    {
+      "station": "ORD",
+      "office": "LOT",
+      "afd_products": 16,
+      "hourly_observations": 48,
+      "finite_numeric_cells": 96,
+      "text_unknown_availability": 16,
+      "office_mapping_verified": true,
+      "strict_backtest_ready": false,
+      "reason": "archive issuance/observation timestamps do not prove historical availability"
+    },
+    {
+      "station": "IAH",
+      "office": "HGX",
+      "afd_products": 12,
+      "hourly_observations": 48,
+      "finite_numeric_cells": 96,
+      "text_unknown_availability": 12,
+      "office_mapping_verified": true,
+      "strict_backtest_ready": false,
+      "reason": "archive issuance/observation timestamps do not prove historical availability"
+    }
+  ]
+}

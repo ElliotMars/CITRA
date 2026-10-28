@@ -1,0 +1,54 @@
+{
+  "source_url": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DSM&network=IA_ASOS&sts=2020-01-01T00%3A00Z&ets=2020-01-03T00%3A00Z&data=tmpf%2Csknt&tz=UTC&format=onlycomma&missing=M&trace=empty&latlon=no&elev=no&report_type=3",
+  "retrieved_at": "2026-10-28T03:25:46.730492+00:00",
+  "sha256": "1e55ac79cf849e3689e31142c98130222144f032830b7e82a6fc8f91610f3c3b",
+  "bytes": 1578,
+  "historical_ingested_at": null,
+  "availability_provenance": "unknown",
+  "timestamp_timezone": "UTC",
+  "station_id": "DSM",
+  "office_id": "DMX",
+  "station_metadata_url": "https://mesonet.agron.iastate.edu/geojson/network/IA_ASOS.geojson",
+  "station_metadata": {
+    "type": "Feature",
+    "id": "DSM",
+    "properties": {
+      "elevation": 294.0,
+      "sname": "Des Moines",
+      "time_domain": "(1928-Now)",
+      "archive_begin": "1928-01-01",
+      "archive_end": null,
+      "state": "IA",
+      "country": "US",
+      "climate_site": "IA2203",
+      "wfo": "DMX",
+      "tzname": "America/Chicago",
+      "ncdc81": "USW00014933",
+      "ncei91": "USW00014933",
+      "ugc_county": "IAC153",
+      "ugc_zone": "IAZ060",
+      "county": "Polk",
+      "sid": "DSM",
+      "network": "IA_ASOS",
+      "online": true,
+      "synop": 14933,
+      "attributes": {
+        "HASTAF": "1",
+        "HAS1MIN": "1",
+        "METAR_RESET_MINUTE": "54",
+        "SHEF_6HR_SRC": "DSXI4",
+        "HAS_PHOUR": "1",
+        "GHCNH_ID": "USW00014933"
+      }
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -93.6531,
+        41.534
+      ]
+    }
+  },
+  "office_mapping_verified": true,
+  "observation_time_is_availability": false
+}

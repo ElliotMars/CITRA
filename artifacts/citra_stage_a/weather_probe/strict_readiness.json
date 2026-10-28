@@ -1,0 +1,42 @@
+{
+  "manifest": {
+    "schema_version": 1,
+    "is_fixture": false,
+    "station": "DSM",
+    "office": "DMX",
+    "channels": [
+      "temperature_F",
+      "wind_speed_knots"
+    ],
+    "base_dim": 32,
+    "metadata_dim": 2,
+    "base_encoder_version": "lexical-sha256-hash-v1",
+    "numeric_availability_provenance": "unknown",
+    "train_end": "2020-01-01T18:00:00+00:00",
+    "validation_end": "2020-01-02T06:00:00+00:00",
+    "test_end": "2020-01-03T01:00:00+00:00",
+    "unknown_numeric_cells": 96,
+    "finite_numeric_cells": 96,
+    "text_availability_counts": {
+      "verified": 0,
+      "simulated": 0,
+      "unknown": 12
+    },
+    "hourly_rule": "mean of finite observations in [hour,hour+1), timestamp at hour end; no backward fill",
+    "source_files": {
+      "/tmp/citra-weather-probe/AFDDMX.zip": "d581055a545c7bbe86278b0a491dba1610e5597fd137c95add39ecdf9351baed",
+      "/tmp/citra-weather-probe/DSM.csv": "1e55ac79cf849e3689e31142c98130222144f032830b7e82a6fc8f91610f3c3b"
+    },
+    "mos_extension": "reserved external as-of numerical features; not implemented or evaluated"
+  },
+  "text_provenance_counts": {
+    "unknown": 12,
+    "verified": 0,
+    "simulated": 0
+  },
+  "strict_backtest_ready": false,
+  "allow_simulated": false,
+  "errors": [
+    "numeric historical availability is not verified; use explicit simulated mode only for scenarios"
+  ]
+}

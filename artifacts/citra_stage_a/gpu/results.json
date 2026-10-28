@@ -1,0 +1,2761 @@
+{
+  "is_fixture": true,
+  "device": "cuda:0",
+  "models": {
+    "ts_only": {
+      "training": {
+        "checkpoint": "/tmp/citra-stage-a-gpu-final/ts_only.pt",
+        "epochs": [
+          {
+            "epoch": 1,
+            "training_loss": 1.238404490524693,
+            "validation_loss": 1.453900911310829,
+            "elapsed_seconds": 0.28264106530696154,
+            "is_fixture": true
+          },
+          {
+            "epoch": 2,
+            "training_loss": 1.1624043767069365,
+            "validation_loss": 1.449663077674846,
+            "elapsed_seconds": 0.07158822100609541,
+            "is_fixture": true
+          },
+          {
+            "epoch": 3,
+            "training_loss": 1.096841392053212,
+            "validation_loss": 1.4463668394247975,
+            "elapsed_seconds": 0.06970007251948118,
+            "is_fixture": true
+          }
+        ],
+        "best_epoch": 3,
+        "training_windows": 43,
+        "validation_windows": 18,
+        "training_seconds": 0.42392935883253813
+      },
+      "evaluation": {
+        "evaluated_windows": 18,
+        "available_test_windows": 18,
+        "queries": [
+          {
+            "cutoff": "2020-01-11T03:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007124440744519234,
+              "query_encoding_seconds": 0.043913829140365124,
+              "certificate_setup_seconds": 0.00014214031398296356,
+              "index_query_seconds": 5.9194862842559814e-06,
+              "aggregate_transfer_seconds": 0.00012396089732646942,
+              "forecast_inference_seconds": 0.00022297166287899017,
+              "total_inference_seconds": 0.05252019967883825
+            }
+          },
+          {
+            "cutoff": "2020-01-11T06:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0009573642164468765,
+              "query_encoding_seconds": 0.00035963114351034164,
+              "certificate_setup_seconds": 4.211161285638809e-05,
+              "index_query_seconds": 1.3317912817001343e-06,
+              "aggregate_transfer_seconds": 6.065052002668381e-05,
+              "forecast_inference_seconds": 0.00012982077896595,
+              "total_inference_seconds": 0.0018105190247297287
+            }
+          },
+          {
+            "cutoff": "2020-01-11T09:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007069632411003113,
+              "query_encoding_seconds": 0.00034691113978624344,
+              "certificate_setup_seconds": 4.070065915584564e-05,
+              "index_query_seconds": 1.3997778296470642e-06,
+              "aggregate_transfer_seconds": 6.0480087995529175e-05,
+              "forecast_inference_seconds": 0.00012768059968948364,
+              "total_inference_seconds": 0.0014379657804965973
+            }
+          },
+          {
+            "cutoff": "2020-01-11T12:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0008045444265007973,
+              "query_encoding_seconds": 0.0003456519916653633,
+              "certificate_setup_seconds": 4.110950976610184e-05,
+              "index_query_seconds": 1.2703239917755127e-06,
+              "aggregate_transfer_seconds": 6.086006760597229e-05,
+              "forecast_inference_seconds": 0.0001287907361984253,
+              "total_inference_seconds": 0.0015344172716140747
+            }
+          },
+          {
+            "cutoff": "2020-01-11T15:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007187826558947563,
+              "query_encoding_seconds": 0.0003480818122625351,
+              "certificate_setup_seconds": 4.102010279893875e-05,
+              "index_query_seconds": 1.300126314163208e-06,
+              "aggregate_transfer_seconds": 6.064958870410919e-05,
+              "forecast_inference_seconds": 0.000127401202917099,
+              "total_inference_seconds": 0.0014456678181886673
+            }
+          },
+          {
+            "cutoff": "2020-01-11T18:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007055932655930519,
+              "query_encoding_seconds": 0.0003463327884674072,
+              "certificate_setup_seconds": 4.152022302150726e-05,
+              "index_query_seconds": 1.2898817658424377e-06,
+              "aggregate_transfer_seconds": 6.105005741119385e-05,
+              "forecast_inference_seconds": 0.00012830179184675217,
+              "total_inference_seconds": 0.0014431262388825417
+            }
+          },
+          {
+            "cutoff": "2020-01-11T21:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0006962334737181664,
+              "query_encoding_seconds": 0.00034366268664598465,
+              "certificate_setup_seconds": 4.073977470397949e-05,
+              "index_query_seconds": 1.369975507259369e-06,
+              "aggregate_transfer_seconds": 6.0140155255794525e-05,
+              "forecast_inference_seconds": 0.000125090591609478,
+              "total_inference_seconds": 0.0014142971485853195
+            }
+          },
+          {
+            "cutoff": "2020-01-12T00:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007005631923675537,
+              "query_encoding_seconds": 0.0003442903980612755,
+              "certificate_setup_seconds": 4.092976450920105e-05,
+              "index_query_seconds": 1.3299286365509033e-06,
+              "aggregate_transfer_seconds": 6.025005131959915e-05,
+              "forecast_inference_seconds": 0.00012976955622434616,
+              "total_inference_seconds": 0.0014251954853534698
+            }
+          },
+          {
+            "cutoff": "2020-01-12T03:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0006968127563595772,
+              "query_encoding_seconds": 0.00034439191222190857,
+              "certificate_setup_seconds": 4.063080996274948e-05,
+              "index_query_seconds": 1.4193356037139893e-06,
+              "aggregate_transfer_seconds": 6.050989031791687e-05,
+              "forecast_inference_seconds": 0.00012661051005125046,
+              "total_inference_seconds": 0.0014184564352035522
+            }
+          },
+          {
+            "cutoff": "2020-01-12T06:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007028728723526001,
+              "query_encoding_seconds": 0.0003579026088118553,
+              "certificate_setup_seconds": 4.1191466152668e-05,
+              "index_query_seconds": 1.3094395399093628e-06,
+              "aggregate_transfer_seconds": 6.035063415765762e-05,
+              "forecast_inference_seconds": 0.00012747012078762054,
+              "total_inference_seconds": 0.001439407467842102
+            }
+          },
+          {
+            "cutoff": "2020-01-12T09:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007440727204084396,
+              "query_encoding_seconds": 0.00034481100738048553,
+              "certificate_setup_seconds": 4.078913480043411e-05,
+              "index_query_seconds": 1.3597309589385986e-06,
+              "aggregate_transfer_seconds": 6.05899840593338e-05,
+              "forecast_inference_seconds": 0.00012602098286151886,
+              "total_inference_seconds": 0.001465367153286934
+            }
+          },
+          {
+            "cutoff": "2020-01-12T12:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007160734385251999,
+              "query_encoding_seconds": 0.00034475233405828476,
+              "certificate_setup_seconds": 4.104059189558029e-05,
+              "index_query_seconds": 1.3299286365509033e-06,
+              "aggregate_transfer_seconds": 6.06803223490715e-05,
+              "forecast_inference_seconds": 0.00012632086873054504,
+              "total_inference_seconds": 0.001437096856534481
+            }
+          },
+          {
+            "cutoff": "2020-01-12T15:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.000706682913005352,
+              "query_encoding_seconds": 0.00034528132528066635,
+              "certificate_setup_seconds": 7.745157927274704e-05,
+              "index_query_seconds": 1.3997778296470642e-06,
+              "aggregate_transfer_seconds": 6.0889869928359985e-05,
+              "forecast_inference_seconds": 0.00012721028178930283,
+              "total_inference_seconds": 0.0014661671593785286
+            }
+          },
+          {
+            "cutoff": "2020-01-12T18:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0006964830681681633,
+              "query_encoding_seconds": 0.00034523196518421173,
+              "certificate_setup_seconds": 4.0209852159023285e-05,
+              "index_query_seconds": 1.2796372175216675e-06,
+              "aggregate_transfer_seconds": 6.030965596437454e-05,
+              "forecast_inference_seconds": 0.00012631062418222427,
+              "total_inference_seconds": 0.001415175385773182
+            }
+          },
+          {
+            "cutoff": "2020-01-12T21:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007009338587522507,
+              "query_encoding_seconds": 0.00035010185092687607,
+              "certificate_setup_seconds": 4.083942621946335e-05,
+              "index_query_seconds": 1.3606622815132141e-06,
+              "aggregate_transfer_seconds": 5.9341080486774445e-05,
+              "forecast_inference_seconds": 0.0001257099211215973,
+              "total_inference_seconds": 0.0014232862740755081
+            }
+          },
+          {
+            "cutoff": "2020-01-13T00:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007531633600592613,
+              "query_encoding_seconds": 0.0003422508016228676,
+              "certificate_setup_seconds": 4.1049905121326447e-05,
+              "index_query_seconds": 1.3886019587516785e-06,
+              "aggregate_transfer_seconds": 5.970057100057602e-05,
+              "forecast_inference_seconds": 0.00012736022472381592,
+              "total_inference_seconds": 0.0014759153127670288
+            }
+          },
+          {
+            "cutoff": "2020-01-13T03:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007060840725898743,
+              "query_encoding_seconds": 0.0003440519794821739,
+              "certificate_setup_seconds": 4.05898317694664e-05,
+              "index_query_seconds": 1.2796372175216675e-06,
+              "aggregate_transfer_seconds": 5.9450045228004456e-05,
+              "forecast_inference_seconds": 0.00012630131095647812,
+              "total_inference_seconds": 0.0014237873256206512
+            }
+          },
+          {
+            "cutoff": "2020-01-13T06:00:00+00:00",
+            "mode": "ts_only",
+            "timings": {
+              "version_validation_seconds": 0.0007059229537844658,
+              "query_encoding_seconds": 0.00036656204611063004,
+              "certificate_setup_seconds": 4.075001925230026e-05,
+              "index_query_seconds": 1.3709068298339844e-06,
+              "aggregate_transfer_seconds": 6.0469843447208405e-05,
+              "forecast_inference_seconds": 0.00012757070362567902,
+              "total_inference_seconds": 0.0014493968337774277
+            }
+          }
+        ],
+        "offline_timings": {
+          "base_feature_transfer_seconds": 0.0005235932767391205,
+          "foundation_text_encoding_seconds": null,
+          "text_key_projection_seconds": 0.0003043515607714653,
+          "impact_encoding_seconds": 0.00136649701744318,
+          "encoded_document_transfer_seconds": 6.50901347398758e-05,
+          "index_construction_seconds": 0.02896241843700409
+        },
+        "model_version": "5e2ac8f56bd76ad94659748a4590cf833d491bba83f2e46b0cc71ecfce5156f0",
+        "encoder_version": "fbb2c7d3905cb176bdf966a7709b99610b8399a70ab45b8349a39de2f9f7c85e",
+        "impact_version": "db46e89e7b348404ce4b6fe0f68752b9b7ecdcb2e42bcb05f53d94237d3d0a9a",
+        "index_generation": 63,
+        "certified": {
+          "0.0": [],
+          "0.01": [],
+          "0.1": []
+        },
+        "certificate_units": "normalized model outputs, one sample all horizons/targets L2",
+        "real_forecast_metrics": "omitted: synthetic integration smoke only",
+        "latency": {
+          "ts_only": {
+            "p50_seconds": 0.0014412668533623219,
+            "p95_seconds": 0.009416971122845934,
+            "total_seconds": 0.07744544465094805,
+            "queries": 18
+          }
+        }
+      }
+    },
+    "semantic_topk": {
+      "training": {
+        "checkpoint": "/tmp/citra-stage-a-gpu-final/semantic_topk.pt",
+        "epochs": [
+          {
+            "epoch": 1,
+            "training_loss": 1.2398234687464713,
+            "validation_loss": 1.4665644385855954,
+            "elapsed_seconds": 0.10644274577498436,
+            "is_fixture": true
+          },
+          {
+            "epoch": 2,
+            "training_loss": 1.1613523890541253,
+            "validation_loss": 1.4618079597189744,
+            "elapsed_seconds": 0.038795944303274155,
+            "is_fixture": true
+          },
+          {
+            "epoch": 3,
+            "training_loss": 1.0934540883402568,
+            "validation_loss": 1.4584453691520127,
+            "elapsed_seconds": 0.03213700372725725,
+            "is_fixture": true
+          }
+        ],
+        "best_epoch": 3,
+        "training_windows": 43,
+        "validation_windows": 18,
+        "training_seconds": 0.17737569380551577
+      },
+      "evaluation": {
+        "evaluated_windows": 18,
+        "available_test_windows": 18,
+        "queries": [
+          {
+            "cutoff": "2020-01-11T03:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.000697404146194458,
+              "query_encoding_seconds": 0.0003621615469455719,
+              "certificate_setup_seconds": 4.169158637523651e-05,
+              "index_query_seconds": 0.0004279622808098793,
+              "aggregate_transfer_seconds": 7.175002247095108e-05,
+              "forecast_inference_seconds": 0.00019218120723962784,
+              "total_inference_seconds": 0.002387411892414093
+            }
+          },
+          {
+            "cutoff": "2020-01-11T06:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0006901826709508896,
+              "query_encoding_seconds": 0.00034489110112190247,
+              "certificate_setup_seconds": 4.042964428663254e-05,
+              "index_query_seconds": 0.00042664166539907455,
+              "aggregate_transfer_seconds": 0.00021836068481206894,
+              "forecast_inference_seconds": 0.0003288211300969124,
+              "total_inference_seconds": 0.002339831553399563
+            }
+          },
+          {
+            "cutoff": "2020-01-11T09:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0006837043911218643,
+              "query_encoding_seconds": 0.000658462755382061,
+              "certificate_setup_seconds": 4.471000283956528e-05,
+              "index_query_seconds": 0.0004685819149017334,
+              "aggregate_transfer_seconds": 0.00022545084357261658,
+              "forecast_inference_seconds": 0.0004341527819633484,
+              "total_inference_seconds": 0.0032026059925556183
+            }
+          },
+          {
+            "cutoff": "2020-01-11T12:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.000750313512980938,
+              "query_encoding_seconds": 0.0005151219666004181,
+              "certificate_setup_seconds": 4.0969811379909515e-05,
+              "index_query_seconds": 0.00042877160012722015,
+              "aggregate_transfer_seconds": 0.00031925179064273834,
+              "forecast_inference_seconds": 0.0003560613840818405,
+              "total_inference_seconds": 0.003018573857843876
+            }
+          },
+          {
+            "cutoff": "2020-01-11T15:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007708529010415077,
+              "query_encoding_seconds": 0.0005836617201566696,
+              "certificate_setup_seconds": 4.5670196413993835e-05,
+              "index_query_seconds": 0.0004710014909505844,
+              "aggregate_transfer_seconds": 0.0002490608021616936,
+              "forecast_inference_seconds": 0.0006857430562376976,
+              "total_inference_seconds": 0.003442905843257904
+            }
+          },
+          {
+            "cutoff": "2020-01-11T18:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007511936128139496,
+              "query_encoding_seconds": 0.0003982624039053917,
+              "certificate_setup_seconds": 4.618056118488312e-05,
+              "index_query_seconds": 0.00047638174146413803,
+              "aggregate_transfer_seconds": 7.878057658672333e-05,
+              "forecast_inference_seconds": 0.00020724069327116013,
+              "total_inference_seconds": 0.002537553198635578
+            }
+          },
+          {
+            "cutoff": "2020-01-11T21:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007207533344626427,
+              "query_encoding_seconds": 0.0003478415310382843,
+              "certificate_setup_seconds": 4.1550956666469574e-05,
+              "index_query_seconds": 0.0004325723275542259,
+              "aggregate_transfer_seconds": 7.054954767227173e-05,
+              "forecast_inference_seconds": 0.00019881129264831543,
+              "total_inference_seconds": 0.0019609294831752777
+            }
+          },
+          {
+            "cutoff": "2020-01-12T00:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.000710703432559967,
+              "query_encoding_seconds": 0.00035064201802015305,
+              "certificate_setup_seconds": 4.150066524744034e-05,
+              "index_query_seconds": 0.0004240619018673897,
+              "aggregate_transfer_seconds": 0.0003208508715033531,
+              "forecast_inference_seconds": 0.0001834006980061531,
+              "total_inference_seconds": 0.0023265415802598
+            }
+          },
+          {
+            "cutoff": "2020-01-12T03:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007102144882082939,
+              "query_encoding_seconds": 0.00036164186894893646,
+              "certificate_setup_seconds": 4.116073250770569e-05,
+              "index_query_seconds": 0.00042304210364818573,
+              "aggregate_transfer_seconds": 7.029995322227478e-05,
+              "forecast_inference_seconds": 0.0001809699460864067,
+              "total_inference_seconds": 0.002082839608192444
+            }
+          },
+          {
+            "cutoff": "2020-01-12T06:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007061343640089035,
+              "query_encoding_seconds": 0.0003492506220936775,
+              "certificate_setup_seconds": 4.1659921407699585e-05,
+              "index_query_seconds": 0.00043357163667678833,
+              "aggregate_transfer_seconds": 7.007084786891937e-05,
+              "forecast_inference_seconds": 0.0001828400418162346,
+              "total_inference_seconds": 0.0019322801381349564
+            }
+          },
+          {
+            "cutoff": "2020-01-12T09:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007407534867525101,
+              "query_encoding_seconds": 0.00035037100315093994,
+              "certificate_setup_seconds": 4.104152321815491e-05,
+              "index_query_seconds": 0.00043094251304864883,
+              "aggregate_transfer_seconds": 6.958004087209702e-05,
+              "forecast_inference_seconds": 0.00018274132162332535,
+              "total_inference_seconds": 0.0021110400557518005
+            }
+          },
+          {
+            "cutoff": "2020-01-12T12:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.000734502449631691,
+              "query_encoding_seconds": 0.00034978240728378296,
+              "certificate_setup_seconds": 4.1709281504154205e-05,
+              "index_query_seconds": 0.0004318421706557274,
+              "aggregate_transfer_seconds": 7.023010402917862e-05,
+              "forecast_inference_seconds": 0.0025389622896909714,
+              "total_inference_seconds": 0.004547702148556709
+            }
+          },
+          {
+            "cutoff": "2020-01-12T15:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007423730567097664,
+              "query_encoding_seconds": 0.002530171535909176,
+              "certificate_setup_seconds": 5.017966032028198e-05,
+              "index_query_seconds": 0.0004927618429064751,
+              "aggregate_transfer_seconds": 0.002032359130680561,
+              "forecast_inference_seconds": 0.0024958420544862747,
+              "total_inference_seconds": 0.012250548228621483
+            }
+          },
+          {
+            "cutoff": "2020-01-12T18:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.000802384689450264,
+              "query_encoding_seconds": 0.0025255223736166954,
+              "certificate_setup_seconds": 4.480965435504913e-05,
+              "index_query_seconds": 0.00045049190521240234,
+              "aggregate_transfer_seconds": 0.0019090492278337479,
+              "forecast_inference_seconds": 0.0024927612394094467,
+              "total_inference_seconds": 0.012094937264919281
+            }
+          },
+          {
+            "cutoff": "2020-01-12T21:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007378226146101952,
+              "query_encoding_seconds": 0.002488940954208374,
+              "certificate_setup_seconds": 4.421081393957138e-05,
+              "index_query_seconds": 0.0004454515874385834,
+              "aggregate_transfer_seconds": 0.0019211284816265106,
+              "forecast_inference_seconds": 0.0026313913986086845,
+              "total_inference_seconds": 0.01248397957533598
+            }
+          },
+          {
+            "cutoff": "2020-01-13T00:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0008189938962459564,
+              "query_encoding_seconds": 0.002526521682739258,
+              "certificate_setup_seconds": 5.9400685131549835e-05,
+              "index_query_seconds": 0.0005396725609898567,
+              "aggregate_transfer_seconds": 0.001981680281460285,
+              "forecast_inference_seconds": 0.002501942217350006,
+              "total_inference_seconds": 0.012081938795745373
+            }
+          },
+          {
+            "cutoff": "2020-01-13T03:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007867543026804924,
+              "query_encoding_seconds": 0.002655012533068657,
+              "certificate_setup_seconds": 4.3109990656375885e-05,
+              "index_query_seconds": 0.0004460420459508896,
+              "aggregate_transfer_seconds": 0.001917869783937931,
+              "forecast_inference_seconds": 0.002456672489643097,
+              "total_inference_seconds": 0.012287908233702183
+            }
+          },
+          {
+            "cutoff": "2020-01-13T06:00:00+00:00",
+            "mode": "semantic_topk",
+            "timings": {
+              "version_validation_seconds": 0.0007278136909008026,
+              "query_encoding_seconds": 0.0025324318557977676,
+              "certificate_setup_seconds": 4.7890469431877136e-05,
+              "index_query_seconds": 0.0005066227167844772,
+              "aggregate_transfer_seconds": 0.001890098676085472,
+              "forecast_inference_seconds": 0.002498372457921505,
+              "total_inference_seconds": 0.012299798429012299
+            }
+          }
+        ],
+        "offline_timings": {
+          "base_feature_transfer_seconds": 9.404029697179794e-05,
+          "foundation_text_encoding_seconds": null,
+          "text_key_projection_seconds": 0.00014114100486040115,
+          "impact_encoding_seconds": 0.00013650022447109222,
+          "encoded_document_transfer_seconds": 5.2850693464279175e-05,
+          "index_construction_seconds": 0.028432264924049377
+        },
+        "model_version": "18506bb56105f4ea901472bdd51e92cfa36ecfc6d3327cf7b10bde7547db678e",
+        "encoder_version": "f6eb76cc17c581640a4398565202a09dd54e29b2f2e28b1a652d1ba828fa5eb8",
+        "impact_version": "0abcbd2a236735e559b78e1e9910bde926dff077c36076ac5842ed44844217e3",
+        "index_generation": 63,
+        "certified": {
+          "0.0": [],
+          "0.01": [],
+          "0.1": []
+        },
+        "certificate_units": "normalized model outputs, one sample all horizons/targets L2",
+        "real_forecast_metrics": "omitted: synthetic integration smoke only",
+        "latency": {
+          "semantic_topk": {
+            "p50_seconds": 0.003110589925199747,
+            "p95_seconds": 0.01232742560096085,
+            "total_seconds": 0.10538932587951422,
+            "queries": 18
+          }
+        }
+      }
+    },
+    "full_asof_text": {
+      "training": {
+        "checkpoint": "/tmp/citra-stage-a-gpu-final/full_asof_text.pt",
+        "epochs": [
+          {
+            "epoch": 1,
+            "training_loss": 1.239859070143523,
+            "validation_loss": 1.475884363427179,
+            "elapsed_seconds": 0.08702178578823805,
+            "is_fixture": true
+          },
+          {
+            "epoch": 2,
+            "training_loss": 1.1598609273441263,
+            "validation_loss": 1.4725083274881814,
+            "elapsed_seconds": 0.0868581747636199,
+            "is_fixture": true
+          },
+          {
+            "epoch": 3,
+            "training_loss": 1.0902198927069606,
+            "validation_loss": 1.4706188843211445,
+            "elapsed_seconds": 0.07647840399295092,
+            "is_fixture": true
+          }
+        ],
+        "best_epoch": 3,
+        "training_windows": 43,
+        "validation_windows": 18,
+        "training_seconds": 0.25035836454480886
+      },
+      "evaluation": {
+        "evaluated_windows": 18,
+        "available_test_windows": 18,
+        "queries": [
+          {
+            "cutoff": "2020-01-11T03:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0009939055889844894,
+              "query_encoding_seconds": 0.0009651351720094681,
+              "certificate_setup_seconds": 4.991050809621811e-05,
+              "index_query_seconds": 0.0009747454896569252,
+              "aggregate_transfer_seconds": 0.00010764040052890778,
+              "forecast_inference_seconds": 0.000271480530500412,
+              "total_inference_seconds": 0.003922577947378159
+            }
+          },
+          {
+            "cutoff": "2020-01-11T06:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007547233253717422,
+              "query_encoding_seconds": 0.0004115616902709007,
+              "certificate_setup_seconds": 4.577077925205231e-05,
+              "index_query_seconds": 0.0009218640625476837,
+              "aggregate_transfer_seconds": 7.748976349830627e-05,
+              "forecast_inference_seconds": 0.00020754151046276093,
+              "total_inference_seconds": 0.0025834115222096443
+            }
+          },
+          {
+            "cutoff": "2020-01-11T09:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0009171441197395325,
+              "query_encoding_seconds": 0.00039978139102458954,
+              "certificate_setup_seconds": 4.610978066921234e-05,
+              "index_query_seconds": 0.000921294093132019,
+              "aggregate_transfer_seconds": 7.90199264883995e-05,
+              "forecast_inference_seconds": 0.00020995084196329117,
+              "total_inference_seconds": 0.002740083262324333
+            }
+          },
+          {
+            "cutoff": "2020-01-11T12:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007879724726080894,
+              "query_encoding_seconds": 0.0004067420959472656,
+              "certificate_setup_seconds": 4.654005169868469e-05,
+              "index_query_seconds": 0.0009361244738101959,
+              "aggregate_transfer_seconds": 7.77198001742363e-05,
+              "forecast_inference_seconds": 0.00020869076251983643,
+              "total_inference_seconds": 0.0026295213028788567
+            }
+          },
+          {
+            "cutoff": "2020-01-11T15:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007658237591385841,
+              "query_encoding_seconds": 0.00039907172322273254,
+              "certificate_setup_seconds": 4.510954022407532e-05,
+              "index_query_seconds": 0.0009333444759249687,
+              "aggregate_transfer_seconds": 7.937103509902954e-05,
+              "forecast_inference_seconds": 0.0002077212557196617,
+              "total_inference_seconds": 0.0025960635393857956
+            }
+          },
+          {
+            "cutoff": "2020-01-11T18:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007622130215167999,
+              "query_encoding_seconds": 0.00041070207953453064,
+              "certificate_setup_seconds": 4.5559369027614594e-05,
+              "index_query_seconds": 0.0009661046788096428,
+              "aggregate_transfer_seconds": 8.015986531972885e-05,
+              "forecast_inference_seconds": 0.00020791031420230865,
+              "total_inference_seconds": 0.0026380326598882675
+            }
+          },
+          {
+            "cutoff": "2020-01-11T21:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007366342470049858,
+              "query_encoding_seconds": 0.0003894316032528877,
+              "certificate_setup_seconds": 4.5239925384521484e-05,
+              "index_query_seconds": 0.0009508039802312851,
+              "aggregate_transfer_seconds": 7.892027497291565e-05,
+              "forecast_inference_seconds": 0.00020583998411893845,
+              "total_inference_seconds": 0.002569252625107765
+            }
+          },
+          {
+            "cutoff": "2020-01-12T00:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007402244955301285,
+              "query_encoding_seconds": 0.00041126180440187454,
+              "certificate_setup_seconds": 4.569999873638153e-05,
+              "index_query_seconds": 0.0009665451943874359,
+              "aggregate_transfer_seconds": 7.841084152460098e-05,
+              "forecast_inference_seconds": 0.00020664092153310776,
+              "total_inference_seconds": 0.002611822448670864
+            }
+          },
+          {
+            "cutoff": "2020-01-12T03:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007612332701683044,
+              "query_encoding_seconds": 0.0004031015560030937,
+              "certificate_setup_seconds": 4.541035741567612e-05,
+              "index_query_seconds": 0.0009623849764466286,
+              "aggregate_transfer_seconds": 7.882993668317795e-05,
+              "forecast_inference_seconds": 0.00020848121494054794,
+              "total_inference_seconds": 0.002623981796205044
+            }
+          },
+          {
+            "cutoff": "2020-01-12T06:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007460536435246468,
+              "query_encoding_seconds": 0.0004063723608851433,
+              "certificate_setup_seconds": 5.3569674491882324e-05,
+              "index_query_seconds": 0.0009765448048710823,
+              "aggregate_transfer_seconds": 7.905066013336182e-05,
+              "forecast_inference_seconds": 0.00020641088485717773,
+              "total_inference_seconds": 0.002648361958563328
+            }
+          },
+          {
+            "cutoff": "2020-01-12T09:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0007546339184045792,
+              "query_encoding_seconds": 0.000388232059776783,
+              "certificate_setup_seconds": 4.5750290155410767e-05,
+              "index_query_seconds": 0.000984744168817997,
+              "aggregate_transfer_seconds": 0.00034014228731393814,
+              "forecast_inference_seconds": 0.0003383215516805649,
+              "total_inference_seconds": 0.0034108664840459824
+            }
+          },
+          {
+            "cutoff": "2020-01-12T12:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0008484339341521263,
+              "query_encoding_seconds": 0.00048487260937690735,
+              "certificate_setup_seconds": 4.804972559213638e-05,
+              "index_query_seconds": 0.0010127853602170944,
+              "aggregate_transfer_seconds": 0.0002260422334074974,
+              "forecast_inference_seconds": 0.0004631616175174713,
+              "total_inference_seconds": 0.0037677977234125137
+            }
+          },
+          {
+            "cutoff": "2020-01-12T15:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0008645839989185333,
+              "query_encoding_seconds": 0.002519381232559681,
+              "certificate_setup_seconds": 4.7429464757442474e-05,
+              "index_query_seconds": 0.0010124752297997475,
+              "aggregate_transfer_seconds": 0.0013942858204245567,
+              "forecast_inference_seconds": 0.0026359930634498596,
+              "total_inference_seconds": 0.012075318023562431
+            }
+          },
+          {
+            "cutoff": "2020-01-12T18:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.000823974609375,
+              "query_encoding_seconds": 0.0025282828137278557,
+              "certificate_setup_seconds": 5.230959504842758e-05,
+              "index_query_seconds": 0.0010227849707007408,
+              "aggregate_transfer_seconds": 0.0013720663264393806,
+              "forecast_inference_seconds": 0.002623181790113449,
+              "total_inference_seconds": 0.011493063531816006
+            }
+          },
+          {
+            "cutoff": "2020-01-12T21:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0008364440873265266,
+              "query_encoding_seconds": 0.002530081197619438,
+              "certificate_setup_seconds": 4.782993346452713e-05,
+              "index_query_seconds": 0.00102914497256279,
+              "aggregate_transfer_seconds": 0.0015084678307175636,
+              "forecast_inference_seconds": 0.002498472109436989,
+              "total_inference_seconds": 0.010507579892873764
+            }
+          },
+          {
+            "cutoff": "2020-01-13T00:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0008016237989068031,
+              "query_encoding_seconds": 0.0025340821593999863,
+              "certificate_setup_seconds": 5.4139643907547e-05,
+              "index_query_seconds": 0.0010500755161046982,
+              "aggregate_transfer_seconds": 0.0013545872643589973,
+              "forecast_inference_seconds": 0.0025061313062906265,
+              "total_inference_seconds": 0.011285613290965557
+            }
+          },
+          {
+            "cutoff": "2020-01-13T03:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.000830523669719696,
+              "query_encoding_seconds": 0.002494141459465027,
+              "certificate_setup_seconds": 4.8520974814891815e-05,
+              "index_query_seconds": 0.001051505096256733,
+              "aggregate_transfer_seconds": 0.0014049457386136055,
+              "forecast_inference_seconds": 0.002460121177136898,
+              "total_inference_seconds": 0.01121529284864664
+            }
+          },
+          {
+            "cutoff": "2020-01-13T06:00:00+00:00",
+            "mode": "full_asof_text",
+            "timings": {
+              "version_validation_seconds": 0.0008048629388213158,
+              "query_encoding_seconds": 0.0025296518579125404,
+              "certificate_setup_seconds": 4.8910267651081085e-05,
+              "index_query_seconds": 0.0010800445452332497,
+              "aggregate_transfer_seconds": 0.0013312958180904388,
+              "forecast_inference_seconds": 0.002525041811168194,
+              "total_inference_seconds": 0.011334783397614956
+            }
+          }
+        ],
+        "offline_timings": {
+          "base_feature_transfer_seconds": 0.0035325167700648308,
+          "foundation_text_encoding_seconds": null,
+          "text_key_projection_seconds": 0.0024600205942988396,
+          "impact_encoding_seconds": 0.0024905605241656303,
+          "encoded_document_transfer_seconds": 5.9169717133045197e-05,
+          "index_construction_seconds": 0.039181506261229515
+        },
+        "model_version": "06ea36289ff60768e6d205d8c63c19d38584569f38490c1d472a3f9f7e2fafc5",
+        "encoder_version": "26f83de82fa3f0d87708e0e7d6ef7741f122dfdfae1bd58d302280589ab611e7",
+        "impact_version": "7814cba9e3a938887a83c4e8f5a016b539a35efd6b07e7cee2006ed0b2c95ff3",
+        "index_generation": 63,
+        "certified": {
+          "0.0": [
+            {
+              "cutoff": "2020-01-11T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0009898142889142036,
+                "query_encoding_seconds": 0.0004394715651869774,
+                "certificate_setup_seconds": 4.6079978346824646e-05,
+                "index_query_seconds": 0.0008998941630125046,
+                "aggregate_transfer_seconds": 8.147023618221283e-05,
+                "forecast_inference_seconds": 0.0002098502591252327,
+                "total_inference_seconds": 0.0028550047427415848
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 41,
+                "exact_kernel_evaluations": 41,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0008958838880062103,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007593529298901558,
+                "query_encoding_seconds": 0.0003889016807079315,
+                "certificate_setup_seconds": 4.579965025186539e-05,
+                "index_query_seconds": 0.0008766334503889084,
+                "aggregate_transfer_seconds": 7.958989590406418e-05,
+                "forecast_inference_seconds": 0.00023048091679811478,
+                "total_inference_seconds": 0.0025440212339162827
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.000874323770403862,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007923133671283722,
+                "query_encoding_seconds": 0.0003878427669405937,
+                "certificate_setup_seconds": 4.542991518974304e-05,
+                "index_query_seconds": 0.0008728047832846642,
+                "aggregate_transfer_seconds": 7.881131023168564e-05,
+                "forecast_inference_seconds": 0.00020702090114355087,
+                "total_inference_seconds": 0.0025456026196479797
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.000870593823492527,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007608747109770775,
+                "query_encoding_seconds": 0.000390760600566864,
+                "certificate_setup_seconds": 4.625041037797928e-05,
+                "index_query_seconds": 0.000892413780093193,
+                "aggregate_transfer_seconds": 7.878988981246948e-05,
+                "forecast_inference_seconds": 0.0002268608659505844,
+                "total_inference_seconds": 0.002556932158768177
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0008901450783014297,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007979134097695351,
+                "query_encoding_seconds": 0.00038673076778650284,
+                "certificate_setup_seconds": 4.5130960643291473e-05,
+                "index_query_seconds": 0.0008922144770622253,
+                "aggregate_transfer_seconds": 8.040014654397964e-05,
+                "forecast_inference_seconds": 0.00020588096231222153,
+                "total_inference_seconds": 0.002569192089140415
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0008898433297872543,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007441937923431396,
+                "query_encoding_seconds": 0.00038737058639526367,
+                "certificate_setup_seconds": 4.5200809836387634e-05,
+                "index_query_seconds": 0.0009067635983228683,
+                "aggregate_transfer_seconds": 7.85505399107933e-05,
+                "forecast_inference_seconds": 0.0002352409064769745,
+                "total_inference_seconds": 0.002558191306889057
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009045340120792389,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007971441373229027,
+                "query_encoding_seconds": 0.00039543118327856064,
+                "certificate_setup_seconds": 4.470068961381912e-05,
+                "index_query_seconds": 0.0009102057665586472,
+                "aggregate_transfer_seconds": 7.889047265052795e-05,
+                "forecast_inference_seconds": 0.00020496081560850143,
+                "total_inference_seconds": 0.002591582015156746
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.00090799480676651,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007429234683513641,
+                "query_encoding_seconds": 0.0003850618377327919,
+                "certificate_setup_seconds": 4.504993557929993e-05,
+                "index_query_seconds": 0.0009320853278040886,
+                "aggregate_transfer_seconds": 7.956940680742264e-05,
+                "forecast_inference_seconds": 0.00021368172019720078,
+                "total_inference_seconds": 0.0025605419650673866
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009299349039793015,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007612230256199837,
+                "query_encoding_seconds": 0.00038611236959695816,
+                "certificate_setup_seconds": 4.546996206045151e-05,
+                "index_query_seconds": 0.0009372057393193245,
+                "aggregate_transfer_seconds": 7.877964526414871e-05,
+                "forecast_inference_seconds": 0.00020519085228443146,
+                "total_inference_seconds": 0.002574332058429718
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.000935024581849575,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007467027753591537,
+                "query_encoding_seconds": 0.00038481224328279495,
+                "certificate_setup_seconds": 4.534982144832611e-05,
+                "index_query_seconds": 0.000949484296143055,
+                "aggregate_transfer_seconds": 7.764063775539398e-05,
+                "forecast_inference_seconds": 0.00020341109484434128,
+                "total_inference_seconds": 0.0025669019669294357
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009472938254475594,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007469439879059792,
+                "query_encoding_seconds": 0.0006561828777194023,
+                "certificate_setup_seconds": 4.4860877096652985e-05,
+                "index_query_seconds": 0.0009415037930011749,
+                "aggregate_transfer_seconds": 0.00022308062762022018,
+                "forecast_inference_seconds": 0.00020561087876558304,
+                "total_inference_seconds": 0.002978544682264328
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009394045919179916,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0010309750214219093,
+                "query_encoding_seconds": 0.00041558127850294113,
+                "certificate_setup_seconds": 4.5940279960632324e-05,
+                "index_query_seconds": 0.0009750239551067352,
+                "aggregate_transfer_seconds": 0.0002271905541419983,
+                "forecast_inference_seconds": 0.00021475087851285934,
+                "total_inference_seconds": 0.00387783907353878
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009726034477353096,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0010180342942476273,
+                "query_encoding_seconds": 0.002525961957871914,
+                "certificate_setup_seconds": 5.3651630878448486e-05,
+                "index_query_seconds": 0.001346495933830738,
+                "aggregate_transfer_seconds": 0.0010491050779819489,
+                "forecast_inference_seconds": 0.0024498412385582924,
+                "total_inference_seconds": 0.012262358330190182
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013441964983940125,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0009251441806554794,
+                "query_encoding_seconds": 0.002501722425222397,
+                "certificate_setup_seconds": 7.037073373794556e-05,
+                "index_query_seconds": 0.0011021550744771957,
+                "aggregate_transfer_seconds": 0.0012035546824336052,
+                "forecast_inference_seconds": 0.0024562813341617584,
+                "total_inference_seconds": 0.01229038741439581
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0010998258367180824,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008299732580780983,
+                "query_encoding_seconds": 0.0025314027443528175,
+                "certificate_setup_seconds": 4.7470442950725555e-05,
+                "index_query_seconds": 0.000980924814939499,
+                "aggregate_transfer_seconds": 0.0014340467751026154,
+                "forecast_inference_seconds": 0.0025229910388588905,
+                "total_inference_seconds": 0.012392149306833744
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009786654263734818,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008119838312268257,
+                "query_encoding_seconds": 0.0025485018268227577,
+                "certificate_setup_seconds": 5.7190656661987305e-05,
+                "index_query_seconds": 0.0014054356142878532,
+                "aggregate_transfer_seconds": 0.0009838342666625977,
+                "forecast_inference_seconds": 0.002507462166249752,
+                "total_inference_seconds": 0.012380908243358135
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0014028269797563553,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008443240076303482,
+                "query_encoding_seconds": 0.0024959202855825424,
+                "certificate_setup_seconds": 5.1429495215415955e-05,
+                "index_query_seconds": 0.000998644158244133,
+                "aggregate_transfer_seconds": 0.0013645067811012268,
+                "forecast_inference_seconds": 0.002506652846932411,
+                "total_inference_seconds": 0.012293287552893162
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0009964043274521828,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.0,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008032238110899925,
+                "query_encoding_seconds": 0.002520372159779072,
+                "certificate_setup_seconds": 4.8090703785419464e-05,
+                "index_query_seconds": 0.0010172631591558456,
+                "aggregate_transfer_seconds": 0.0013932576403021812,
+                "forecast_inference_seconds": 0.002505912445485592,
+                "total_inference_seconds": 0.01240190863609314
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 50,
+                "exact_kernel_evaluations": 50,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.00101496372371912,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            }
+          ],
+          "0.01": [
+            {
+              "cutoff": "2020-01-11T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008034436032176018,
+                "query_encoding_seconds": 0.00040827225893735886,
+                "certificate_setup_seconds": 4.595983773469925e-05,
+                "index_query_seconds": 0.0012341858819127083,
+                "aggregate_transfer_seconds": 8.514989167451859e-05,
+                "forecast_inference_seconds": 0.00021141022443771362,
+                "total_inference_seconds": 0.0029619839042425156
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 41,
+                "exact_kernel_evaluations": 41,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011163260787725449,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007697427645325661,
+                "query_encoding_seconds": 0.0003962414339184761,
+                "certificate_setup_seconds": 4.622992128133774e-05,
+                "index_query_seconds": 0.0011217650026082993,
+                "aggregate_transfer_seconds": 8.127093315124512e-05,
+                "forecast_inference_seconds": 0.0002089906483888626,
+                "total_inference_seconds": 0.0027866028249263763
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011127861216664314,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007721828296780586,
+                "query_encoding_seconds": 0.00040446221828460693,
+                "certificate_setup_seconds": 4.491955041885376e-05,
+                "index_query_seconds": 0.001337926834821701,
+                "aggregate_transfer_seconds": 8.446909487247467e-05,
+                "forecast_inference_seconds": 0.0002097906544804573,
+                "total_inference_seconds": 0.0030170436948537827
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.001328917220234871,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007566744461655617,
+                "query_encoding_seconds": 0.0003939112648367882,
+                "certificate_setup_seconds": 4.5130960643291473e-05,
+                "index_query_seconds": 0.0012728562578558922,
+                "aggregate_transfer_seconds": 8.323974907398224e-05,
+                "forecast_inference_seconds": 0.00021054036915302277,
+                "total_inference_seconds": 0.00292863417416811
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012641362845897675,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007302537560462952,
+                "query_encoding_seconds": 0.00040075182914733887,
+                "certificate_setup_seconds": 4.441011697053909e-05,
+                "index_query_seconds": 0.0014079175889492035,
+                "aggregate_transfer_seconds": 9.455159306526184e-05,
+                "forecast_inference_seconds": 0.00022344104945659637,
+                "total_inference_seconds": 0.0030638743191957474
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013992460444569588,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007378933951258659,
+                "query_encoding_seconds": 0.0003899708390235901,
+                "certificate_setup_seconds": 4.449952393770218e-05,
+                "index_query_seconds": 0.0012726159766316414,
+                "aggregate_transfer_seconds": 8.215010166168213e-05,
+                "forecast_inference_seconds": 0.0002283109351992607,
+                "total_inference_seconds": 0.002916373312473297
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012642759829759598,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007291529327630997,
+                "query_encoding_seconds": 0.0004051811993122101,
+                "certificate_setup_seconds": 6.334949284791946e-05,
+                "index_query_seconds": 0.0012899255380034447,
+                "aggregate_transfer_seconds": 8.247140794992447e-05,
+                "forecast_inference_seconds": 0.00020867213606834412,
+                "total_inference_seconds": 0.0029396144673228264
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012811357155442238,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007270239293575287,
+                "query_encoding_seconds": 0.00038523226976394653,
+                "certificate_setup_seconds": 4.4889748096466064e-05,
+                "index_query_seconds": 0.0013266569003462791,
+                "aggregate_transfer_seconds": 8.376035839319229e-05,
+                "forecast_inference_seconds": 0.0002068905159831047,
+                "total_inference_seconds": 0.002934844233095646
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013182470574975014,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 2.797157557069881e-17,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007236339151859283,
+                "query_encoding_seconds": 0.0004103807732462883,
+                "certificate_setup_seconds": 4.497077316045761e-05,
+                "index_query_seconds": 0.0012938063591718674,
+                "aggregate_transfer_seconds": 8.140038698911667e-05,
+                "forecast_inference_seconds": 0.00020632054656744003,
+                "total_inference_seconds": 0.002920554019510746
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012853462249040604,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.000722743570804596,
+                "query_encoding_seconds": 0.0003899522125720978,
+                "certificate_setup_seconds": 4.690047353506088e-05,
+                "index_query_seconds": 0.0013244068250060081,
+                "aggregate_transfer_seconds": 8.151959627866745e-05,
+                "forecast_inference_seconds": 0.00020765047520399094,
+                "total_inference_seconds": 0.002933783456683159
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013153869658708572,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 1.5515838457795457e-17,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007284432649612427,
+                "query_encoding_seconds": 0.00038776081055402756,
+                "certificate_setup_seconds": 4.531070590019226e-05,
+                "index_query_seconds": 0.0013232668861746788,
+                "aggregate_transfer_seconds": 0.0002305610105395317,
+                "forecast_inference_seconds": 0.0004102112725377083,
+                "total_inference_seconds": 0.003430507145822048
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013148672878742218,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008179834112524986,
+                "query_encoding_seconds": 0.00041031185537576675,
+                "certificate_setup_seconds": 4.7099776566028595e-05,
+                "index_query_seconds": 0.0013539260253310204,
+                "aggregate_transfer_seconds": 8.397083729505539e-05,
+                "forecast_inference_seconds": 0.00021573156118392944,
+                "total_inference_seconds": 0.0032543959096074104
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013449257239699364,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0009508952498435974,
+                "query_encoding_seconds": 0.002470000647008419,
+                "certificate_setup_seconds": 5.1380135118961334e-05,
+                "index_query_seconds": 0.0017981687560677528,
+                "aggregate_transfer_seconds": 0.0005584731698036194,
+                "forecast_inference_seconds": 0.00246221199631691,
+                "total_inference_seconds": 0.01121459249407053
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.001788448542356491,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0009535839781165123,
+                "query_encoding_seconds": 0.002519272267818451,
+                "certificate_setup_seconds": 4.786066710948944e-05,
+                "index_query_seconds": 0.0014264769852161407,
+                "aggregate_transfer_seconds": 0.0009805141016840935,
+                "forecast_inference_seconds": 0.0024564918130636215,
+                "total_inference_seconds": 0.013270333409309387
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0014163469895720482,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.000798824243247509,
+                "query_encoding_seconds": 0.002537742257118225,
+                "certificate_setup_seconds": 4.831049591302872e-05,
+                "index_query_seconds": 0.0013917069882154465,
+                "aggregate_transfer_seconds": 0.0010149450972676277,
+                "forecast_inference_seconds": 0.0025000516325235367,
+                "total_inference_seconds": 0.011593814939260483
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013821972534060478,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008022645488381386,
+                "query_encoding_seconds": 0.0025318115949630737,
+                "certificate_setup_seconds": 4.831980913877487e-05,
+                "index_query_seconds": 0.001371077261865139,
+                "aggregate_transfer_seconds": 0.001042715273797512,
+                "forecast_inference_seconds": 0.002529282122850418,
+                "total_inference_seconds": 0.01137012429535389
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013617966324090958,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007909340783953667,
+                "query_encoding_seconds": 0.0026677213609218597,
+                "certificate_setup_seconds": 4.8191286623477936e-05,
+                "index_query_seconds": 0.0014188261702656746,
+                "aggregate_transfer_seconds": 0.0010507935658097267,
+                "forecast_inference_seconds": 0.0026265624910593033,
+                "total_inference_seconds": 0.012079218402504921
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0014094160869717598,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.01,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.000806824304163456,
+                "query_encoding_seconds": 0.0025383606553077698,
+                "certificate_setup_seconds": 4.83216717839241e-05,
+                "index_query_seconds": 0.0013834666460752487,
+                "aggregate_transfer_seconds": 0.0010203048586845398,
+                "forecast_inference_seconds": 0.0025005023926496506,
+                "total_inference_seconds": 0.011497655883431435
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 50,
+                "exact_kernel_evaluations": 50,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013743266463279724,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            }
+          ],
+          "0.1": [
+            {
+              "cutoff": "2020-01-11T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.000744963064789772,
+                "query_encoding_seconds": 0.00040215160697698593,
+                "certificate_setup_seconds": 4.5600347220897675e-05,
+                "index_query_seconds": 0.0011165859177708626,
+                "aggregate_transfer_seconds": 8.106976747512817e-05,
+                "forecast_inference_seconds": 0.0002113310620188713,
+                "total_inference_seconds": 0.0027823131531476974
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 41,
+                "exact_kernel_evaluations": 41,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011071953922510147,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007567442953586578,
+                "query_encoding_seconds": 0.0003911815583705902,
+                "certificate_setup_seconds": 4.504062235355377e-05,
+                "index_query_seconds": 0.0011410657316446304,
+                "aggregate_transfer_seconds": 8.275173604488373e-05,
+                "forecast_inference_seconds": 0.00020981114357709885,
+                "total_inference_seconds": 0.002790103666484356
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 0,
+                "metadata_records_checked": 56,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 10,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0011320048943161964,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007468936964869499,
+                "query_encoding_seconds": 0.00041948165744543076,
+                "certificate_setup_seconds": 4.616007208824158e-05,
+                "index_query_seconds": 0.0012666266411542892,
+                "aggregate_transfer_seconds": 9.283050894737244e-05,
+                "forecast_inference_seconds": 0.00021254178136587143,
+                "total_inference_seconds": 0.002947283908724785
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 42,
+                "exact_kernel_evaluations": 42,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012577762827277184,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.000737934373319149,
+                "query_encoding_seconds": 0.00039309170097112656,
+                "certificate_setup_seconds": 4.5309774577617645e-05,
+                "index_query_seconds": 0.0012622568756341934,
+                "aggregate_transfer_seconds": 8.333008736371994e-05,
+                "forecast_inference_seconds": 0.00020860135555267334,
+                "total_inference_seconds": 0.0028916923329234123
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012537762522697449,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007303133606910706,
+                "query_encoding_seconds": 0.0004213619977235794,
+                "certificate_setup_seconds": 4.499126225709915e-05,
+                "index_query_seconds": 0.001290205866098404,
+                "aggregate_transfer_seconds": 8.316058665513992e-05,
+                "forecast_inference_seconds": 0.00020853057503700256,
+                "total_inference_seconds": 0.002939743921160698
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 43,
+                "exact_kernel_evaluations": 43,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012813657522201538,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007243938744068146,
+                "query_encoding_seconds": 0.00038644205778837204,
+                "certificate_setup_seconds": 4.559103399515152e-05,
+                "index_query_seconds": 0.0012786462903022766,
+                "aggregate_transfer_seconds": 8.297991007566452e-05,
+                "forecast_inference_seconds": 0.00020771101117134094,
+                "total_inference_seconds": 0.002886134199798107
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0012696562334895134,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-11T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007287831977009773,
+                "query_encoding_seconds": 0.00039658229798078537,
+                "certificate_setup_seconds": 4.719942808151245e-05,
+                "index_query_seconds": 0.0013179965317249298,
+                "aggregate_transfer_seconds": 8.309166878461838e-05,
+                "forecast_inference_seconds": 0.00020964164286851883,
+                "total_inference_seconds": 0.0029452135786414146
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 44,
+                "exact_kernel_evaluations": 44,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013093454763293266,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007304539903998375,
+                "query_encoding_seconds": 0.00038795266300439835,
+                "certificate_setup_seconds": 4.62094321846962e-05,
+                "index_query_seconds": 0.0013222964480519295,
+                "aggregate_transfer_seconds": 8.29910859465599e-05,
+                "forecast_inference_seconds": 0.00020765140652656555,
+                "total_inference_seconds": 0.0029382845386862755
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013136472553014755,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 2.797157557069881e-17,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007134946063160896,
+                "query_encoding_seconds": 0.00038815196603536606,
+                "certificate_setup_seconds": 4.485994577407837e-05,
+                "index_query_seconds": 0.0013187257573008537,
+                "aggregate_transfer_seconds": 8.388981223106384e-05,
+                "forecast_inference_seconds": 0.00020844116806983948,
+                "total_inference_seconds": 0.002916133962571621
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 45,
+                "exact_kernel_evaluations": 45,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013101762160658836,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007629841566085815,
+                "query_encoding_seconds": 0.0003903517499566078,
+                "certificate_setup_seconds": 4.6510249376297e-05,
+                "index_query_seconds": 0.0013317270204424858,
+                "aggregate_transfer_seconds": 0.00022830069065093994,
+                "forecast_inference_seconds": 0.0002442607656121254,
+                "total_inference_seconds": 0.003481486812233925
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013234475627541542,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T09:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 1.5515838457795457e-17,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007438044995069504,
+                "query_encoding_seconds": 0.0004897117614746094,
+                "certificate_setup_seconds": 4.4940970838069916e-05,
+                "index_query_seconds": 0.0013307463377714157,
+                "aggregate_transfer_seconds": 0.00023225042968988419,
+                "forecast_inference_seconds": 0.0006612623110413551,
+                "total_inference_seconds": 0.00419837050139904
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 46,
+                "exact_kernel_evaluations": 46,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013223355636000633,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T12:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008008740842342377,
+                "query_encoding_seconds": 0.0004056105390191078,
+                "certificate_setup_seconds": 4.6479515731334686e-05,
+                "index_query_seconds": 0.0013465862721204758,
+                "aggregate_transfer_seconds": 0.0002308608964085579,
+                "forecast_inference_seconds": 0.00021765101701021194,
+                "total_inference_seconds": 0.003367345780134201
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013383962213993073,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T15:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008061844855546951,
+                "query_encoding_seconds": 0.002521941438317299,
+                "certificate_setup_seconds": 5.0739385187625885e-05,
+                "index_query_seconds": 0.0013613859191536903,
+                "aggregate_transfer_seconds": 0.0010382048785686493,
+                "forecast_inference_seconds": 0.002495330758392811,
+                "total_inference_seconds": 0.011561194434762001
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 47,
+                "exact_kernel_evaluations": 47,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013418858870863914,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T18:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008118338882923126,
+                "query_encoding_seconds": 0.0022446513175964355,
+                "certificate_setup_seconds": 4.720967262983322e-05,
+                "index_query_seconds": 0.0013798465952277184,
+                "aggregate_transfer_seconds": 0.0013540862128138542,
+                "forecast_inference_seconds": 0.0013199057430028915,
+                "total_inference_seconds": 0.010226338170468807
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013706265017390251,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-12T21:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007909247651696205,
+                "query_encoding_seconds": 0.0025294413790106773,
+                "certificate_setup_seconds": 4.770047962665558e-05,
+                "index_query_seconds": 0.001381036825478077,
+                "aggregate_transfer_seconds": 0.0010302653536200523,
+                "forecast_inference_seconds": 0.002504061907529831,
+                "total_inference_seconds": 0.011483315378427505
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 48,
+                "exact_kernel_evaluations": 48,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 48,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013716360554099083,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T00:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0007874341681599617,
+                "query_encoding_seconds": 0.0025541819632053375,
+                "certificate_setup_seconds": 5.2129849791526794e-05,
+                "index_query_seconds": 0.0013830168172717094,
+                "aggregate_transfer_seconds": 0.00111373420804739,
+                "forecast_inference_seconds": 0.002543272450566292,
+                "total_inference_seconds": 0.011687575839459896
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0013742567971348763,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T03:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008661644533276558,
+                "query_encoding_seconds": 0.0025409720838069916,
+                "certificate_setup_seconds": 5.0999224185943604e-05,
+                "index_query_seconds": 0.0014134366065263748,
+                "aggregate_transfer_seconds": 0.0009865639731287956,
+                "forecast_inference_seconds": 0.0025024907663464546,
+                "total_inference_seconds": 0.011372694745659828
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 49,
+                "exact_kernel_evaluations": 49,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0014041168615221977,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            },
+            {
+              "cutoff": "2020-01-13T06:00:00+00:00",
+              "mode": "citra_certified",
+              "epsilon": 0.1,
+              "actual_output_deviation": 0.0,
+              "certified_bound": 0.0,
+              "comparison_atol": 1e-10,
+              "comparison_rtol": 1e-10,
+              "certificate_scope": "analytic_fixed_parameter_output_remainder_float64_tolerance",
+              "bound_tightness": null,
+              "timings": {
+                "version_validation_seconds": 0.0008018938824534416,
+                "query_encoding_seconds": 0.002537742257118225,
+                "certificate_setup_seconds": 5.201995372772217e-05,
+                "index_query_seconds": 0.0014289263635873795,
+                "aggregate_transfer_seconds": 0.0009803753346204758,
+                "forecast_inference_seconds": 0.002499232068657875,
+                "total_inference_seconds": 0.011511825025081635
+              },
+              "query_stats": {
+                "nodes_visited": 21,
+                "documents_scanned": 50,
+                "exact_kernel_evaluations": 50,
+                "summary_kernel_evaluations": 1,
+                "metadata_records_checked": 43,
+                "temporal_nodes_pruned": 0,
+                "temporal_partial_nodes": 9,
+                "index_document_reads": 0,
+                "build_seconds": 0.0,
+                "elapsed_seconds": 0.0014202361926436424,
+                "fallback_exact": true,
+                "cache_hit": true
+              }
+            }
+          ]
+        },
+        "certificate_units": "normalized model outputs, one sample all horizons/targets L2",
+        "real_forecast_metrics": "omitted: synthetic integration smoke only",
+        "latency": {
+          "full_asof_text": {
+            "p50_seconds": 0.0030754748731851578,
+            "p95_seconds": 0.011580401705577968,
+            "total_seconds": 0.10265342425554991,
+            "queries": 18
+          },
+          "citra_epsilon_0.0": {
+            "p50_seconds": 0.0027232933789491653,
+            "p95_seconds": 0.012393613206222653,
+            "total_seconds": 0.10679968539625406,
+            "queries": 18
+          },
+          "citra_epsilon_0.01": {
+            "p50_seconds": 0.003040459007024765,
+            "p95_seconds": 0.01225788565352559,
+            "total_seconds": 0.10711395088583231,
+            "queries": 18
+          },
+          "citra_epsilon_0.1": {
+            "p50_seconds": 0.003157314844429493,
+            "p95_seconds": 0.011580151645466686,
+            "total_seconds": 0.1049270499497652,
+            "queries": 18
+          }
+        }
+      }
+    }
+  },
+  "availability_policy": "simulated scenario"
+}

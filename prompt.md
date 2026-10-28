@@ -448,3 +448,588 @@ CITRA 不返回普通 Top-K 新闻列表作为主要结果，而返回用于预�
 **ICDE Research 级论文创新：尚未建立，不能由现有通过的单元测试推导。**
 
 注：ZIP 不包含 Git 的历史元数据，无法仅凭该压缩包审核分支创建、原始提交 SHA 及确切的版本控制操作；原始 ReTaMTSF 文件从内容与路径观察仍保留，具体差异以本地 `git diff main...feature/citra-prototype` 复核为准。
+
+# CITRA 下一阶段开发任务：预测闭环与高效时态聚合索引
+
+你是一名熟悉 ICDE、SIGMOD、VLDB 数据库系统研究，以及多模态时间序列预测、PyTorch、向量检索、时态索引和近似查询处理的高级研究工程师。
+
+请直接在当前仓库中继续开发：
+
+Repository: https://github.com/ElliotMars/CITRA
+
+Research method:
+
+**CITRA — Certified Influence-aware Temporal Retrieval and Aggregation**
+
+目标是将 CITRA 从已经具有数学正确性测试的 NumPy 原型，发展为具有真实预测能力、可复现系统实验和独立数据库算法贡献的研究系统。
+
+## 一、当前项目状态
+
+上一轮代码审查确认：
+
+- `citra/index.py` 已实现持久化 AVL、叶节点文档存储、节点统计矩、局部更新和自适应聚合。
+- `citra/kernel.py` 已实现 RBF 核及查询相关的局部 Hessian 上界。
+- `citra/temporal.py` 已实现文档历史版本、可见性区间和 Point-in-Time 查询。
+- `citra/prediction.py` 已使用固定线性预测头计算实际参数导出的 Lipschitz 上界。
+- 现有代码已有 37 项测试的通过记录。
+- `run_citra_benchmark.py` 已能比较 Full Scan、Temporal Exact、无认证层次聚合和 CITRA。
+- 原 ReTaMTSF 模型及数据加载器仍然保留。
+
+目前主要问题：
+
+1. 数据库整体性能仍差于 Full Scan。
+2. 当前向量 AVL 与时间可见区间未充分协同，导致大量混合节点和近乎全量扫描。
+3. 目前没有可训练的 Forecast Query Encoder 与 Text Impact Encoder。
+4. 尚未使用真实历史文本和数值数据开展多模态预测。
+5. 还没有证明 CITRA 在真实工作负载下的 Accuracy–Latency 优势。
+6. 尚无与强数据库基线的充分比较。
+
+请以这些问题为主要任务，不要仅通过增加单元测试来宣布完成。
+
+## 二、开发安全规范
+
+首先检查：
+
+```bash
+git status
+git branch --show-current
+git log -5 --oneline
+```
+
+要求：
+
+- 不覆盖用户尚未提交的修改。
+- 在当前开发分支继续工作，必要时创建新的开发分支。
+- 保留原 ReTaMTSF 全部代码与历史实验入口。
+- 不执行 `git reset --hard`、`git clean -fd` 或强制推送。
+- 不在未经用户授权的情况下向远端仓库推送。
+- 先阅读现有源码及研究文档，不要重复实现已有模块。
+- 不得编造数据、训练日志或实验结果。
+- 新算法和模型均须有独立的正确性测试。
+- 测试失败必须报告，不能通过放宽阈值掩盖问题。
+
+使用现有架构作为基础，尽量避免无必要的大规模重构。
+
+---
+
+# Milestone A：建立真实、可训练的多模态预测闭环
+
+这是本轮 P0 任务。
+
+## A1. 设计 CITRA 的预测模型
+
+新增 PyTorch 模型，建议路径：
+
+```text
+models/CITRA.py
+citra/learning/
+    temporal_encoder.py
+    text_encoder.py
+    influence_encoder.py
+    fusion.py
+    training.py
+```
+
+其中：
+
+### 数值预测骨干
+
+首先使用轻量 Linear/DLinear 风格预测器：
+
+输入：
+
+`X: [B, L, C]`
+
+输出：
+
+`Y_ts: [B, H, C_target]`
+
+保留以后切换到 iTransformer、PatchTST 等模型的接口。
+
+不要一开始就引入大型 Transformer 或在线 LLM。
+
+### Forecast Query Encoder
+
+实现：
+
+`q = f_theta(X_history, target, horizon)`
+
+要求：
+
+- 只能读取预测起点之前真实可见的数值信息。
+- 根据预测目标、历史状态和预测长度产生查询 embedding。
+- 允许批量训练。
+- 输出维度明确且可配置。
+- 具备稳定的归一化机制。
+
+### Text Impact Encoder
+
+实现：
+
+`v_d = g_phi(text_embedding, document_metadata)`
+
+其中 `v_d` 是用于聚合的有符号影响向量。
+
+要求：
+
+- 使用已有 SentenceTransformer/MiniLM embedding 或可配置的离线文本编码。
+- 第一版先冻结文本基础编码器，只训练小型投影网络。
+- 允许不同文本对不同预测变量产生正向或负向影响。
+- 不得使用未来预测标签构造测试阶段的影响向量。
+- 文档影响向量可离线预计算。
+
+### Certified Aggregation
+
+仍使用：
+
+`A(q,D_tau) = sum(k(q,z_d) * v_d)`
+
+其中：
+
+- `D_tau` 为历史预测时刻合法可见的文档及版本。
+- `k` 为已有可认证 RBF 核。
+- 精确聚合 `A_full` 为训练和验证近似质量的基准。
+- CITRA 近似聚合 `A_fast` 为部署时的优化执行方式。
+
+### Forecast Fusion
+
+使用：
+
+`Y = Y_ts + G(X_history, A)`
+
+建议第一版 G 使用具有明确 Lipschitz 上界的线性投影或受约束的小型网络。
+
+必须支持计算预测输出误差界：
+
+`||Y_fast - Y_full|| <= L_G * aggregate_bound`
+
+注意：
+
+- 这个认证针对固定参数下完整聚合与近似聚合的输出偏差。
+- 不保证真实未来预测 MSE。
+- 不允许假设任意网络都满足 Lipschitz 常数 1。
+- 如果使用非线性门控，必须明确证明或保守计算其对 A 的 Lipschitz 上界。
+- 如果无法可靠获得上界，首先只保留线性修正头。
+
+## A2. 设计正确的训练与索引更新机制
+
+这是容易产生隐蔽错误的部分。
+
+训练阶段：
+
+- 使用 PyTorch 可微的 exact full aggregation。
+- 文档 embedding 和影响 encoder 的参数变化必须能够正确参与梯度计算。
+- 不允许在反向传播中偷偷将 NumPy/FAISS 缓存当成最新的可训练表示。
+- 数据与模型不能访问预测起点之后才公开的文本或数值。
+- 对于训练期文档，也必须按每个窗口自身的 cutoff 进行可见性过滤。
+
+推理阶段：
+
+1. 完成训练。
+2. 固定模型参数。
+3. 为文本建立版本化 embedding 和 impact_vector。
+4. 构建或刷新 CITRA 索引。
+5. 使用 CITRA 快速近似查询。
+6. 与相同冻结参数下的 Full Aggregation 对比。
+
+必须记录 `encoder_version`、`impact_version`、`index_generation`，防止影响编码器更新后继续使用旧矩摘要。
+
+如果模型参数变化导致索引摘要失效，必须显式重新编码和维护索引，不得悄悄返回过期的认证结果。
+
+## A3. 实现统一训练与评估接口
+
+新增：
+
+```text
+exp/exp_CITRA.py
+run_CITRA.py
+configs/citra.yaml
+```
+
+实际路径根据现有仓库结构调整。
+
+支持以下实验模式：
+
+- `ts_only`
+- `semantic_topk`
+- `full_asof_text`
+- `citra_certified`
+
+要求：
+
+- 使用相同的数据划分。
+- 保持可比的预测网络容量与训练配置。
+- Full As-of Text 与 CITRA 必须共享同一组冻结模型参数，才能评价近似误差认证。
+- Semantic Top-K 作为另一种文本输入策略，其模型训练和计算开销需要公平处理。
+- 计算 MSE、MAE、预测输出偏差和证书上界。
+- 支持随机种子、Checkpoint、配置保存以及完整训练日志。
+
+必须明确区分：
+
+1. 文本带来的预测增益。
+2. CITRA 近似引入的预测偏差。
+3. 数据库算法节省的查询成本。
+
+这三种量不能混为一个指标。
+
+---
+
+# Milestone B：接入真实 Point-in-Time 数据集
+
+这是本轮 P0 任务，应与模型开发同步推进。
+
+优先构建：
+
+**NWS Area Forecast Discussion (AFD) + ASOS 气象观测**
+
+可选择部分美国气象预报办公室和对应气象观测站。
+
+建议初始实验区域：
+
+- Des Moines / DSM
+- Chicago / ORD
+- Houston / IAH
+
+先验证档案实际覆盖范围、产品时间戳和站点匹配关系，不要未经检查就假定所有数据完整。
+
+## B1. 实现数据获取与处理
+
+建议新增：
+
+```text
+data_provider/citra_weather.py
+scripts/download_nws_afd.py
+scripts/download_asos.py
+scripts/prepare_citra_weather.py
+scripts/validate_citra_timestamps.py
+```
+
+如有必要，可重新组织路径。
+
+每条文本至少保留：
+
+- `doc_id`
+- `version_id`
+- `source`
+- `source_url`
+- `office_id`
+- `issued_at`
+- `available_at`
+- `ingested_at`（真实未知时置空）
+- `event_start`
+- `event_end`
+- `text`
+- `availability_provenance`
+
+时间要求：
+
+- 必须区分事件时间、文本发布时间和获取时间。
+- 原始归档的发布时间只能按其真实语义使用。
+- 模拟摄入延迟必须显式标注。
+- 历史文档版本不得由当前最新文本覆盖。
+- 未验证历史可用性的文本不得进入严格回测。
+- 未来事件可以在其预报文本于 cutoff 前发布时合法出现。
+
+对 ASOS 数值数据：
+
+- 统一 UTC 时间戳。
+- 明确小时聚合规则和缺失值处理。
+- 不使用未来窗口的数值填补过去缺失。
+- Scaler 仅在训练区间拟合。
+- 保证训练、验证、测试严格按时间划分。
+
+## B2. 构建最小真实任务
+
+先固定：
+
+- 输入长度：48 或 168 小时。
+- 预测长度：6、12、24 小时。
+- 目标：气温、风速等。
+- 三个地区作为初始测试。
+- 训练、验证、测试按年份划分。
+
+具体年份由真实数据覆盖率确定。
+
+优先完成一组真实训练和测试，不必立即扩展到数十个城市。
+
+如果 NWS/ASOS 下载受到网络限制：
+
+- 输出可在联网环境执行的下载脚本。
+- 提供数据校验及导入流程。
+- 不允许用合成数据冒充真实数据。
+- 可以继续完成模型与小型 fixture 数据的集成测试，但必须标记为 smoke test。
+
+额外保留 MOS 数值天气预报基线的扩展接口，后续用于验证文本是否带来强数值预报之外的补充收益。
+
+---
+
+# Milestone C：改进 CITRA 时态索引
+
+这是本轮第二个重点。
+
+当前实现采用 embedding 排序的 AVL，时间可见区间可能在索引节点中高度混杂。
+
+该问题导致：
+
+- 历史快照查询大量递归访问混合节点。
+- 本可聚合的文档被迫逐条过滤。
+- 节点球半径可能较大。
+- 近距离查询时局部误差上界过松。
+- 严格 epsilon 下查询接近全量扫描。
+
+请不要立即删除现有 AVL。将它作为可复现的基线。
+
+## C1. 先测量真实瓶颈
+
+在当前 AVL 上增加：
+
+- 部分可见节点占比。
+- 完全可见节点占比。
+- 完全不可见节点占比。
+- 节点半径分布。
+- 局部误差上界与实际误差之比。
+- 每次查询细化节点数量。
+- 叶节点精确扫描比例。
+- 版本区间数量。
+- 索引构建与更新成本。
+
+对近距离查询、实际 encoder 生成的查询、不同 cutoff 和不同 epsilon 分别统计。
+
+不要根据远距离 RBF 核接近零的特殊场景判断系统性能。
+
+## C2. 实现 Temporal-Spatial Hybrid Index
+
+在现有 AVL 基线之外，实现一种时间—向量联合索引。
+
+建议研究：
+
+**Version-Aware Temporal Partitioning + Spatial Moment Summaries**
+
+基本结构：
+
+- 外层：按时间可用区间或时间前缀维护合法文档集合的可聚合表示。
+- 内层：对文档 embedding 进行空间聚类或层次划分。
+- 每个合法聚合节点维护 V、M、S、T、中心、半径、时间版本信息。
+- 查询时必须从合法的时间快照中选择无重复、无遗漏的摘要节点。
+- 时间版本更新应局部更新对应摘要。
+
+可以尝试时间分区、区间树、时间前缀摘要或其他结构，但必须解释选择原因与内存/更新代价。
+
+特别要求：
+
+- 不能因为时间桶跨越 cutoff，就错误包含未来文档。
+- 不能因跨分区文档重复出现而重复累计影响。
+- 相同 doc_id 的不同版本必须在单一历史快照中互斥。
+- 禁止每个查询重新扫描全部文档构建快照。
+- 尽量避免为每个历史时刻物化完整索引副本。
+- 必须对增量更新、历史版本插入和乱序到达进行测试。
+
+## C3. 改进认证查询执行
+
+当前按照最大绝对误差上界 best-first 细化。
+
+新增一个候选方案：
+
+**Cost-Aware Certified Refinement**
+
+为索引节点估计：
+
+- 当前误差上界。
+- 展开后的预期误差减少量。
+- 展开节点或扫描叶记录的执行代价。
+- 时间过滤选择率。
+
+优先细化具有更好预期误差减少量/代价比的节点。
+
+但必须满足：
+
+- 节点误差界仍是确定性安全界。
+- 代价模型只影响节点访问顺序。
+- 不能把估计误差减少量当作真实认证界。
+- 停止条件必须使用实际维护的安全误差上界。
+- 如果估计策略没有收益，应保留原 best-first 方法。
+
+不要将普通 cost/benefit 贪心重新命名后直接声称算法创新。必须分析它是否与时间版本索引产生了实质性的新查询机制。
+
+## C4. 比较三个索引
+
+至少比较：
+
+1. 原 AVL CITRA。
+2. 新 Temporal-Spatial Hybrid CITRA。
+3. 时间过滤 + 精确聚合。
+
+另外保留 Full Scan，以及无认证的近似聚合基线。
+
+测试：
+
+- 文档数 1K、10K、100K；能力允许再扩展。
+- 不同时间过滤选择率。
+- 不同版本更新比例。
+- 多个预测查询距离区间。
+- 不同 epsilon。
+- 多种 embedding 维度。
+- 真实文本的向量分布。
+
+报告 P50/P95、吞吐量、完整索引内存、更新成本、构建时间、实际扫描量和误差界紧致程度。
+
+必须在相同误差要求下比较，而不是让新方法使用更宽松的误差预算。
+
+---
+
+# Milestone D：建立可信的联合评价协议
+
+重点验证：
+
+**CITRA 能否在保留 Full Text 预测能力的前提下，以更低的查询成本执行历史文本聚合？**
+
+## D1. 预测效果实验
+
+至少包括：
+
+- TS-only
+- Semantic Top-K
+- Full As-of Text
+- CITRA-AVL
+- CITRA-Hybrid
+
+测量：
+
+- MSE
+- MAE
+- CITRA 与 Full Text 的预测输出差异
+- Certified Bound
+- Bound Tightness
+- 不同 Horizon 的效果
+
+不要把 CITRA 与 Full Text 接近当作文本改善了真实预测的证明；必须另行报告 Full Text 相对于 TS-only 的增益。
+
+## D2. 数据库性能实验
+
+必须分别报告：
+
+**在线成本**
+
+- Query Encoding
+- Index Query
+- Aggregate Retrieval
+- Forecast Inference
+- Total Inference Latency
+
+**离线成本**
+
+- Text Encoding
+- Impact Encoding
+- Index Construction
+- Index Maintenance
+- Model Training
+
+**持续工作负载成本**
+
+- Initial Build
+- Rolling Forecast Queries
+- Document Insertions
+- Revisions
+- Re-encoding / Index Refresh
+
+不能只选择有利于 CITRA 的 warm query，必须展示端到端成本及摊销条件。
+
+## D3. 理论与实证分离
+
+理论保证：
+
+`||Y_fast - Y_full|| <= certified_bound`
+
+实际预测评估：
+
+`MSE(Y_fast, Y_true)`
+
+这是两个完全不同的评价目标。
+
+如果预测误差下降但证书不满足，则认证算法不成立。
+
+如果认证完全成立但 MSE 不下降，则只能说明近似计算正确，不能声称文本改善了预测。
+
+如果查询比 Full Scan 更慢，也必须明确报告。
+
+---
+
+# Milestone E：测试与交付
+
+新增或扩展测试：
+
+```text
+test_trainable_query_encoder
+test_trainable_impact_encoder
+test_end_to_end_forecast_shape
+test_full_vs_certified_prediction
+test_frozen_index_consistency
+test_encoder_update_invalidates_index
+test_no_future_numeric_leakage
+test_no_future_text_leakage
+test_temporal_spatial_snapshot
+test_no_duplicate_version_contribution
+test_hybrid_index_exact_oracle
+test_incremental_update_against_rebuild
+test_certified_bound_after_updates
+test_cost_aware_refinement
+```
+
+需要报告实际执行结果，不允许把预期通过写成已通过。
+
+同时更新：
+
+```text
+README.md
+docs/citra_architecture.md
+docs/citra_theory.md
+docs/citra_experiments.md
+docs/citra_progress.md
+```
+
+注意根目录 README 目前仍主要介绍旧 ReTaMTSF，应补充 CITRA 的项目介绍、安装、原型测试、真实数据准备和训练方法；旧模型说明应保留。
+
+## 本轮执行策略
+
+请按照以下顺序工作：
+
+**第一阶段：完成可训练模型及最小真实数据适配**
+
+先实现 Full As-of Text 预测器和时间可用性正确的数据接口，并进行 CPU/GPU smoke test。只有训练过程和预测误差评估实际跑通，才进入大规模模型实验。
+
+**第二阶段：完成 Temporal-Spatial Hybrid Index 原型**
+
+保留现有 AVL，对新索引实现独立精确 oracle、认证查询、局部更新及单元测试。
+
+**第三阶段：开展公平系统基准**
+
+使用相同时间过滤条件、同一预测输出误差容忍度，比较不同执行方案。
+
+**第四阶段：联合评估**
+
+绘制预测 MSE–查询延迟、误差界–扫描比例及持续更新成本曲线。
+
+如果执行过程中发现某个算法假设错误、性能明显退化或数据时间戳无法验证，请及时报告并提出最小修正，而不是继续堆叠新模块。
+
+本轮不得声称 ICDE 创新已成立。只有新的时态聚合执行算法在合理的真实工作负载下展现出相对强基线的系统优势，并且文本具有独立的预测增益，才能将其提升为论文贡献。
+
+## 最终交付
+
+请直接修改当前仓库代码并运行可执行的测试和实验。
+
+结束时提供：
+
+1. 新增和修改的文件。
+2. 模型结构及训练命令。
+3. 数据来源、时间字段及划分方式。
+4. 新索引的结构及实现细节。
+5. 数学性质及证明适用条件。
+6. 实际测试结果。
+7. MSE/MAE（仅在真实数据训练后报告）。
+8. Full Scan、AVL、Hybrid 的系统对比表。
+9. 仍未解决的问题和最可能导致 ICDE 审稿失败的风险。
+10. 下一阶段优先任务。
+
+优先完成可以独立验证的实质代码，不要只生成计划、TODO 或大量空模块。上下文不足时，完成当前阶段并留下明确的进度记录，等待下一次继续。
+
+现在先检查项目最新代码和环境，然后开始执行第一阶段。在第一阶段取得可复现结果后再推进第二阶段。

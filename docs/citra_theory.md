@@ -1,4 +1,29 @@
-# 理论推导、时间正确性和数值范围（审查修复版）
+# 可训练模型的认证适用条件（2026-10-28）
+
+训练模型使用 X=[B,L,C]，数值骨干输出 [B,H,C_target]。q 由历史、目标 ID、horizon 编码后归一化；
+z 为固定基础文本 embedding 的可训练投影，v 为基础 embedding 与固定文档 metadata 的小型有符号网络。
+训练的 A_full 采用可微 RBF 全量合法求和，不经过 NumPy 缓存，不把 Top-K 当作 oracle。
+底层神经网络如何产生 z/v 不影响冻结后的泰勒证明；前提是该次推理中表示和影响均固定、有限、版本一致。
+
+G(A)=reshape(WA) 是唯一支持认证的修正结构。只对 A 的误差放大取 L=||W||_F>=||W||₂，
+不需要给 query/impact encoder 或数值骨干假定 Lipschitz=1，因为它们在 Full 与 Fast 中完全相同。
+反之，训练中更新 z/v 后旧节点的 V/M/S 不再合法，必须重新编码并构建；不能边训练边引用旧的固定摘要证书。
+参数哈希与索引代次检测保证代码不会默默使用旧缓存。线性头的 Python 结构也受检查，
+不能仅保留同名 weight 张量却换成平方/指数函数后仍引用线性 L。
+
+F_TS 及查询编码必须是确定性的固定模型计算；不支持训练模式或随机推理层。
+本文不把自动哈希当作对任意用户改写 Python 代码的形式化验证，证书针对代码定义的受支持模型。
+
+epsilon 约束单样本、所有 horizon/target 的归一化输出 L2 差异，非标签 MSE。
+如果将预测恢复到物理单位，均值相消，尺度对角变换给出 L_raw <= max(target_scaler_scale)*L；
+不能直接把归一化界当作 Fahrenheit/knots 混合向量的原单位界。真实 MSE/MAE 单独逆 Scaler 后计算，
+并提供 per-target 指标避免跨物理单位的平均值掩盖问题。
+
+模型集成对照预先使用 atol=rtol=1e-10。当前是解析截断余项证书，仍没有包含所有 PyTorch/NumPy/
+CUDA 运算舍入的形式化 IEEE 总误差界。实际 smoke 的全扫描零截断界可能伴随约 1e-16 的舍入差异，
+记录这些差异并按明确容差检查，没有事后提高界或将偏差改为零。
+
+## 既有核、矩与时态证明（以下保留）
 
 ## RBF 梯度与 Hessian
 
@@ -123,8 +148,8 @@ G(A)=reshape(WA)，L=||W||_F >= ||W||₂。
 参数通过 set_parameters 原子替换并提升 revision，旧数组不可写。
 PredictionResult 同时绑定 model_revision 与 store_generation；
 assert_current 拒绝任何参数变化、文档/影响修订后的旧证书。
-当前没有 impact encoder 缓存，文档影响是显式版本数据；未来编码器更新必须重新生成影响版本，
-不能修改数组而不维护索引。当前不是并发安全的模型训练系统。
+旧 NumPy 验证头没有 impact encoder 缓存，文档影响是显式版本数据；新增 PyTorch 部署缓存见上节，
+不能修改编码器而不重新编码/维护索引。当前不是并发安全的模型训练系统。
 
 ## 数值和创新边界
 
