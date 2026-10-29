@@ -1,0 +1,5 @@
+{
+  "wall_seconds": 125.5016498286277,
+  "device": "cuda:0",
+  "stage": "evaluate"
+}

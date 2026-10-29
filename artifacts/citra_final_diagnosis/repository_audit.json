@@ -1,0 +1,31 @@
+{
+  "git_commit": "78af29edb21b8b93d795ca6528b1e027273bd40f",
+  "reviewed_sources": {
+    "docs/citra_failure_diagnosis.md": "ea9e97e8e494e37297401e440ac50c106b1cbf04976c4e075c9fce884ca05120",
+    "docs/citra_realdata_readiness.md": "17829035be7ed0dc4dcee26425ae79a959b0852586142f4fe8511ff9b9d0904f",
+    "docs/citra_theory.md": "8bf45f5a3d4263eaf8ccdac25f69b0fa882028539c2fa169dcf8cc12aebb2775",
+    "docs/citra_architecture.md": "bf460d44d23cdff33675a8f8c406d145d668caaad8d572836cacddaac899af21",
+    "models/CITRA.py": "92d7d8936940d4fa5b68b2ec65af0339086402e92c569f736be7ae0260f88dd3",
+    "citra/learning/aggregation.py": "1e656b00a9b26383bd66bdc6eabbd72ba5d70c5e28e6b35cb9966108a915a9f7",
+    "citra/learning/inference.py": "dcbe980c2d1b734efd44c93129b2441e604629d3f1c9983c17610ca1801b8b95",
+    "citra/index.py": "507d6cef06d96169eda97bcbe39ef9e1b4ff0d4bfb082f37b4f791f292e0681b",
+    "citra/temporal.py": "f5e6b4ec07ae118d5bc5d92a975af41c3e4ec9061a52d79270bda6f7a8aa3b8f",
+    "configs/citra_failure.yaml": "6937edbc3ee1e8d8f7ccbd82af641998a3f7bb146ef05282453739505c3db4d1"
+  },
+  "unchanged_core_vs_commit": {
+    "models/CITRA.py": true,
+    "citra/learning/aggregation.py": true,
+    "citra/learning/inference.py": true,
+    "citra/index.py": true,
+    "citra/temporal.py": true
+  },
+  "fixed_reference": "Window7 Count Mean Residual, seeds 7/17/29, original frozen TS backbone",
+  "roles": {
+    "2020": "train",
+    "2021": "validation",
+    "2022": "already seen",
+    "2023": "already seen",
+    "2024": "new after final methods/protocol lock"
+  },
+  "protocol": "issuance_asof_assumption; no historical arrival verification; observations +1h; text issuance +0h"
+}

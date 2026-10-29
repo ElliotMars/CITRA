@@ -1,0 +1,2 @@
+{"stage": "initial protocol check", "error": "YAML int year keys vs JSON string year keys caused AssertionError", "resolution": "canonical JSON comparison, before any benchmark output was created", "outcomes_available": false}
+{"stage": "new-year archive acquisition", "event": "redundant alternate-host request stopped after canonical download completed; no alternate data used", "canonical": "dataset/citra_real_dsm/raw/AFDDMX_2024.zip"}

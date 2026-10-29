@@ -1,0 +1,54 @@
+# Locked final feasibility protocol. No model or hyperparameter search.
+train_data: dataset/citra_real_dsm/prepared
+seen_data: dataset/citra_real_dsm/prepared_2023
+new_data: dataset/citra_real_dsm/prepared_2024
+reference_root: artifacts/citra_failure_diagnosis/experiments
+ts_root: artifacts/citra_real_dsm/linear/delay_0h
+output: artifacts/citra_final_diagnosis
+seeds: [7, 17, 29]
+epochs: 20
+batch_size: 32
+threads: 1
+stride: 24
+learning_rate: 0.001
+weight_decay: 0.0001
+gradient_clip: 1.0
+fusion_norm_limit: 1.0
+topk: 8
+window_days: 7
+aggregation_kind: count_mean
+availability_protocol: issuance_asof_assumption
+text_delay_hours: 0.0
+numeric_delay_hours: 1.0
+new_year: 2024
+roles: {2020: train, 2021: validation, 2022: previously_seen, 2023: previously_seen, 2024: locked_new_year}
+controls:
+  metadata_only: {embedding: zero, metadata: month_sin_cos}
+  content_only: {embedding: original, metadata: zero}
+  constant_text: {embedding: fixed_unit_basis, metadata: month_sin_cos}
+  null_no_metadata: {embedding: zero, metadata: zero}
+reuse: [real_text, shuffle_retrained, shuffle_fixed_weights, ts_only]
+shuffle: {rule: causal_prefix_resampling_with_replacement, seed: same_as_training_seed, repeats: 1}
+bootstrap: {block_days: [7, 14], repeats: 2000, seed: 54321, unit: calendar_date_seed_average, method: circular_moving_blocks}
+system:
+  seed: 7
+  queries_per_year: 6
+  repeats: 10
+  warmups: 2
+  epsilons: [0.0, 0.01, 0.1, 1.0]
+  methods: [numpy_exact, torch_cpu_exact, torch_cuda_exact, citra_avl]
+  query_forecast_device: cpu
+  caches: shared_frozen_float64_keys_impacts_and_vectorized_temporal_metadata
+  method_order: rotate_each_query_repeat
+  maintenance_updates: 100
+scaling:
+  sizes: [50, 500, 5000, 50000, 100000]
+  scenarios: [active_only, mixed_archive]
+  query_count: 3
+  repeats: 3
+  epsilons: [0.0, 0.01, 0.1, 1.0]
+  seed: 20261029
+  distribution: joint_gaussian_from_frozen_training_year_key_impact_moments_with_normalized_keys
+  mixed_extra_records_fraction: 1.0
+  revision_fraction: 0.05
+  note: synthetic; not a validated real temporal/version distribution

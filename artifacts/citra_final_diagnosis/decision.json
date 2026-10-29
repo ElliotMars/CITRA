@@ -1,0 +1,12 @@
+{
+  "system": "No-Go",
+  "prediction": "Evidence Insufficient / independent semantic claim No-Go",
+  "overall": "No-Go for Current CITRA",
+  "primary_numpy_p50_ms": 0.8635870181024075,
+  "primary_avl_p50_ms": 2.7069533243775368,
+  "credible_large_real_workload_established": false,
+  "new_year": 2024,
+  "new_year_primary_contrasts_with_both_block_lengths": 14,
+  "all_primary_intervals_include_zero": true,
+  "scope": "current single-region task and fixed operators/models under issuance_asof_assumption; not proof that all text forecasting or all certified indices are useless"
+}

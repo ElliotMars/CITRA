@@ -1,10 +1,17 @@
 # CITRA — Certified Influence-aware Temporal Retrieval and Aggregation
 
+最终诊断（2026-10-29）：**No-Go for Current CITRA**。
+真实七天窗口平均约42篇；同冻结参数的NumPy Exact/AVL(ε=.1)端到端P50为0.864/2.707ms。
+新2024年份真实文本MSE为0.308067，Metadata-only为0.307816，TS为0.309695；配对块Bootstrap未证明独立语义收益。
+模型与AVL数学实现保留，未开发Hybrid。完整证据、合成规模的条件性优势与限制、83项测试和复现命令见
+[最终系统报告](docs/citra_final_system_diagnosis.md)、[最终语义报告](docs/citra_final_semantic_diagnosis.md)、
+[最终Go/No-Go决策](docs/citra_final_go_nogo.md)。
+
 CITRA 是面向历史可用文本的研究原型：可训练预测查询、带符号文本影响、完整合法核求和，以及相对于固定 Full Text 模型的解析近似误差界。尚未建立真实预测收益或 ICDE 研究创新性。
 
 新增 PyTorch 模型见 `models/CITRA.py`，训练入口为 `run_CITRA.py`。数值输入 `[B,L,C]`，多步输出 `[B,H,C_target]`；原 ReTaMTSF 模型和实验入口保留在下方。
 
-最新阶段已完成 [预测退化诊断与受控消融](docs/citra_failure_diagnosis.md)：原始累计Sum存在尺度漂移，
+此前阶段已完成 [预测退化诊断与受控消融](docs/citra_failure_diagnosis.md)：原始累计Sum存在尺度漂移，
 新增Count Mean、公开时间窗口、固定TS残差与历史有界门控，均保留独立Exact Oracle和对应认证语义。
 2021验证锁定后，2023保留年份的残差MSE由TS的0.301148降至0.298032；固定权重打乱文本后仍为0.298193，
 尚不能确认可靠文本收益。75项测试和63组真实证书对照通过；本轮对Hybrid/复杂索引开发给出No-Go。

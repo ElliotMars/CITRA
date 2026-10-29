@@ -1,0 +1,8 @@
+{
+  "source": "frozen selected seed7 checkpoint, 2020 document representations only",
+  "checkpoint": "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual/seed_7/full_asof_text.pt",
+  "training_documents": 2151,
+  "query_year": 2021,
+  "distribution": "joint Gaussian in key/impact space; keys re-normalized; jittered covariance; no copied real or duplicate vectors",
+  "limitations": "Gaussian moments do not recreate semantic geometry, rare events, archive delays or real revision processes"
+}

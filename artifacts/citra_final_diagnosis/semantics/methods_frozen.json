@@ -1,0 +1,35 @@
+{
+  "config_sha256": "7ce8f8b02374781101ecbd73319456fd77b1990941ebe0080cc90bad8bc30b16",
+  "new_checkpoints": {
+    "artifacts/citra_final_diagnosis/semantics/constant_text/seed_17/full_asof_text.pt": "7b07fd72664754fbc8b30cdf585fff4639162801f624e0adc51d6ff1005f2b8c",
+    "artifacts/citra_final_diagnosis/semantics/constant_text/seed_29/full_asof_text.pt": "148a3c24e169a17d48c7d687a74e5c3db6034f6f1595e73c5c9ccf273af2066d",
+    "artifacts/citra_final_diagnosis/semantics/constant_text/seed_7/full_asof_text.pt": "510903442e88e2af4b90a010add389c5b94517d9b9c9e9637ed70ec561e40751",
+    "artifacts/citra_final_diagnosis/semantics/metadata_only/seed_17/full_asof_text.pt": "c89b52799558efd4556f09cf56aa9fa312cc9c0f4e8642235aeb25fefba3d97b",
+    "artifacts/citra_final_diagnosis/semantics/metadata_only/seed_29/full_asof_text.pt": "468575ee155587f7166a11a177a71a3aaa7ca4f1eaa433080aa454d66beac939",
+    "artifacts/citra_final_diagnosis/semantics/metadata_only/seed_7/full_asof_text.pt": "8170a41850bef4ee4bb2b8f0a9f7661b965ca8e5d11e0d224f47efcf2173f00a",
+    "artifacts/citra_final_diagnosis/semantics/null_no_metadata/seed_17/full_asof_text.pt": "2c90d27dcb9b4b4564415bff3d633e0aed0de6b8684765f4533b1b26cb7f93e9",
+    "artifacts/citra_final_diagnosis/semantics/null_no_metadata/seed_29/full_asof_text.pt": "b05f8a7a3d66df88dccc13856c2da3160a4218c8b303aeb9b694f8dbba34be98",
+    "artifacts/citra_final_diagnosis/semantics/null_no_metadata/seed_7/full_asof_text.pt": "dee6ae8a946276bd4a15023852a6afe2a0c5f2878b5169eea9418a1d5613d817",
+    "artifacts/citra_final_diagnosis/semantics/content_only/seed_17/full_asof_text.pt": "0c8519b86eab8d99266a1d2b45205e94752602e1d042bf9ca5bd2ecb921663ba",
+    "artifacts/citra_final_diagnosis/semantics/content_only/seed_29/full_asof_text.pt": "c37b623277ee0eb4fbc9e47c09971cce87d41bd2542dc530dbc12e7aff63858d",
+    "artifacts/citra_final_diagnosis/semantics/content_only/seed_7/full_asof_text.pt": "ca2fe59ed9327416374bd3223ba19b06ca453390cdf43fd2c63ed8a0a4737fef"
+  },
+  "reused_checkpoints": {
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual/seed_7/full_asof_text.pt": "2cffac0512496b3c0b1506a55dc0e1e946f1272d43aa52cf8f6a58ca7cea31c6",
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual_shuffled/seed_7/full_asof_text.pt": "43e24c0f40c89ac10822cad83b7ab48f03a49aca7d4d8f988c832611ca0097db",
+    "artifacts/citra_real_dsm/linear/delay_0h/seed_7/ts_only/ts_only.pt": "11148e23b2bbd285e151a576560a344f4fd9699a2640ba2109d655945175e46c",
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual/seed_17/full_asof_text.pt": "441a88aeb9f5d2d8a5fcf9687eda2d2eda4eb3103a12071113dd8253be703941",
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual_shuffled/seed_17/full_asof_text.pt": "977819bfd4fe0b13b7a863e3a7743362169115169939aee45b7e133cb807cf40",
+    "artifacts/citra_real_dsm/linear/delay_0h/seed_17/ts_only/ts_only.pt": "d7e65804c2187e34f5ddf72d453830776a3f034b8128a448d2cdbbed2f9aeaf5",
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual/seed_29/full_asof_text.pt": "1fe8d2ea0de6a983a29f5ac54c7516c5255ff1a5b00536eafd5a4bb12931abc6",
+    "artifacts/citra_failure_diagnosis/experiments/window7_mean_residual_shuffled/seed_29/full_asof_text.pt": "4065707b01c21ca42bf92bea5111df4de1810a110c183ac764ccd10aeccc1221",
+    "artifacts/citra_real_dsm/linear/delay_0h/seed_29/ts_only/ts_only.pt": "c855ba734b45219caf8d0cb150bb81f41526e6d8bdbb661fc725252e23df4543"
+  },
+  "no_new_model_selection": "all methods evaluated; best epoch selected with 2021 only; no ranking/tuning with 2022/2023/2024",
+  "code_sha256": {
+    "citra/final_diagnosis.py": "462c9c7ae2892f29f8588958e04e4faefa5a5de9e4d988273f3fa8d053463a61",
+    "models/CITRA.py": "92d7d8936940d4fa5b68b2ec65af0339086402e92c569f736be7ae0260f88dd3",
+    "citra/learning/training.py": "7cda452601e670eec1bfbf3ead488759a9d957e4ab50729fe78ecaece3db8d6c",
+    "/opt/data/private/ATM-ReTaMTSF/scripts/run_citra_final_semantics.py": "b67e25ff1f9d63da5a392f806652ccbcaa3584d7a32863b935d94f5d804abe6b"
+  }
+}

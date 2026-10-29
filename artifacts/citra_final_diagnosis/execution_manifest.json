@@ -1,0 +1,91 @@
+{
+  "finished_utc": "2026-10-29T05:36:51.758767+00:00",
+  "git_commit": "78af29edb21b8b93d795ca6528b1e027273bd40f",
+  "prompt_preserved": true,
+  "source_sha256": {
+    "citra/final_diagnosis.py": "f70c859f861f460f017688741c2cfd72454013781a73b44f9a2b6d435632b44e",
+    "configs/citra_final.yaml": "7ce8f8b02374781101ecbd73319456fd77b1990941ebe0080cc90bad8bc30b16",
+    "scripts/register_citra_final.py": "989c1f86972910fcdd54449d8d067ffca0bcb4a9c4de4255abe5100aabc2200e",
+    "scripts/benchmark_citra_final.py": "3de791cb04689380b57f36f759a307c9b06423a502ebba17fdcdf87dae8bc011",
+    "scripts/benchmark_citra_scaling.py": "77293c9b3db65afd28c3b28ed31275dc51ce7b603f9a36d53da6b2a08ecf646e",
+    "scripts/run_citra_final_semantics.py": "aca386e83a0fcedf12e1c50957f096476b9b66a45acdea6603c5930ca99c769b",
+    "scripts/report_citra_final.py": "1cb19e61e8d4197a7b974e50c73e9db5f936760c3e896ab5c15515fa2a3e657f",
+    "scripts/verify_citra_final.py": "a0abd185b0b23b14ef4725f08b8ac2c018e79a0cf656402401631a0bc16b5ebe",
+    "tests/test_citra_final_diagnosis.py": "a8c4a864108626ad6075a8f93f6af8f76b83ca3e0cec3df9681b0e7de62e627d"
+  },
+  "report_sha256": {
+    "docs/citra_final_system_diagnosis.md": "2639b3b14d82c13fba3ebcae3d2a05ae0a314a0967443281e98e58eeceeff9ac",
+    "docs/citra_final_semantic_diagnosis.md": "d0dcb571e7495c3788a8386d80ab195835eb5e9961d30a51e347a6e7909fb331",
+    "docs/citra_final_go_nogo.md": "4192729250ed2484006cd1c68f947cfa2a458cc194f921ddc63395af18cafdb2"
+  },
+  "costs": {
+    "semantics/train_cost.json": {
+      "wall_seconds": 102.03024900890887,
+      "device": "cuda:0",
+      "stage": "train"
+    },
+    "semantics/evaluate_cost.json": {
+      "wall_seconds": 125.5016498286277,
+      "device": "cuda:0",
+      "stage": "evaluate"
+    },
+    "semantics/analyze_cost.json": {
+      "wall_seconds": 14.122609465382993,
+      "device": "cuda:0",
+      "stage": "analyze"
+    }
+  },
+  "verification": {
+    "artifact_consistency_passed": true,
+    "checkpoints_checked": 21,
+    "raw_files_checked": 20,
+    "prediction_arrays_checked": 72,
+    "paired_primary_intervals_recomputed": 42,
+    "real_performance_runs_checked": 3374,
+    "synthetic_cases_checked": 10,
+    "synthetic_query_runs_checked": 500,
+    "training_sources": {
+      "citra/final_diagnosis.py": {
+        "registered_sha": "462c9c7ae2892f29f8588958e04e4faefa5a5de9e4d988273f3fa8d053463a61",
+        "preserved": true,
+        "path": "artifacts/citra_final_diagnosis/source_snapshots/462c9c7ae289_final_diagnosis.py"
+      },
+      "models/CITRA.py": {
+        "registered_sha": "92d7d8936940d4fa5b68b2ec65af0339086402e92c569f736be7ae0260f88dd3",
+        "preserved": true,
+        "path": "artifacts/citra_final_diagnosis/source_snapshots/92d7d8936940_CITRA.py"
+      },
+      "citra/learning/training.py": {
+        "registered_sha": "7cda452601e670eec1bfbf3ead488759a9d957e4ab50729fe78ecaece3db8d6c",
+        "preserved": true,
+        "path": "artifacts/citra_final_diagnosis/source_snapshots/7cda452601e6_training.py"
+      },
+      "/opt/data/private/ATM-ReTaMTSF/scripts/run_citra_final_semantics.py": {
+        "registered_sha": "b67e25ff1f9d63da5a392f806652ccbcaa3584d7a32863b935d94f5d804abe6b",
+        "preserved": true,
+        "path": "artifacts/citra_final_diagnosis/source_snapshots/b67e25ff1f9d_run_citra_final_semantics.py"
+      }
+    },
+    "legacy_core_unchanged": {
+      "models/CITRA.py": true,
+      "citra/learning/aggregation.py": true,
+      "citra/learning/inference.py": true,
+      "citra/index.py": true,
+      "citra/temporal.py": true
+    },
+    "note": "Verifies saved metrics, hashes, cohorts and certificates, not historical first-publication evidence or IEEE formal rounding bounds"
+  },
+  "decision": {
+    "system": "No-Go",
+    "prediction": "Evidence Insufficient / independent semantic claim No-Go",
+    "overall": "No-Go for Current CITRA",
+    "primary_numpy_p50_ms": 0.8635870181024075,
+    "primary_avl_p50_ms": 2.7069533243775368,
+    "credible_large_real_workload_established": false,
+    "new_year": 2024,
+    "new_year_primary_contrasts_with_both_block_lengths": 14,
+    "all_primary_intervals_include_zero": true,
+    "scope": "current single-region task and fixed operators/models under issuance_asof_assumption; not proof that all text forecasting or all certified indices are useless"
+  },
+  "source_notes": "Training-stage SHA-matched source snapshots are preserved. Optional fresh-output config entry and report/verification code were completed after training; no model/optimizer/operator/feature-policy tuning followed viewed outcomes."
+}
