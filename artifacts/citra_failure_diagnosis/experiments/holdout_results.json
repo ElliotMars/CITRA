@@ -1,0 +1,1115 @@
+{
+  "selection": {
+    "selected": "window7_mean_residual",
+    "candidates": [
+      {
+        "variant": "sum_joint",
+        "values": [
+          0.3540528064890799,
+          0.33565563630858875,
+          0.3805695827002234
+        ],
+        "mean": 0.3567593418326307,
+        "std": 0.022578964663865234,
+        "select": true
+      },
+      {
+        "variant": "mean_joint",
+        "values": [
+          0.3098560837052793,
+          0.30552298381389076,
+          0.30466938345612743
+        ],
+        "mean": 0.30668281699176586,
+        "std": 0.002781074364164469,
+        "select": true
+      },
+      {
+        "variant": "window7_joint",
+        "values": [
+          0.30385803487045204,
+          0.30011060189741434,
+          0.29924865518342497
+        ],
+        "mean": 0.30107243065043043,
+        "std": 0.0024505981284965593,
+        "select": true
+      },
+      {
+        "variant": "window30_joint",
+        "values": [
+          0.2972838026750831,
+          0.2978022774206482,
+          0.30059498478537106
+        ],
+        "mean": 0.2985603549603674,
+        "std": 0.0017810089581590746,
+        "select": true
+      },
+      {
+        "variant": "window90_joint",
+        "values": [
+          0.29908057239585284,
+          0.29440699298191264,
+          0.3008003153699665
+        ],
+        "mean": 0.29809596024924395,
+        "std": 0.0033084344634335587,
+        "select": true
+      },
+      {
+        "variant": "sum_residual",
+        "values": [
+          0.29285290309747714,
+          0.28928518196994374,
+          0.2924441614371427
+        ],
+        "mean": 0.2915274155015212,
+        "std": 0.001952556233203272,
+        "select": true
+      },
+      {
+        "variant": "mean_residual",
+        "values": [
+          0.2933521391739687,
+          0.2891396813419135,
+          0.2926302628204037
+        ],
+        "mean": 0.29170736111209533,
+        "std": 0.002252778488691191,
+        "select": true
+      },
+      {
+        "variant": "window7_mean_residual",
+        "values": [
+          0.29307926199213563,
+          0.28920504415732456,
+          0.2917099445533988
+        ],
+        "mean": 0.29133141690095304,
+        "std": 0.001964650947532829,
+        "select": true
+      },
+      {
+        "variant": "window7_mean_gated_residual",
+        "values": [
+          0.29309568296169763,
+          0.28934550454250185,
+          0.29220218786308744
+        ],
+        "mean": 0.2915477917890956,
+        "std": 0.0019588606918799385,
+        "select": true
+      },
+      {
+        "variant": "window7_mean_residual_tail",
+        "values": [
+          0.29323612234746144,
+          0.2891819418560707,
+          0.2925845845180734
+        ],
+        "mean": 0.29166754957386853,
+        "std": 0.002177110397031561,
+        "select": true
+      },
+      {
+        "variant": "window7_mean_residual_shuffled",
+        "values": [
+          0.29316916612194704,
+          0.2891851696976742,
+          0.2909853715834581
+        ],
+        "mean": 0.29111323580102644,
+        "std": 0.001995073637928045,
+        "select": false
+      }
+    ],
+    "criterion": "minimum_mean_2021_validation_normalized_mse_across_all_three_seeds",
+    "seed_order": [
+      7,
+      17,
+      29
+    ],
+    "used_test_labels": false,
+    "holdout_year": 2023,
+    "note": "2022 already seen. No 2022/2023 metrics were computed by this ablation runner before selection."
+  },
+  "rows": [
+    {
+      "variant": "window7_mean_residual",
+      "seed": 7,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 18.64543411837502,
+        "mae": 3.267498247657656,
+        "normalized_mse": 0.2999033469101085,
+        "normalized_mae": 0.375168316654107,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.75021109503635,
+            "mae": 3.7994988227024
+          },
+          "wind_speed_knots": {
+            "mse": 12.540657141713691,
+            "mae": 2.735497672612912
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.004814564407979905,
+          0.021421874673494243
+        ]
+      },
+      "text_off": {
+        "mse": 18.7730105805334,
+        "mae": 3.28350652141094,
+        "normalized_mse": 0.30568386996632263,
+        "normalized_mae": 0.37886792510722483,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.738140691404485,
+            "mae": 3.794943783252207
+          },
+          "wind_speed_knots": {
+            "mse": 12.807880469662315,
+            "mae": 2.7720692595696725
+          }
+        },
+        "normalized_bias_by_target": [
+          0.00351918234912456,
+          0.06458920360960581
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "selected_fixed_weights_shuffle",
+      "seed": 7,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 18.648566643442734,
+        "mae": 3.2679486760303225,
+        "normalized_mse": 0.3000811261543584,
+        "normalized_mae": 0.37527629022296244,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.74817068028506,
+            "mae": 3.7993224037874413
+          },
+          "wind_speed_knots": {
+            "mse": 12.548962606600405,
+            "mae": 2.7365749482732036
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.004652481987860828,
+          0.022622014876724723
+        ]
+      },
+      "text_off": {
+        "mse": 18.7730105805334,
+        "mae": 3.28350652141094,
+        "normalized_mse": 0.30568386996632263,
+        "normalized_mae": 0.37886792510722483,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.738140691404485,
+            "mae": 3.794943783252207
+          },
+          "wind_speed_knots": {
+            "mse": 12.807880469662315,
+            "mae": 2.7720692595696725
+          }
+        },
+        "normalized_bias_by_target": [
+          0.00351918234912456,
+          0.06458920360960581
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "4b03e4b158609dd891d8c35e03e4d5aa7ecf947c036ee55b4f73e77b7fd3dad1",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "window7_mean_residual_shuffled",
+      "seed": 7,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 18.691780819617613,
+        "mae": 3.2733494952305304,
+        "normalized_mse": 0.30256280475209,
+        "normalized_mae": 0.37676041973882485,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.718603800469374,
+            "mae": 3.7948487031809477
+          },
+          "wind_speed_knots": {
+            "mse": 12.664957838765853,
+            "mae": 2.7518502872801123
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.0033228499661863012,
+          0.04232909826527392
+        ]
+      },
+      "text_off": {
+        "mse": 18.7730105805334,
+        "mae": 3.28350652141094,
+        "normalized_mse": 0.30568386996632263,
+        "normalized_mae": 0.37886792510722483,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.738140691404485,
+            "mae": 3.794943783252207
+          },
+          "wind_speed_knots": {
+            "mse": 12.807880469662315,
+            "mae": 2.7720692595696725
+          }
+        },
+        "normalized_bias_by_target": [
+          0.00351918234912456,
+          0.06458920360960581
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "4b03e4b158609dd891d8c35e03e4d5aa7ecf947c036ee55b4f73e77b7fd3dad1",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "fixed_ts_only",
+      "seed": 7,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 18.7730105805334,
+        "mae": 3.28350652141094,
+        "normalized_mse": 0.30568386996632263,
+        "normalized_mae": 0.37886792510722483,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.738140691404485,
+            "mae": 3.794943783252207
+          },
+          "wind_speed_knots": {
+            "mse": 12.807880469662315,
+            "mae": 2.7720692595696725
+          }
+        },
+        "normalized_bias_by_target": [
+          0.00351918234912456,
+          0.06458920360960581
+        ]
+      },
+      "text_off": {
+        "mse": 18.7730105805334,
+        "mae": 3.28350652141094,
+        "normalized_mse": 0.30568386996632263,
+        "normalized_mae": 0.37886792510722483,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 24.738140691404485,
+            "mae": 3.794943783252207
+          },
+          "wind_speed_knots": {
+            "mse": 12.807880469662315,
+            "mae": 2.7720692595696725
+          }
+        },
+        "normalized_bias_by_target": [
+          0.00351918234912456,
+          0.06458920360960581
+        ]
+      },
+      "gate_mean": 0.0,
+      "visible_count_mean": 0.0,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 1,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear"
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "window7_mean_residual",
+      "seed": 17,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 17.13817786335948,
+        "mae": 3.15478195798178,
+        "normalized_mse": 0.29698274751975184,
+        "normalized_mae": 0.36910363416066805,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.711954249140803,
+            "mae": 3.5828344873803513
+          },
+          "wind_speed_knots": {
+            "mse": 12.56440147757816,
+            "mae": 2.7267294285832087
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.01183868154404819,
+          0.029423581092590214
+        ]
+      },
+      "text_off": {
+        "mse": 17.162032507881985,
+        "mae": 3.153447956175331,
+        "normalized_mse": 0.29859723333292426,
+        "normalized_mae": 0.36987971965819266,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68373282326112,
+            "mae": 3.569717478594854
+          },
+          "wind_speed_knots": {
+            "mse": 12.64033219250285,
+            "mae": 2.737178433755807
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0011547978807017064,
+          0.05271930494070606
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "selected_fixed_weights_shuffle",
+      "seed": 17,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 17.136369972508042,
+        "mae": 3.1543116431537177,
+        "normalized_mse": 0.2970625642061047,
+        "normalized_mae": 0.3691075168063863,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.70425591888469,
+            "mae": 3.5815671613592692
+          },
+          "wind_speed_knots": {
+            "mse": 12.568484026131388,
+            "mae": 2.727056124948166
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.011988264535076494,
+          0.029196818764373692
+        ]
+      },
+      "text_off": {
+        "mse": 17.162032507881985,
+        "mae": 3.153447956175331,
+        "normalized_mse": 0.29859723333292426,
+        "normalized_mae": 0.36987971965819266,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68373282326112,
+            "mae": 3.569717478594854
+          },
+          "wind_speed_knots": {
+            "mse": 12.64033219250285,
+            "mae": 2.737178433755807
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0011547978807017064,
+          0.05271930494070606
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "95e1e8f1170eaf7a69490cad1082e29d360847d930a176fd049ff299c0ffa002",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "window7_mean_residual_shuffled",
+      "seed": 17,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 17.14109550873158,
+        "mae": 3.1540401841011456,
+        "normalized_mse": 0.2977485676334935,
+        "normalized_mae": 0.36945525177493355,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68084829846538,
+            "mae": 3.576535540100186
+          },
+          "wind_speed_knots": {
+            "mse": 12.601342718997783,
+            "mae": 2.731544828102106
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.007152089060076503,
+          0.0398857523227122
+        ]
+      },
+      "text_off": {
+        "mse": 17.162032507881985,
+        "mae": 3.153447956175331,
+        "normalized_mse": 0.29859723333292426,
+        "normalized_mae": 0.36987971965819266,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68373282326112,
+            "mae": 3.569717478594854
+          },
+          "wind_speed_knots": {
+            "mse": 12.64033219250285,
+            "mae": 2.737178433755807
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0011547978807017064,
+          0.05271930494070606
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "95e1e8f1170eaf7a69490cad1082e29d360847d930a176fd049ff299c0ffa002",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "fixed_ts_only",
+      "seed": 17,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 17.162032507881985,
+        "mae": 3.153447956175331,
+        "normalized_mse": 0.29859723333292426,
+        "normalized_mae": 0.36987971965819266,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68373282326112,
+            "mae": 3.569717478594854
+          },
+          "wind_speed_knots": {
+            "mse": 12.64033219250285,
+            "mae": 2.737178433755807
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0011547978807017064,
+          0.05271930494070606
+        ]
+      },
+      "text_off": {
+        "mse": 17.162032507881985,
+        "mae": 3.153447956175331,
+        "normalized_mse": 0.29859723333292426,
+        "normalized_mae": 0.36987971965819266,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.68373282326112,
+            "mae": 3.569717478594854
+          },
+          "wind_speed_knots": {
+            "mse": 12.64033219250285,
+            "mae": 2.737178433755807
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0011547978807017064,
+          0.05271930494070606
+        ]
+      },
+      "gate_mean": 0.0,
+      "visible_count_mean": 0.0,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 1,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear"
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "window7_mean_residual",
+      "seed": 29,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 16.889348613772693,
+        "mae": 3.130389268758427,
+        "normalized_mse": 0.2972084694299773,
+        "normalized_mae": 0.36946705496942633,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.17593291516968,
+            "mae": 3.515088215566651
+          },
+          "wind_speed_knots": {
+            "mse": 12.602764312375703,
+            "mae": 2.745690321950203
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.0020430675038835226,
+          -0.0033263774935051744
+        ]
+      },
+      "text_off": {
+        "mse": 16.990613095845383,
+        "mae": 3.141416583208009,
+        "normalized_mse": 0.2991616444011109,
+        "normalized_mae": 0.3709163059885333,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.294569464089218,
+            "mae": 3.525631845271929
+          },
+          "wind_speed_knots": {
+            "mse": 12.686656727601546,
+            "mae": 2.757201321144089
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0025230412419589734,
+          0.05389573445276088
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "selected_fixed_weights_shuffle",
+      "seed": 29,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 16.89173762181305,
+        "mae": 3.13100594281305,
+        "normalized_mse": 0.2974353695258575,
+        "normalized_mae": 0.3696250136474499,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.169933594517484,
+            "mae": 3.514720553948743
+          },
+          "wind_speed_knots": {
+            "mse": 12.613541649108614,
+            "mae": 2.747291331677356
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.0021980734361878177,
+          -0.006427139736863172
+        ]
+      },
+      "text_off": {
+        "mse": 16.990613095845383,
+        "mae": 3.141416583208009,
+        "normalized_mse": 0.2991616444011109,
+        "normalized_mae": 0.3709163059885333,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.294569464089218,
+            "mae": 3.525631845271929
+          },
+          "wind_speed_knots": {
+            "mse": 12.686656727601546,
+            "mae": 2.757201321144089
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0025230412419589734,
+          0.05389573445276088
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "ab7b9645d9ffa5fe1e06ec4a6478a2e40a5ea72f4174ba61d2331842f857b1a1",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "window7_mean_residual_shuffled",
+      "seed": 29,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 16.898495987003315,
+        "mae": 3.13106508532825,
+        "normalized_mse": 0.29674435856207304,
+        "normalized_mae": 0.36927681245291644,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.217816300171457,
+            "mae": 3.519207678284003
+          },
+          "wind_speed_knots": {
+            "mse": 12.579175673835177,
+            "mae": 2.7429224923724966
+          }
+        },
+        "normalized_bias_by_target": [
+          -0.0018590792421602387,
+          0.0006364148114393686
+        ]
+      },
+      "text_off": {
+        "mse": 16.990613095845383,
+        "mae": 3.141416583208009,
+        "normalized_mse": 0.2991616444011109,
+        "normalized_mae": 0.3709163059885333,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.294569464089218,
+            "mae": 3.525631845271929
+          },
+          "wind_speed_knots": {
+            "mse": 12.686656727601546,
+            "mae": 2.757201321144089
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0025230412419589734,
+          0.05389573445276088
+        ]
+      },
+      "gate_mean": 1.0,
+      "visible_count_mean": 42.29120879120879,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 384,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear",
+        "aggregation_kind": "count_mean",
+        "window_days": 7,
+        "gated": false
+      },
+      "data_fingerprint": "ab7b9645d9ffa5fe1e06ec4a6478a2e40a5ea72f4174ba61d2331842f857b1a1",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    },
+    {
+      "variant": "fixed_ts_only",
+      "seed": 29,
+      "split": "test",
+      "year": 2023,
+      "windows": 364,
+      "text_on": {
+        "mse": 16.990613095845383,
+        "mae": 3.141416583208009,
+        "normalized_mse": 0.2991616444011109,
+        "normalized_mae": 0.3709163059885333,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.294569464089218,
+            "mae": 3.525631845271929
+          },
+          "wind_speed_knots": {
+            "mse": 12.686656727601546,
+            "mae": 2.757201321144089
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0025230412419589734,
+          0.05389573445276088
+        ]
+      },
+      "text_off": {
+        "mse": 16.990613095845383,
+        "mae": 3.141416583208009,
+        "normalized_mse": 0.2991616444011109,
+        "normalized_mae": 0.3709163059885333,
+        "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+        "per_target": {
+          "temperature_F": {
+            "mse": 21.294569464089218,
+            "mae": 3.525631845271929
+          },
+          "wind_speed_knots": {
+            "mse": 12.686656727601546,
+            "mae": 2.757201321144089
+          }
+        },
+        "normalized_bias_by_target": [
+          0.0025230412419589734,
+          0.05389573445276088
+        ]
+      },
+      "gate_mean": 0.0,
+      "visible_count_mean": 0.0,
+      "cohort_sha256": "7e283a131e3e835ec0dc0791b11319f09fab2b71a2f5e23ba53f8d61dbd0f824",
+      "model_config": {
+        "seq_len": 48,
+        "channels": 2,
+        "horizon": 6,
+        "target_ids": [
+          0,
+          1
+        ],
+        "base_dim": 1,
+        "embedding_dim": 8,
+        "impact_dim": 8,
+        "metadata_dim": 2,
+        "hidden_dim": 32,
+        "sigma": 0.7,
+        "backbone_kind": "linear"
+      },
+      "data_fingerprint": "8ac1016ce19a448daf5283e9f21256fec4ac266970cd6d2b1132231e18288f9f",
+      "scaler": {
+        "mean": [
+          51.68843304843305,
+          8.382718867709166
+        ],
+        "scale": [
+          21.028376584063427,
+          4.802048221311442
+        ]
+      }
+    }
+  ],
+  "evaluation_role": "new year after a validation-only locked selection; same region and issuance assumptions, not multiple independent environments"
+}

@@ -28,6 +28,8 @@ def evaluate(model, data, config, mode, prediction_output=None):
     session = FrozenForecastSession(model, None if numeric_only else data.corpus,
                                     text_enabled=not numeric_only, build_index=False)
     c = model.config
+    from citra.learning.aggregation import AggregationSpec
+    spec=AggregationSpec.from_model(model)
     windows = data.windows("test", c["seq_len"], c["horizon"], c["target_ids"], config["stride"])
     count = min(len(windows), config["evaluation_limit"]) if config["evaluation_limit"] else len(windows)
     device = next(model.parameters()).device
@@ -40,14 +42,14 @@ def evaluate(model, data, config, mode, prediction_output=None):
         impacts = torch.tensor(session.impacts_np.copy(), dtype=torch.float64, device=device)
     for begin in range(0, count, config["batch_size"]):
         idx = range(begin, min(count, begin + config["batch_size"]))
-        x, y, mask = batch_tensors(windows, idx, device, include_text=not numeric_only)
+        x, y, mask = batch_tensors(windows, idx, device, include_text=not numeric_only,aggregation_spec=spec)
         numerical = model.numeric_forecast(x)
         if numeric_only:
             forecast = numerical
         else:
             q = model.encode_query(x)
             aggregate = model.aggregate(q, keys, impacts, mask, actual_mode, config["topk"])
-            forecast = numerical + model.fusion(aggregate)
+            forecast = numerical + model.text_correction(x,aggregate)
         predictions.append(forecast.cpu().numpy())
         truths.append(y.cpu().numpy())
         cutoffs.extend(windows[i][2] for i in idx)
@@ -65,6 +67,7 @@ def evaluate(model, data, config, mode, prediction_output=None):
         numeric_delay_hours=data.manifest.get("numeric_delay_hours"), is_fixture=data.manifest["is_fixture"],
         queries=[], certified={}, certificate_units="normalized single-sample [H,C_target] L2",
         control_kind=getattr(data,"control_kind",None),
+        aggregation_semantics=dict(kind=spec.kind,window_days=spec.window_days,gated=c.get("gated",False)),
         accuracy_note="all reported test windows; batched accuracy timing is not per-query latency")
     if data.manifest["is_fixture"]:
         report["real_forecast_metrics"]="omitted: synthetic integration smoke only"
@@ -114,7 +117,7 @@ def evaluate(model, data, config, mode, prediction_output=None):
                 tolerance=1e-10+1e-10*float(np.linalg.norm(references[int(i)]))
                 if error>fast.certified_bound+tolerance or fast.certified_bound>epsilon:
                     raise AssertionError("prediction certificate violation")
-                visible=int(data.corpus.visibility([t]).sum())
+                visible=int(spec.mask(data.corpus,[t]).sum())
                 stats=asdict(fast.query_stats)
                 visited=max(stats["nodes_visited"],1)
                 rows.append(dict(window_index=int(i),cutoff=cutoff.isoformat(),epsilon=epsilon,

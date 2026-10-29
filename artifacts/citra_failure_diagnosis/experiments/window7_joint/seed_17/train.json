@@ -1,0 +1,80 @@
+{
+  "split": "train",
+  "year": null,
+  "windows": 361,
+  "text_on": {
+    "mse": 14.670371915735103,
+    "mae": 2.8506302035423317,
+    "normalized_mse": 0.22869832401268914,
+    "normalized_mae": 0.319665915877084,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 19.827292273060625,
+        "mae": 3.4098276945909607
+      },
+      "wind_speed_knots": {
+        "mse": 9.513451558409585,
+        "mae": 2.2914327124937026
+      }
+    },
+    "normalized_bias_by_target": [
+      -0.013270423227282717,
+      -0.006752998310867538
+    ]
+  },
+  "text_off": {
+    "mse": 19.96420684074941,
+    "mae": 3.481816174467824,
+    "normalized_mse": 0.38072359355464575,
+    "normalized_mae": 0.42548524140240235,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 23.60042076917548,
+        "mae": 3.7287238865008288
+      },
+      "wind_speed_knots": {
+        "mse": 16.32799291232334,
+        "mae": 3.23490846243482
+      }
+    },
+    "normalized_bias_by_target": [
+      0.06304373219392237,
+      0.43214137275861597
+    ]
+  },
+  "gate_mean": 1.0,
+  "visible_count_mean": 40.84487534626039,
+  "cohort_sha256": "7814e0d28c54c1cf379324d45332d01e8b41966bb7603292d2d82a265749d62f",
+  "model_config": {
+    "seq_len": 48,
+    "channels": 2,
+    "horizon": 6,
+    "target_ids": [
+      0,
+      1
+    ],
+    "base_dim": 384,
+    "embedding_dim": 8,
+    "impact_dim": 8,
+    "metadata_dim": 2,
+    "hidden_dim": 32,
+    "sigma": 0.7,
+    "backbone_kind": "linear",
+    "aggregation_kind": "sum",
+    "window_days": 7,
+    "gated": false
+  },
+  "data_fingerprint": "8254655a3e312f40248e203295527bee686410b1ab76c680ca28e1894490cbfc",
+  "scaler": {
+    "mean": [
+      51.68843304843305,
+      8.382718867709166
+    ],
+    "scale": [
+      21.028376584063427,
+      4.802048221311442
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "selected": {
+    "name": "window7_mean_residual",
+    "kind": "count_mean",
+    "days": 7,
+    "residual": true
+  },
+  "control": {
+    "name": "window7_mean_residual_shuffled",
+    "kind": "count_mean",
+    "days": 7,
+    "residual": true,
+    "shuffled": true,
+    "select": false
+  },
+  "trained_seeds": [
+    7,
+    17,
+    29
+  ],
+  "selection_sha256": "4347ce5a01dc934988e5d8253fb9ad5e7f5dd83dfef2bd0a556be006fcd20058"
+}

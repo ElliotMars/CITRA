@@ -1,0 +1,135 @@
+{
+  "selected": "window7_mean_residual",
+  "candidates": [
+    {
+      "variant": "sum_joint",
+      "values": [
+        0.3540528064890799,
+        0.33565563630858875,
+        0.3805695827002234
+      ],
+      "mean": 0.3567593418326307,
+      "std": 0.022578964663865234,
+      "select": true
+    },
+    {
+      "variant": "mean_joint",
+      "values": [
+        0.3098560837052793,
+        0.30552298381389076,
+        0.30466938345612743
+      ],
+      "mean": 0.30668281699176586,
+      "std": 0.002781074364164469,
+      "select": true
+    },
+    {
+      "variant": "window7_joint",
+      "values": [
+        0.30385803487045204,
+        0.30011060189741434,
+        0.29924865518342497
+      ],
+      "mean": 0.30107243065043043,
+      "std": 0.0024505981284965593,
+      "select": true
+    },
+    {
+      "variant": "window30_joint",
+      "values": [
+        0.2972838026750831,
+        0.2978022774206482,
+        0.30059498478537106
+      ],
+      "mean": 0.2985603549603674,
+      "std": 0.0017810089581590746,
+      "select": true
+    },
+    {
+      "variant": "window90_joint",
+      "values": [
+        0.29908057239585284,
+        0.29440699298191264,
+        0.3008003153699665
+      ],
+      "mean": 0.29809596024924395,
+      "std": 0.0033084344634335587,
+      "select": true
+    },
+    {
+      "variant": "sum_residual",
+      "values": [
+        0.29285290309747714,
+        0.28928518196994374,
+        0.2924441614371427
+      ],
+      "mean": 0.2915274155015212,
+      "std": 0.001952556233203272,
+      "select": true
+    },
+    {
+      "variant": "mean_residual",
+      "values": [
+        0.2933521391739687,
+        0.2891396813419135,
+        0.2926302628204037
+      ],
+      "mean": 0.29170736111209533,
+      "std": 0.002252778488691191,
+      "select": true
+    },
+    {
+      "variant": "window7_mean_residual",
+      "values": [
+        0.29307926199213563,
+        0.28920504415732456,
+        0.2917099445533988
+      ],
+      "mean": 0.29133141690095304,
+      "std": 0.001964650947532829,
+      "select": true
+    },
+    {
+      "variant": "window7_mean_gated_residual",
+      "values": [
+        0.29309568296169763,
+        0.28934550454250185,
+        0.29220218786308744
+      ],
+      "mean": 0.2915477917890956,
+      "std": 0.0019588606918799385,
+      "select": true
+    },
+    {
+      "variant": "window7_mean_residual_tail",
+      "values": [
+        0.29323612234746144,
+        0.2891819418560707,
+        0.2925845845180734
+      ],
+      "mean": 0.29166754957386853,
+      "std": 0.002177110397031561,
+      "select": true
+    },
+    {
+      "variant": "window7_mean_residual_shuffled",
+      "values": [
+        0.29316916612194704,
+        0.2891851696976742,
+        0.2909853715834581
+      ],
+      "mean": 0.29111323580102644,
+      "std": 0.001995073637928045,
+      "select": false
+    }
+  ],
+  "criterion": "minimum_mean_2021_validation_normalized_mse_across_all_three_seeds",
+  "seed_order": [
+    7,
+    17,
+    29
+  ],
+  "used_test_labels": false,
+  "holdout_year": 2023,
+  "note": "2022 already seen. No 2022/2023 metrics were computed by this ablation runner before selection."
+}

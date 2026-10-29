@@ -1,0 +1,31 @@
+# Registered after the frozen-scale audit, before running the new ablations.
+data_path: dataset/citra_real_dsm/prepared
+tail_data_path: dataset/citra_real_dsm/prepared_tail
+holdout_data_path: dataset/citra_real_dsm/prepared_2023
+tail_holdout_data_path: dataset/citra_real_dsm/prepared_tail_2023
+ts_root: artifacts/citra_real_dsm/linear/delay_0h
+seeds: [7, 17, 29]
+epochs: 20
+batch_size: 32
+threads: 1
+stride: 24
+learning_rate: 0.001
+weight_decay: 0.0001
+gradient_clip: 1.0
+fusion_norm_limit: 1.0
+topk: 8
+test_role: 2022_already_seen_diagnostic_only
+selection: minimum_mean_2021_validation_normalized_mse_across_all_three_seeds
+holdout_year: 2023
+variants:
+  - {name: sum_joint, kind: sum, reuse_original: true}
+  - {name: mean_joint, kind: count_mean}
+  - {name: window7_joint, kind: sum, days: 7}
+  - {name: window30_joint, kind: sum, days: 30}
+  - {name: window90_joint, kind: sum, days: 90}
+  - {name: sum_residual, kind: sum, residual: true}
+  - {name: mean_residual, kind: count_mean, residual: true}
+  - {name: window7_mean_residual, kind: count_mean, days: 7, residual: true}
+  - {name: window7_mean_gated_residual, kind: count_mean, days: 7, residual: true, gated: true}
+  - {name: window7_mean_residual_tail, kind: count_mean, days: 7, residual: true, tail: true}
+  - {name: window7_mean_residual_shuffled, kind: count_mean, days: 7, residual: true, shuffled: true, select: false}

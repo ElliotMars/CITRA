@@ -1,0 +1,2 @@
+# Optional distribution plots and training/validation curves.
+matplotlib==3.9.4

@@ -25,10 +25,11 @@ def observation_audit(path):
     exact=len(rows)-len({json.dumps(row,sort_keys=True) for row in rows})
     duplicates=sum(n>1 for n in timestamps.values())
     return dict(raw_observation_rows=len(rows),duplicate_observation_timestamp_groups=duplicates,
-                exact_duplicate_observation_rows=exact)
+                exact_duplicate_observation_rows=exact,
+                duplicate_timestamp_keys=[list(k) for k,n in timestamps.items() if n>1])
 
 
-def collect(raw_dir, output, years, protocol, numeric_delay_hours=None):
+def collect(raw_dir, output, years, protocol, numeric_delay_hours=None,quarantine_numeric_duplicates=False):
     if protocol not in (VERIFIED, ASSUMED):
         raise ValueError("choose an explicit availability protocol")
     if protocol == VERIFIED and numeric_delay_hours is not None:
@@ -56,10 +57,14 @@ def collect(raw_dir, output, years, protocol, numeric_delay_hours=None):
         if members >= 9999:
             raise ValueError("potentially truncated yearly AFD archive")
         numeric_audit=observation_audit(asos)
-        if numeric_audit["duplicate_observation_timestamp_groups"]:
+        if numeric_audit["duplicate_observation_timestamp_groups"] and not quarantine_numeric_duplicates:
             raise ValueError("ambiguous repeated numerical observations need explicit revision handling before replay")
+        if quarantine_numeric_duplicates and protocol!=ASSUMED:
+            raise ValueError("numeric quarantine policy is only supported by the explicit assumption protocol")
+        excluded=set(map(tuple,numeric_audit["duplicate_timestamp_keys"])) if quarantine_numeric_duplicates else set()
+        numeric_audit["quarantined_timestamp_groups"]=len(excluded)
         times, values, available = hourly_asos(asos, "DSM", simulated_delay=
-            numeric_delay_hours*60 if protocol == ASSUMED else None)
+            numeric_delay_hours*60 if protocol == ASSUMED else None,excluded_timestamps=excluded)
         expected = np.arange(epoch_seconds(start)+3600, epoch_seconds(end)+3600, 3600, dtype=np.int64)
         if np.any(times < expected[0]) or np.any(times > expected[-1]):
             raise ValueError("numeric timestamps outside requested year")
@@ -150,6 +155,7 @@ def main():
     p.add_argument("--years", nargs="+", type=int, default=[2020,2021,2022])
     p.add_argument("--protocol", choices=[VERIFIED,ASSUMED], default=VERIFIED)
     p.add_argument("--numeric-delay-hours", type=float)
+    p.add_argument("--quarantine-numeric-duplicates",action="store_true",help="exclude every row of repeated timestamps, never pick a correction")
     p.add_argument("--collection", type=Path)
     p.add_argument("--features", type=Path)
     p.add_argument("--hash-dimensions", type=int, default=384)
@@ -158,7 +164,7 @@ def main():
     if a.stage=="collect":
         if a.raw is None:
             p.error("collect requires --raw")
-        result=collect(a.raw,a.output,a.years,a.protocol,a.numeric_delay_hours)
+        result=collect(a.raw,a.output,a.years,a.protocol,a.numeric_delay_hours,a.quarantine_numeric_duplicates)
     elif a.stage=="prepare":
         if a.collection is None or a.features is None:
             p.error("prepare requires --collection and --features")

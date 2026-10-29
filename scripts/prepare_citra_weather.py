@@ -85,7 +85,7 @@ def afd_records(path, office, entity, ledger=None, simulated_delay=None, quarant
     return sorted(unique.values(), key=lambda row: (row["issued_at"], row["raw_member"]))
 
 
-def hourly_asos(path, station, ledger=None, simulated_delay=None):
+def hourly_asos(path, station, ledger=None, simulated_delay=None,excluded_timestamps=()):
     ledger = ledger or {}
     source = json.loads(Path(str(path) + ".metadata.json").read_text())
     if source.get("timestamp_timezone") != "UTC" or source.get("station_id") != station:
@@ -98,6 +98,8 @@ def hourly_asos(path, station, ledger=None, simulated_delay=None):
     for row in csv.DictReader(lines):
         if row["station"] != station:
             raise ValueError("mixed stations in a single-region series")
+        if (row["station"],row["valid"]) in excluded_timestamps:
+            continue
         observed = parse_time(row["valid"].replace(" ", "T") + ("Z" if not row["valid"].endswith("Z") else ""))
         end = epoch_seconds(observed) // 3600 * 3600 + 3600
         record_id = hashlib.sha256(json.dumps(row, sort_keys=True).encode()).hexdigest()

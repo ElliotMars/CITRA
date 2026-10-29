@@ -16,12 +16,13 @@ def seed_everything(seed):
         torch.cuda.manual_seed_all(seed)
 
 
-def batch_tensors(dataset, indices, device, include_text=True):
+def batch_tensors(dataset, indices, device, include_text=True,aggregation_spec=None):
     batch = [dataset[int(i)] for i in indices]
     x = torch.tensor(np.stack([r[0] for r in batch]), dtype=torch.float64, device=device)
     y = torch.tensor(np.stack([r[1] for r in batch]), dtype=torch.float64, device=device)
     cutoffs = [r[2] for r in batch]
-    mask = (torch.tensor(dataset.data.corpus.visibility(cutoffs), dtype=torch.bool, device=device)
+    mask = (torch.tensor(dataset.data.corpus.visibility(cutoffs) if aggregation_spec is None else
+                        aggregation_spec.mask(dataset.data.corpus,cutoffs), dtype=torch.bool, device=device)
             if include_text else None)
     return x, y, mask
 
@@ -39,24 +40,28 @@ def fit(model, data, config, mode, output):
         raise ValueError("shuffled_text requires explicitly constructed causal control data")
     base, metadata = data.corpus.tensors(device, torch.float64) if mode != "ts_only" else (None, None)
     forward_mode = "full_asof_text" if mode == "shuffled_text" else mode
-    optimizer = torch.optim.AdamW(model.parameters(), lr=config["learning_rate"], weight_decay=config["weight_decay"])
+    from .aggregation import AggregationSpec
+    spec=AggregationSpec.from_model(model)
+    trainable=[p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.AdamW(trainable, lr=config["learning_rate"], weight_decay=config["weight_decay"])
     generator = np.random.default_rng(config["seed"])
     logs, best = [], float("inf")
     checkpoint = Path(output) / f"{mode}.pt"
     for epoch in range(config["epochs"]):
         model.train()
-        start, losses = perf_counter(), []
+        start, losses,gradients,clipped = perf_counter(), [],[],[]
         order = generator.permutation(len(train))
         for begin in range(0, len(order), config["batch_size"]):
             idx = order[begin:begin + config["batch_size"]]
-            x, y, mask = batch_tensors(train, idx, device, include_text=mode != "ts_only")
+            x, y, mask = batch_tensors(train, idx, device, include_text=mode != "ts_only",aggregation_spec=spec)
             optimizer.zero_grad(set_to_none=True)
             prediction = model(x, base, metadata, mask, mode=forward_mode, topk=config["topk"])
             loss = (prediction - y).square().mean()
             if not torch.isfinite(loss):
                 raise FloatingPointError("nonfinite training loss")
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), config["gradient_clip"], error_if_nonfinite=True)
+            norm=torch.nn.utils.clip_grad_norm_(trainable, config["gradient_clip"], error_if_nonfinite=True)
+            gradients.append(float(norm));clipped.append(float(norm)>config["gradient_clip"])
             optimizer.step()
             model.fusion.constrain(config["fusion_norm_limit"])
             losses.append((float(loss.detach()), len(idx)))
@@ -65,7 +70,7 @@ def fit(model, data, config, mode, output):
         with torch.no_grad():
             for begin in range(0, len(validation), config["batch_size"]):
                 idx = range(begin, min(len(validation), begin + config["batch_size"]))
-                x, y, mask = batch_tensors(validation, idx, device, include_text=mode != "ts_only")
+                x, y, mask = batch_tensors(validation, idx, device, include_text=mode != "ts_only",aggregation_spec=spec)
                 prediction = model(x, base, metadata, mask, mode=forward_mode, topk=config["topk"])
                 validation_losses.append((float((prediction - y).square().mean()), len(idx)))
         training_loss = sum(loss * count for loss, count in losses) / len(train)
@@ -73,6 +78,7 @@ def fit(model, data, config, mode, output):
         if not np.isfinite(validation_loss):
             raise FloatingPointError("nonfinite validation loss")
         logs.append(dict(epoch=epoch + 1, training_loss=training_loss, validation_loss=validation_loss,
+                         gradient_norm_mean=float(np.mean(gradients)),gradient_clipped_fraction=float(np.mean(clipped)),
                          elapsed_seconds=perf_counter() - start, is_fixture=data.manifest["is_fixture"]))
         if validation_loss < best:
             best = validation_loss
@@ -86,6 +92,7 @@ def fit(model, data, config, mode, output):
     state = torch.load(checkpoint, map_location=device, weights_only=True)
     model.load_state_dict(state["state_dict"])
     return model, dict(checkpoint=str(checkpoint), epochs=logs, best_epoch=state["best_epoch"],
+                       backbone_frozen=not any(p.requires_grad for p in model.backbone.parameters()),
                        training_windows=len(train), validation_windows=len(validation),
                        training_seconds=sum(row["elapsed_seconds"] for row in logs))
 

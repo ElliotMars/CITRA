@@ -20,7 +20,7 @@ def preprocess(text):
 
 
 def encode(records, output, model_name, revision, device="cpu", batch_size=64, max_length=256,
-           local_model_path=None, backend="sentence_transformer"):
+           local_model_path=None, backend="sentence_transformer",text_strategy="head"):
     from huggingface_hub import snapshot_download
     output = Path(output)
     if output.exists():
@@ -52,6 +52,12 @@ def encode(records, output, model_name, revision, device="cpu", batch_size=64, m
     loading_seconds = perf_counter() - load_start
     preprocess_start = perf_counter()
     texts = [preprocess(row["text"]) for row in records]
+    if text_strategy not in ("head","tail"):
+        raise ValueError("text strategy must be head or tail")
+    if text_strategy=="tail":
+        tok=model.tokenizer if backend=="sentence_transformer" else tokenizer
+        texts=[tok.decode(tok(t,add_special_tokens=False,truncation=False)["input_ids"][-(max_length-2):],
+                          skip_special_tokens=True,clean_up_tokenization_spaces=False) for t in texts]
     preprocessing_seconds = perf_counter() - preprocess_start
     encoding_start = perf_counter()
     if backend == "sentence_transformer":
@@ -83,6 +89,7 @@ def encode(records, output, model_name, revision, device="cpu", batch_size=64, m
     model_hashes = {str(p.relative_to(path)): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(path).rglob("*")
                     if p.is_file() and p.suffix in (".safetensors", ".json", ".txt")}
     manifest = dict(encoder_name=model_name, revision=revision, preprocessing=PREPROCESSING, backend=backend,
+                    text_strategy=text_strategy,
                     max_wordpieces=max_length, normalized=True, frozen=True, dimensions=vectors.shape[1],
                     records=len(records), encoding_seconds=encoding_seconds, device=device,
                     model_acquisition_seconds=acquisition_seconds, model_loading_seconds=loading_seconds,
@@ -126,9 +133,10 @@ def main():
     p.add_argument("--max-length", type=int, default=256)
     p.add_argument("--local-model-path", type=Path)
     p.add_argument("--backend", choices=["sentence_transformer", "transformers"], default="sentence_transformer")
+    p.add_argument("--text-strategy",choices=["head","tail"],default="head",help="fixed first/last token segment; no label-based selection")
     args = p.parse_args()
     print(json.dumps(encode(load_jsonl(args.documents), args.output, args.model, args.revision,
-                            args.device, args.batch_size, args.max_length, args.local_model_path, args.backend), indent=2))
+                            args.device, args.batch_size, args.max_length, args.local_model_path, args.backend,args.text_strategy), indent=2))
 
 
 if __name__ == "__main__":

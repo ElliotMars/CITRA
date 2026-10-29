@@ -1,0 +1,41 @@
+{
+  "cases": [
+    {
+      "variant": "sum_joint",
+      "error": 0.0,
+      "bound": 0.0,
+      "semantics": {
+        "kind": "sum",
+        "window_days": null,
+        "visible_documents": 3256,
+        "denominator": 1,
+        "gate": 1.0,
+        "effective_input_lipschitz": 0.18632321097405266,
+        "effective_raw_sum_lipschitz": 0.18632321097405266
+      },
+      "gate_encoding_seconds": 0.0
+    },
+    {
+      "variant": "window7_mean_gated_residual",
+      "error": 0.0,
+      "bound": 0.0,
+      "semantics": {
+        "kind": "count_mean",
+        "window_days": 7,
+        "visible_documents": 43,
+        "denominator": 43,
+        "gate": 0.8975566066619215,
+        "effective_input_lipschitz": 0.16013399175104326,
+        "effective_raw_sum_lipschitz": 0.0037240463197917035
+      },
+      "gate_encoding_seconds": 0.0026377663016319275
+    }
+  ],
+  "legacy_three_seed_predictions_bit_identical": true,
+  "source_sha256": {
+    "models/CITRA.py": "92d7d8936940d4fa5b68b2ec65af0339086402e92c569f736be7ae0260f88dd3",
+    "citra/learning/training.py": "7cda452601e670eec1bfbf3ead488759a9d957e4ab50729fe78ecaece3db8d6c",
+    "citra/learning/inference.py": "dcbe980c2d1b734efd44c93129b2441e604629d3f1c9983c17610ca1801b8b95",
+    "citra/learning/aggregation.py": "1e656b00a9b26383bd66bdc6eabbd72ba5d70c5e28e6b35cb9966108a915a9f7"
+  }
+}

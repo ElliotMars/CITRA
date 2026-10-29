@@ -46,8 +46,9 @@ def local_bounds(session, history, cutoff, samples=16):
 
 def maintenance(session, updates=100):
     """Replay actual late-arriving documents into a separate store, no model edits."""
-    documents = [replace(d, embedding=z, impact_vector=v) for d,z,v in
+    documents = [session.spec.indexed_document(replace(d, embedding=z, impact_vector=v)) for d,z,v in
                  zip(session.corpus.documents,session.keys_np,session.impacts_np)]
+    documents = [d for d in documents if d is not None]
     documents.sort(key=lambda d:(d.available_at,d.doc_id,d.version_id))
     count = min(updates,len(documents))
     c = session.model.config

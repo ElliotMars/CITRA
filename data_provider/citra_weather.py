@@ -204,7 +204,7 @@ class WeatherData:
         self.fit_scaler()
         records = load_jsonl(self.directory / "documents.jsonl") if load_text else []
         if requested == ASSUMED:
-            delay = self.manifest.get("text_delay_hours", 0.) if text_delay_hours is None else text_delay_hours
+            delay = float(self.manifest.get("text_delay_hours", 0.) if text_delay_hours is None else text_delay_hours)
             records, audit = issuance_records(records, delay, parse_time)
             self.manifest = dict(self.manifest, text_delay_hours=delay, text_assumption_audit=audit)
         self.corpus = TextCorpus(records,

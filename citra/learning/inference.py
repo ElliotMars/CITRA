@@ -7,6 +7,8 @@ from time import perf_counter
 import numpy as np
 import torch
 from .fusion import LinearCorrection
+from .gating import HistoryGate
+from .aggregation import AggregationSpec
 
 from citra import TemporalDocumentStore
 from citra.kernel import immutable
@@ -42,6 +44,7 @@ class ForecastResult:
     model_version: str
     session: object
     certificate_scope: str = "analytic_fixed_parameter_output_remainder_float64_tolerance"
+    aggregation_semantics: object = None
 
     def assert_current(self):
         self.session.assert_current()
@@ -57,6 +60,10 @@ class FrozenForecastSession:
                 or model.fusion.projection.bias is not None
                 or any(m._forward_hooks or m._forward_pre_hooks for m in model.fusion.modules())):
             raise ValueError("only the built-in linear correction without modifying hooks has a supported certificate")
+        if model.gate is not None and (type(model.gate) is not HistoryGate
+                or type(model.gate.projection) is not torch.nn.Linear
+                or any(m._forward_hooks or m._forward_pre_hooks for m in model.gate.modules())):
+            raise ValueError("only the built-in history-only bounded gate is supported")
 
     def __init__(self, model, corpus=None, *, text_enabled=True, build_index=True):
         self.text_enabled = text_enabled
@@ -67,6 +74,7 @@ class FrozenForecastSession:
         if any(p.dtype != torch.float64 for p in model.parameters()):
             raise ValueError("this certificate implementation requires float64 parameters")
         self.model, self.corpus = model, corpus if text_enabled else None
+        self.spec=AggregationSpec.from_model(model)
         self.corpus_version = corpus.fingerprint if text_enabled else None
         self.model_version = parameter_digest(model, None if text_enabled else "backbone.")
         self.offline_timings = dict(index_construction_seconds=0., index_maintenance_seconds=None)
@@ -110,6 +118,9 @@ class FrozenForecastSession:
         seen = set()
         for d, z, v in zip(corpus.documents, keys, impacts):
             encoded = replace(d, embedding=z, impact_vector=v)
+            encoded = self.spec.indexed_document(encoded)
+            if encoded is None:
+                continue
             (self.store.append_revision if d.doc_id in seen else self.store.insert_document)(encoded)
             seen.add(d.doc_id)
         self.index_generation = self.store.generation
@@ -171,7 +182,7 @@ class FrozenForecastSession:
             timings["output_transfer_seconds"] = perf_counter() - start
             timings.update(query_encoding_seconds=0., index_query_seconds=0., exact_aggregation_seconds=0.,
                 approximate_aggregation_seconds=0., aggregate_transfer_seconds=0., query_transfer_seconds=0.,
-                certificate_setup_seconds=0.)
+                certificate_setup_seconds=0.,gate_encoding_seconds=0.)
             timings["data_transfer_seconds"] = timings["input_transfer_seconds"] + timings["output_transfer_seconds"]
             timings["total_inference_seconds"] = perf_counter() - total_start
             return ForecastResult(prediction, None, None, self.encoder_version, self.impact_version,
@@ -182,40 +193,51 @@ class FrozenForecastSession:
         query_tensor = model.encode_query(x)
         synchronize(model)
         timings["query_encoding_seconds"] = perf_counter() - start
+        gate=None
+        gate_number=1.
+        timings["gate_encoding_seconds"]=0.
+        if model.gate is not None:
+            start=perf_counter()
+            gate=model.gate_value(x)
+            gate_number=float(gate.item())
+            timings["gate_encoding_seconds"]=perf_counter()-start
         start = perf_counter()
         query = query_tensor.cpu().numpy()[0]
         timings["query_transfer_seconds"] = perf_counter() - start
         start = perf_counter()
-        amplification = self._amplification
+        amplification = self._amplification*gate_number
         timings["certificate_setup_seconds"] = perf_counter() - start
         start = perf_counter()
         stats, aggregate_bound = None, 0.
+        mask=self.spec.mask(self.corpus,[cutoff])[0]
+        count=int(mask.sum())
+        denominator=self.spec.denominator(count)
         if execution == "ts_only":
             aggregate = np.zeros(c["impact_dim"])
         elif execution == "citra_certified":
             if self.store.index is None:
                 raise ValueError("call prepare_index() offline before measuring certified queries")
             budget = 0. if epsilon == 0 else (np.finfo(np.float64).max if amplification == 0 else
-                     max(0., float(np.nextafter(min(epsilon / amplification, np.finfo(np.float64).max), 0.))))
+                     max(0., float(np.nextafter(min(epsilon / amplification*denominator, np.finfo(np.float64).max), 0.))))
             result = self.store.query_certified(query, cutoff, budget)
-            if amplification * result.aggregate_bound > epsilon:
+            if amplification * (result.aggregate_bound/denominator) > epsilon:
                 result = self.store.query_certified(query, cutoff, 0.)
             aggregate, aggregate_bound, stats = result.aggregate, result.aggregate_bound, result.stats
         elif execution == "full_asof_text":
-            mask = self.corpus.visibility([cutoff])[0]
             z, v = self.keys_np[mask], self.impacts_np[mask]
             weights = np.exp(-np.sum((query-z)**2, axis=1)/(2*c["sigma"]**2))
             aggregate = np.sum(weights[:, None]*v, axis=0)
         else:
             if topk <= 0:
                 raise ValueError("topk must be positive")
-            mask = self.corpus.visibility([cutoff])[0]
             z, v = self.keys_np[mask], self.impacts_np[mask]
             distances = np.sum((query-z)**2, axis=1)
             k = min(topk, len(z))
             chosen = np.argpartition(distances, k-1)[:k] if k else np.array([], dtype=int)
             weights = np.exp(-distances[chosen]/(2*c["sigma"]**2))
             aggregate = np.sum(weights[:, None]*v[chosen], axis=0)
+        aggregate=aggregate/denominator
+        aggregate_bound=aggregate_bound/denominator
         timings["index_query_seconds"] = perf_counter() - start
         timings["exact_aggregation_seconds"] = timings["index_query_seconds"] if execution != "citra_certified" else 0.
         timings["approximate_aggregation_seconds"] = timings["index_query_seconds"] if execution == "citra_certified" else 0.
@@ -225,7 +247,8 @@ class FrozenForecastSession:
         timings["aggregate_transfer_seconds"] = perf_counter() - start
         start = perf_counter()
         numerical = model.numeric_forecast(x)
-        prediction = numerical if execution == "ts_only" else numerical + model.fusion(a)
+        correction=model.fusion(a)
+        prediction = numerical + (correction if gate is None else gate[:,:,None]*correction)
         synchronize(model)
         timings["forecast_inference_seconds"] = perf_counter() - start
         start = perf_counter()
@@ -239,4 +262,7 @@ class FrozenForecastSession:
                  "ts_only_no_text_certificate" if execution == "ts_only" else
                  "analytic_fixed_parameter_output_remainder_float64_tolerance")
         return ForecastResult(prediction, bound, aggregate_bound if bound is not None else None, self.encoder_version, self.impact_version,
-                              self.index_generation, timings, stats, self.model_version, self, scope)
+                              self.index_generation, timings, stats, self.model_version, self, scope,
+                              dict(kind=self.spec.kind,window_days=self.spec.window_days,visible_documents=count,
+                                   denominator=denominator,gate=gate_number,effective_input_lipschitz=amplification,
+                                   effective_raw_sum_lipschitz=amplification/denominator))

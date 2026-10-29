@@ -4,6 +4,11 @@ CITRA 是面向历史可用文本的研究原型：可训练预测查询、带�
 
 新增 PyTorch 模型见 `models/CITRA.py`，训练入口为 `run_CITRA.py`。数值输入 `[B,L,C]`，多步输出 `[B,H,C_target]`；原 ReTaMTSF 模型和实验入口保留在下方。
 
+最新阶段已完成 [预测退化诊断与受控消融](docs/citra_failure_diagnosis.md)：原始累计Sum存在尺度漂移，
+新增Count Mean、公开时间窗口、固定TS残差与历史有界门控，均保留独立Exact Oracle和对应认证语义。
+2021验证锁定后，2023保留年份的残差MSE由TS的0.301148降至0.298032；固定权重打乱文本后仍为0.298193，
+尚不能确认可靠文本收益。75项测试和63组真实证书对照通过；本轮对Hybrid/复杂索引开发给出No-Go。
+
 ## 安装与原型验证
 
 使用独立 Python 环境；本轮实际验证 Python 3.10、NumPy 2.2.5、PyTorch 2.5.1 CPU / 2.4.1 CUDA。

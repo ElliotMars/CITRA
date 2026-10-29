@@ -1,0 +1,77 @@
+{
+  "split": "validation",
+  "year": null,
+  "windows": 363,
+  "text_on": {
+    "mse": 26.628594919831556,
+    "mae": 3.818623992544854,
+    "normalized_mse": 0.3540528064890799,
+    "normalized_mae": 0.4035136268051754,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 38.96022616762499,
+        "mae": 4.875156919748185
+      },
+      "wind_speed_knots": {
+        "mse": 14.296963672038121,
+        "mae": 2.7620910653415227
+      }
+    },
+    "normalized_bias_by_target": [
+      -0.07217137300339814,
+      -0.2078280390492738
+    ]
+  },
+  "text_off": {
+    "mse": 25.985183114744896,
+    "mae": 3.892558091985894,
+    "normalized_mse": 0.3816787127965449,
+    "normalized_mae": 0.4342721684183344,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 36.258419052995315,
+        "mae": 4.683953929674275
+      },
+      "wind_speed_knots": {
+        "mse": 15.71194717649447,
+        "mae": 3.1011622542975137
+      }
+    },
+    "normalized_bias_by_target": [
+      0.07765587578475204,
+      0.32409952136962794
+    ]
+  },
+  "gate_mean": 1.0,
+  "visible_count_mean": 3256.845730027548,
+  "cohort_sha256": "4697ceafc36c996fdfe0ca597c2a2f07384bad700ea3595ed893890d01217252",
+  "model_config": {
+    "seq_len": 48,
+    "channels": 2,
+    "horizon": 6,
+    "target_ids": [
+      0,
+      1
+    ],
+    "base_dim": 384,
+    "embedding_dim": 8,
+    "impact_dim": 8,
+    "metadata_dim": 2,
+    "hidden_dim": 32,
+    "sigma": 0.7,
+    "backbone_kind": "linear"
+  },
+  "data_fingerprint": "8254655a3e312f40248e203295527bee686410b1ab76c680ca28e1894490cbfc",
+  "scaler": {
+    "mean": [
+      51.68843304843305,
+      8.382718867709166
+    ],
+    "scale": [
+      21.028376584063427,
+      4.802048221311442
+    ]
+  }
+}

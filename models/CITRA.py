@@ -7,12 +7,13 @@ from citra.learning.text_encoder import TextKeyEncoder
 from citra.learning.influence_encoder import TextImpactEncoder
 from citra.learning.fusion import LinearCorrection
 from citra.learning.numeric_backbones import DecompositionLinear
+from citra.learning.gating import HistoryGate
 
 
 class Model(nn.Module):
     def __init__(self, seq_len=48, channels=2, horizon=6, target_ids=None, base_dim=32,
                  embedding_dim=8, impact_dim=8, metadata_dim=2, hidden_dim=32, sigma=0.7,
-                 backbone_kind="linear"):
+                 backbone_kind="linear",aggregation_kind="sum",window_days=None,gated=False):
         super().__init__()
         target_ids = tuple(range(channels)) if target_ids is None else tuple(target_ids)
         if (any(not isinstance(x, int) or x <= 0 for x in
@@ -24,6 +25,11 @@ class Model(nn.Module):
         self.config = dict(seq_len=seq_len, channels=channels, horizon=horizon, target_ids=list(target_ids),
                            base_dim=base_dim, embedding_dim=embedding_dim, impact_dim=impact_dim,
                            metadata_dim=metadata_dim, hidden_dim=hidden_dim, sigma=sigma, backbone_kind=backbone_kind)
+        if aggregation_kind not in ("sum","count_mean") or (window_days is not None and
+                (not math.isfinite(window_days) or window_days<=0)):
+            raise ValueError("invalid aggregation semantics")
+        if aggregation_kind!="sum" or window_days is not None or gated:
+            self.config.update(aggregation_kind=aggregation_kind,window_days=window_days,gated=bool(gated))
         self.register_buffer("target_ids", torch.tensor(target_ids, dtype=torch.long))
         if backbone_kind == "linear":
             self.backbone = nn.Linear(seq_len * channels, horizon * len(target_ids))
@@ -35,6 +41,7 @@ class Model(nn.Module):
         self.key_encoder = TextKeyEncoder(base_dim, embedding_dim)
         self.impact_encoder = TextImpactEncoder(base_dim, metadata_dim, impact_dim, hidden_dim)
         self.fusion = LinearCorrection(impact_dim, horizon, len(target_ids))
+        self.gate = HistoryGate(seq_len,channels) if gated else None
 
     def numeric_forecast(self, history):
         c = self.config
@@ -66,7 +73,17 @@ class Model(nn.Module):
                 selected.scatter_(1, indices, True)
                 selected &= visible
         weights = torch.exp(-distances / (2 * self.config["sigma"]**2))
-        return torch.where(selected, weights, 0.) @ impacts
+        aggregate=torch.where(selected, weights, 0.) @ impacts
+        if self.config.get("aggregation_kind")=="count_mean":
+            aggregate=aggregate/visible.sum(-1,keepdim=True).clamp(min=1)
+        return aggregate
+
+    def gate_value(self,history):
+        return self.gate(history) if self.gate is not None else torch.ones((len(history),1),dtype=history.dtype,device=history.device)
+
+    def text_correction(self,history,aggregate):
+        correction=self.fusion(aggregate)
+        return correction if self.gate is None else self.gate_value(history)[:,:,None]*correction
 
     def forward(self, history, base_embeddings=None, metadata=None, visible=None,
                 mode="full_asof_text", topk=8, return_details=False):
@@ -76,5 +93,5 @@ class Model(nn.Module):
         query = self.encode_query(history)
         keys, impacts = self.encode_documents(base_embeddings, metadata)
         aggregate = self.aggregate(query, keys, impacts, visible, mode, topk)
-        prediction = forecast + self.fusion(aggregate)
+        prediction = forecast + self.text_correction(history,aggregate)
         return (prediction, query, aggregate) if return_details else prediction

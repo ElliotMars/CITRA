@@ -1,0 +1,80 @@
+{
+  "split": "train",
+  "year": null,
+  "windows": 361,
+  "text_on": {
+    "mse": 15.660454078003827,
+    "mae": 2.949182024625269,
+    "normalized_mse": 0.26457479023238145,
+    "normalized_mae": 0.3403461202969551,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 20.170769680763357,
+        "mae": 3.4078694805349676
+      },
+      "wind_speed_knots": {
+        "mse": 11.150138475244297,
+        "mae": 2.4904945687155706
+      }
+    },
+    "normalized_bias_by_target": [
+      0.00632993342930901,
+      0.03038367341421828
+    ]
+  },
+  "text_off": {
+    "mse": 15.699110511351963,
+    "mae": 2.9541694568252312,
+    "normalized_mse": 0.2651093011425253,
+    "normalized_mae": 0.34093153150794503,
+    "aggregate_physical_units": "mixed units; use per_target or normalized metrics for comparisons",
+    "per_target": {
+      "temperature_F": {
+        "mse": 20.226328571069565,
+        "mae": 3.413510091254563
+      },
+      "wind_speed_knots": {
+        "mse": 11.171892451634356,
+        "mae": 2.4948288223958985
+      }
+    },
+    "normalized_bias_by_target": [
+      0.010787028136979685,
+      0.03787119614715311
+    ]
+  },
+  "gate_mean": 0.499228885218799,
+  "visible_count_mean": 40.84487534626039,
+  "cohort_sha256": "7814e0d28c54c1cf379324d45332d01e8b41966bb7603292d2d82a265749d62f",
+  "model_config": {
+    "seq_len": 48,
+    "channels": 2,
+    "horizon": 6,
+    "target_ids": [
+      0,
+      1
+    ],
+    "base_dim": 384,
+    "embedding_dim": 8,
+    "impact_dim": 8,
+    "metadata_dim": 2,
+    "hidden_dim": 32,
+    "sigma": 0.7,
+    "backbone_kind": "linear",
+    "aggregation_kind": "count_mean",
+    "window_days": 7,
+    "gated": true
+  },
+  "data_fingerprint": "8254655a3e312f40248e203295527bee686410b1ab76c680ca28e1894490cbfc",
+  "scaler": {
+    "mean": [
+      51.68843304843305,
+      8.382718867709166
+    ],
+    "scale": [
+      21.028376584063427,
+      4.802048221311442
+    ]
+  }
+}
